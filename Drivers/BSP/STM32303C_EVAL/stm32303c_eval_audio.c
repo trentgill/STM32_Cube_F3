@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    stm32303c_eval_audio.c
   * @author  MCD Application Team
-  * @version V2.1.1
-  * @date    16-December-2016
   * @brief   This file provides the Audio driver for the STM32303C_EVAL 
   *          evaluation board(MB1019).  
   ******************************************************************************
@@ -175,10 +173,10 @@ static AUDIO_StatusTypeDef  I2Sx_Init(uint32_t AudioFreq);
 
 /**
   * @brief  Configure the audio peripherals.
-  * @param  OutputDevice: OUTPUT_DEVICE_SPEAKER, OUTPUT_DEVICE_HEADPHONE,
+  * @param  OutputDevice OUTPUT_DEVICE_SPEAKER, OUTPUT_DEVICE_HEADPHONE,
   *                       OUTPUT_DEVICE_BOTH or OUTPUT_DEVICE_AUTO .
-  * @param  Volume: Initial volume level (from 0 (Mute) to 100 (Max))
-  * @param  AudioFreq: Audio frequency used to play the audio stream.
+  * @param  Volume Initial volume level (from 0 (Mute) to 100 (Max))
+  * @param  AudioFreq Audio frequency used to play the audio stream.
   * @retval AUDIO_OK if correct communication, else wrong communication
   */
 uint8_t BSP_AUDIO_OUT_Init(uint16_t OutputDevice, uint8_t Volume, uint32_t AudioFreq)
@@ -222,8 +220,8 @@ uint8_t BSP_AUDIO_OUT_Init(uint16_t OutputDevice, uint8_t Volume, uint32_t Audio
 
 /**
   * @brief  Starts playing audio stream from a data buffer for a determined size. 
-  * @param  pBuffer: Pointer to the buffer 
-  * @param  Size: Number of audio data BYTES.
+  * @param  pBuffer Pointer to the buffer 
+  * @param  Size Number of audio data BYTES.
   * @retval AUDIO_OK if correct communication, else wrong communication
   */
 uint8_t BSP_AUDIO_OUT_Play(uint16_t* pBuffer, uint32_t Size)
@@ -242,8 +240,8 @@ uint8_t BSP_AUDIO_OUT_Play(uint16_t* pBuffer, uint32_t Size)
 
 /**
   * @brief Sends n-Bytes on the I2S interface.
-  * @param pData: pointer on data address 
-  * @param Size: number of data to be written
+  * @param pData pointer on data address 
+  * @param Size number of data to be written
   * @retval AUDIO_OK if correct communication, else wrong communication
   */
 uint8_t BSP_AUDIO_OUT_ChangeBuffer(uint16_t *pData, uint16_t Size)
@@ -295,7 +293,7 @@ uint8_t BSP_AUDIO_OUT_Resume(void)
 
 /**
   * @brief  Stops audio playing and Power down the Audio Codec. 
-  * @param  Option: could be one of the following parameters 
+  * @param  Option could be one of the following parameters 
   *           - CODEC_PDWN_SW: for software power off (by writing registers). 
   *                            Then no need to reconfigure the Codec after power on.
   *           - CODEC_PDWN_HW: completely shut down the codec (physically). 
@@ -326,7 +324,7 @@ uint8_t BSP_AUDIO_OUT_Stop(uint32_t Option)
 
 /**
   * @brief  Controls the current audio volume level. 
-  * @param  Volume: Volume level to be set in percentage from 0% to 100% (0 for 
+  * @param  Volume Volume level to be set in percentage from 0% to 100% (0 for 
   *         Mute and 100 for Max volume level).
   * @retval AUDIO_OK if correct communication, else wrong communication
   */
@@ -346,7 +344,7 @@ uint8_t BSP_AUDIO_OUT_SetVolume(uint8_t Volume)
 
 /**
   * @brief  Enables or disables the MUTE mode by software 
-  * @param  Cmd : could be AUDIO_MUTE_ON to mute sound or AUDIO_MUTE_OFF to 
+  * @param  Cmd could be AUDIO_MUTE_ON to mute sound or AUDIO_MUTE_OFF to 
   *         unmute the codec and restore previous volume level.
   * @retval AUDIO_OK if correct communication, else wrong communication
   */
@@ -368,7 +366,7 @@ uint8_t BSP_AUDIO_OUT_SetMute(uint32_t Cmd)
   * @brief  Switch dynamically (while audio file is played) the output target 
   *         (speaker or headphone).
   * @note   This function modifies a global variable of the audio codec driver: OutputDev.
-  * @param  Output: specifies the audio output target: OUTPUT_DEVICE_SPEAKER,
+  * @param  Output specifies the audio output target: OUTPUT_DEVICE_SPEAKER,
   *         OUTPUT_DEVICE_HEADPHONE, OUTPUT_DEVICE_BOTH or OUTPUT_DEVICE_AUTO 
   * @retval AUDIO_OK if correct communication, else wrong communication
   */
@@ -388,7 +386,7 @@ uint8_t BSP_AUDIO_OUT_SetOutputMode(uint8_t Output)
 
 /**
   * @brief  Update the audio frequency.
-  * @param  AudioFreq: Audio frequency used to play the audio stream.
+  * @param  AudioFreq Audio frequency used to play the audio stream.
   * @retval AUDIO_OK if correct communication, else wrong communication
   */
 uint8_t BSP_AUDIO_OUT_SetFrequency(uint32_t AudioFreq)
@@ -399,7 +397,7 @@ uint8_t BSP_AUDIO_OUT_SetFrequency(uint32_t AudioFreq)
 
 /**
   * @brief Tx Transfer completed callbacks
-  * @param hi2s: I2S handle
+  * @param hi2s I2S handle
   * @retval None
   */
 void HAL_I2S_TxCpltCallback(I2S_HandleTypeDef *hi2s)
@@ -413,7 +411,7 @@ void HAL_I2S_TxCpltCallback(I2S_HandleTypeDef *hi2s)
 
 /**
   * @brief Tx Transfer Half completed callbacks
-  * @param hi2s: I2S handle
+  * @param hi2s I2S handle
   * @retval None
   */
 void HAL_I2S_TxHalfCpltCallback(I2S_HandleTypeDef *hi2s)
@@ -428,7 +426,7 @@ void HAL_I2S_TxHalfCpltCallback(I2S_HandleTypeDef *hi2s)
 
 /**
   * @brief I2S error callbacks
-  * @param hi2s: I2S handle
+  * @param hi2s I2S handle
   * @retval None
   */
 void HAL_I2S_ErrorCallback(I2S_HandleTypeDef *hi2s)
@@ -551,7 +549,7 @@ static void I2Sx_MspInit(void)
 
 /**
   * @brief  Initializes the Audio Codec audio interface (I2S)
-  * @param  AudioFreq: Audio frequency to be configured for the I2S peripheral. 
+  * @param  AudioFreq Audio frequency to be configured for the I2S peripheral. 
   * @retval AUDIO_StatusTypeDef AUDIO Status
   */
 static AUDIO_StatusTypeDef I2Sx_Init(uint32_t AudioFreq)

@@ -5,8 +5,6 @@
   ******************** (C) COPYRIGHT 2016 STMicroelectronics *******************
   * @file    TIM/TIM_DMA/readme.txt 
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Description of the TIM DMA example.
   ******************************************************************************
   *
@@ -37,10 +35,9 @@
 
 @par Example Description 
 
-  This example provides a description of how to use DMA with TIMER Update request
-  to transfer Data from memory to TIMER Capture Compare Register (TIMx_CCR).
+This example provides a description of how to use DMA with TIMER Update request
+to transfer Data from memory to TIMER Capture Compare Register 3 (TIMx_CCR3).
 
-  This is done using TIM1 Update request and TIM1 CCR3 register.
   The following configuration values are used in this example:
 
     - TIM1CLK = SystemCoreClock
@@ -72,6 +69,7 @@
       
 @note The application need to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
+
 
 @par Directory contents 
 

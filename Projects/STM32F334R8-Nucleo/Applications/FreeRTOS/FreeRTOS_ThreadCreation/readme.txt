@@ -5,8 +5,6 @@
   ******************************************************************************
   * @file    FreeRTOS/FreeRTOS_ThreadCreation/readme.txt
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016 
   * @brief   Description of the FreeRTOS Thread Creation example.
   ******************************************************************************
   *
@@ -53,8 +51,8 @@ This application shows how to implement thread creation using CMSIS RTOS API.
 This example creates two threads with the same priority, which execute in 
 a periodic cycle of 5 seconds for Thread 1 and 10 seconds for Thread 2. 
 
-Thread 1 toggles LED3 every 250 milliseconds for 5 seconds then resumes Thread 2
-and suspends itself. Thread 2 resumes and toggles LED3 every 500 milliseconds
+Thread 1 toggles LED2 every 250 milliseconds for 5 seconds then resumes Thread 2
+and suspends itself. Thread 2 resumes and toggles LED2 every 500 milliseconds
 for 10 seconds, then Thread 2 resumes Thread 1 and suspends itself.
 
 @note Care must be taken when using HAL_Delay(), this function provides accurate

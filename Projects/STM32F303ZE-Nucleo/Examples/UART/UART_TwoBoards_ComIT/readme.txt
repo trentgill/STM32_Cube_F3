@@ -5,8 +5,6 @@
   ******************** (C) COPYRIGHT 2016 STMicroelectronics *******************
   * @file    UART/UART_TwoBoards_ComIT/readme.txt 
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Description of the UART Two Boards Communication IT example.
   ******************************************************************************
   *
@@ -72,12 +70,11 @@ Finally, board 1 and 2 compare the received message to that sent.
 If the messages are the same, the test passes.
 
 
-WARNING: as both boards do not behave the same way, "TRANSMITTER_BOARD" compilation
-switch is defined in /Src/main.c and must be enabled
-at compilation time before loading the executable in the board that first transmits
-then receives.
-The receiving then transmitting board needs to be loaded with an executable
-software obtained with TRANSMITTER_BOARD disabled. 
+WARNING: as both boards do not behave the same way :
+ The user can choose between board 1 and board 2 through "#define TRANSMITTER_BOARD"
+ in the "/Src/main.c" file:
+ - Uncomment "#define TRANSMITTER_BOARD" to select board 1(the transmitting then receiving board).
+ - Comment "#define TRANSMITTER_BOARD" to select board 2 (The receiving then transmitting board).
 
 STM32F303ZE-Nucleo Rev B board LEDs are used to monitor the transfer status:
 - While board 1 is waiting for the user to press the User push-button, its LED3 is
@@ -116,6 +113,7 @@ position of the transmitted data.
       
 @note The application need to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
+
 
 @par Directory contents 
 

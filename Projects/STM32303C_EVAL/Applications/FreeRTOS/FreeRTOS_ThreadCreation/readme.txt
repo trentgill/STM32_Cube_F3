@@ -5,8 +5,6 @@
   ******************************************************************************
   * @file    FreeRTOS/FreeRTOS_ThreadCreation/readme.txt
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016 
   * @brief   Description of the FreeRTOS Thread Creation example.
   ******************************************************************************
   *
@@ -58,7 +56,7 @@ thread 2 toggles LED2 each 500 ms.
 In the following 5 seconds, the thread 1 suspends itself and the thread 2
 continue toggling LED2.
 In the last 5 seconds, the thread 2 resumes execution of thread 1 then 
-suspends itself, the thread 1 toggles the LED1 each 400 ms.    
+suspends itself, the thread 1 toggles the LED1 each 500 ms.    
 
 @note Care must be taken when using HAL_Delay(), this function provides accurate
       delay (in milliseconds) based on variable incremented in HAL time base ISR.

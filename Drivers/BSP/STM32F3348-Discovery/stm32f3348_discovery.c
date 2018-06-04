@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    stm32f3348_discovery.c
   * @author  MCD Application Team
-  * @version V2.0.3
-  * @date    16-December-2016
   * @brief   This file provides set of firmware functions to manage Leds and
   *          push-button available on STM32F3348-DISCO Kit from STMicroelectronics.
   ******************************************************************************
@@ -57,11 +55,11 @@
   */
 
   /**
-  * @brief STM32F3348 DISCO BSP Driver version number V2.0.3
+  * @brief STM32F3348 DISCO BSP Driver version number V2.0.4
   */
 #define __STM32F3348_DISCO_BSP_VERSION_MAIN   (0x02) /*!< [31:24] main version */
 #define __STM32F3348_DISCO_BSP_VERSION_SUB1   (0x00) /*!< [23:16] sub1 version */
-#define __STM32F3348_DISCO_BSP_VERSION_SUB2   (0x03) /*!< [15:8]  sub2 version */
+#define __STM32F3348_DISCO_BSP_VERSION_SUB2   (0x04) /*!< [15:8]  sub2 version */
 #define __STM32F3348_DISCO_BSP_VERSION_RC     (0x00) /*!< [7:0]  release candidate */
 #define __STM32F3348_DISCO_BSP_VERSION         ((__STM32F3348_DISCO_BSP_VERSION_MAIN << 24)\
                                                |(__STM32F3348_DISCO_BSP_VERSION_SUB1 << 16)\
@@ -114,7 +112,7 @@ uint32_t BSP_GetVersion(void)
 
 /**
   * @brief  Configures LED GPIO.
-  * @param  Led: Specifies the Led to be configured. 
+  * @param  Led Specifies the Led to be configured. 
   *   This parameter can be one of following parameters:
   *     @arg LED_RED
   *     @arg LED_BLUE
@@ -142,7 +140,7 @@ void BSP_LED_Init(Led_TypeDef Led)
 
 /**
   * @brief  Turns selected LED On.
-  * @param  Led: Specifies the Led to be set on. 
+  * @param  Led Specifies the Led to be set on. 
   *   This parameter can be one of following parameters:
   *     @arg LED_RED
   *     @arg LED_BLUE
@@ -157,7 +155,7 @@ void BSP_LED_On(Led_TypeDef Led)
 
 /**
   * @brief  Turns selected LED Off.
-  * @param  Led: Specifies the Led to be set off. 
+  * @param  Led Specifies the Led to be set off. 
   *   This parameter can be one of following parameters:
   *     @arg LED_RED
   *     @arg LED_BLUE
@@ -172,7 +170,7 @@ void BSP_LED_Off(Led_TypeDef Led)
 
 /**
   * @brief  Toggles the selected LED.
-  * @param  Led: Specifies the Led to be toggled. 
+  * @param  Led Specifies the Led to be toggled. 
   *   This parameter can be one of following parameters:
   *     @arg LED_RED
   *     @arg LED_BLUE
@@ -188,9 +186,9 @@ void BSP_LED_Toggle(Led_TypeDef Led)
 
 /**
   * @brief  Configures Button GPIO and EXTI Line.
-  * @param  Button: Specifies the Button to be configured.
+  * @param  Button Specifies the Button to be configured.
   *   This parameter should be: BUTTON_USER
-  * @param  ButtonMode: Specifies Button mode.
+  * @param  ButtonMode Specifies Button mode.
   *   This parameter can be one of following parameters:   
   *     @arg BUTTON_MODE_GPIO: Button will be used as simple IO 
   *     @arg BUTTON_MODE_EXTI: Button will be connected to EXTI line with interrupt
@@ -232,7 +230,7 @@ void BSP_PB_Init(Button_TypeDef Button, ButtonMode_TypeDef ButtonMode)
 
 /**
   * @brief  Returns the selected Push Button state.
-  * @param  Button: Specifies the Button to be checked.
+  * @param  Button Specifies the Button to be checked.
   *   This parameter should be: BUTTON_USER  
   * @retval The Button GPIO pin value.
   */

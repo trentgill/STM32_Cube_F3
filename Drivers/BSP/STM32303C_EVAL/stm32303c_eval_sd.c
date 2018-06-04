@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    stm32303c_eval_sd.c
   * @author  MCD Application Team
-  * @version V2.1.1
-  * @date    16-December-2016
   * @brief   This file provides a set of functions needed to manage the SPI SD 
   *          Card memory mounted on STM32303C-EVAL board.
   *          It implements a high level communication layer for read and write 
@@ -190,7 +188,7 @@ uint8_t BSP_SD_IsDetected(void)
 
 /**
   * @brief  Returns information about specific card.
-  * @param  pCardInfo: pointer to a SD_CardInfo structure that contains all SD 
+  * @param  pCardInfo pointer to a SD_CardInfo structure that contains all SD 
   *         card information.
   * @retval The SD Response:
   *         - MSD_ERROR : Sequence failed
@@ -213,10 +211,10 @@ uint8_t BSP_SD_GetCardInfo(SD_CardInfo *pCardInfo)
 
 /**
   * @brief  Reads block(s) from a specified address in an SD card, in polling mode. 
-  * @param  p32Data: Pointer to the buffer that will contain the data to transmit
-  * @param  ReadAddr: Address from where data is to be read  
-  * @param  BlockSize: SD card data block size, that should be 512
-  * @param  NumberOfBlocks: Number of SD blocks to read 
+  * @param  p32Data Pointer to the buffer that will contain the data to transmit
+  * @param  ReadAddr Address from where data is to be read  
+  * @param  BlockSize SD card data block size, that should be 512
+  * @param  NumberOfBlocks Number of SD blocks to read 
   * @retval SD status
   */
 uint8_t BSP_SD_ReadBlocks(uint32_t* p32Data, uint64_t ReadAddr, uint16_t BlockSize, uint32_t NumberOfBlocks)
@@ -279,10 +277,10 @@ uint8_t BSP_SD_ReadBlocks(uint32_t* p32Data, uint64_t ReadAddr, uint16_t BlockSi
 
 /**
   * @brief  Writes block(s) to a specified address in an SD card, in polling mode. 
-  * @param  p32Data: Pointer to the buffer that will contain the data to transmit
-  * @param  WriteAddr: Address from where data is to be written  
-  * @param  BlockSize: SD card data block size, that should be 512
-  * @param  NumberOfBlocks: Number of SD blocks to write
+  * @param  p32Data Pointer to the buffer that will contain the data to transmit
+  * @param  WriteAddr Address from where data is to be written  
+  * @param  BlockSize SD card data block size, that should be 512
+  * @param  NumberOfBlocks Number of SD blocks to write
   * @retval SD status
   */
 uint8_t BSP_SD_WriteBlocks(uint32_t* p32Data, uint64_t WriteAddr, uint16_t BlockSize, uint32_t NumberOfBlocks)
@@ -348,7 +346,7 @@ uint8_t BSP_SD_WriteBlocks(uint32_t* p32Data, uint64_t WriteAddr, uint16_t Block
   * @brief  Read the CSD card register.
   *         Reading the contents of the CSD register in SPI mode is a simple 
   *         read-block transaction.
-  * @param  Csd: pointer on an SCD register structure
+  * @param  Csd pointer on an SCD register structure
   * @retval SD status
   */
 uint8_t SD_GetCSDRegister(SD_CSD* Csd)
@@ -466,7 +464,7 @@ uint8_t SD_GetCSDRegister(SD_CSD* Csd)
   * @brief  Read the CID card register.
   *         Reading the contents of the CID register in SPI mode is a simple 
   *         read-block transaction.
-  * @param  Cid: pointer on an CID register structure
+  * @param  Cid pointer on an CID register structure
   * @retval SD status
   */
 static uint8_t SD_GetCIDRegister(SD_CID* Cid)
@@ -556,10 +554,10 @@ static uint8_t SD_GetCIDRegister(SD_CID* Cid)
 
 /**
   * @brief  Send 5 bytes command to the SD card and get response
-  * @param  Cmd: The user expected command to send to SD card.
-  * @param  Arg: The command argument.
-  * @param  Crc: The CRC.
-  * @param  Response: Expected response from the SD card
+  * @param  Cmd The user expected command to send to SD card.
+  * @param  Arg The command argument.
+  * @param  Crc The CRC.
+  * @param  Response Expected response from the SD card
   * @retval SD status
   */
 static uint8_t SD_SendCmd(uint8_t Cmd, uint32_t Arg, uint8_t Crc, uint8_t Response)
@@ -659,8 +657,8 @@ static uint8_t SD_GoIdleState(void)
 }
 /**
   * @brief  Erases the specified memory area of the given SD card. 
-  * @param  StartAddr: Start byte address
-  * @param  EndAddr: End byte address
+  * @param  StartAddr Start byte address
+  * @param  EndAddr End byte address
   * @retval SD status
   */
 uint8_t BSP_SD_Erase(uint32_t StartAddr, uint32_t EndAddr)

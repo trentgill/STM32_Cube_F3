@@ -5,8 +5,6 @@
   ******************** (C) COPYRIGHT 2016 STMicroelectronics *******************
   * @file    Examples_LL/DAC/DAC_GenerateWaveform_TriggerHW_Init/readme.txt 
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Description of the DAC_GenerateWaveform_TriggerHW_Init example.
   ******************************************************************************
   *

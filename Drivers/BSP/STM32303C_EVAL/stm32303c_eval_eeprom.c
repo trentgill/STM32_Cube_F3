@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    stm32303c_eval_eeprom.c
   * @author  MCD Application Team
-  * @version V2.1.1
-  * @date    16-December-2016
   * @brief   This file provides a set of functions needed to manage a M24LR64 
   *          or M24M01 I2C EEPROM memory, or a M95M01 SPI EEPROM memory.
   *          
@@ -206,7 +204,7 @@ uint32_t BSP_EEPROM_Init(void)
 
 /**
   * @brief  Select the EEPROM device to communicate.
-  * @param  DeviceID: Specifies the EEPROM device to be selected. 
+  * @param  DeviceID Specifies the EEPROM device to be selected. 
   *   This parameter can be one of following parameters:
   *     @arg BSP_EEPROM_M24LR64
   *     @arg BSP_EEPROM_M24M01
@@ -238,10 +236,10 @@ void BSP_EEPROM_SelectDevice(uint8_t DeviceID)
 
 /**
   * @brief  Reads a block of data from the EEPROM device selected.
-  * @param  pBuffer : pointer to the buffer that receives the data read from 
+  * @param  pBuffer pointer to the buffer that receives the data read from 
   *         the EEPROM.
-  * @param  ReadAddr : EEPROM's internal address to start reading from.
-  * @param  NumByteToRead : pointer to the variable holding number of bytes to 
+  * @param  ReadAddr EEPROM's internal address to start reading from.
+  * @param  NumByteToRead pointer to the variable holding number of bytes to 
   *         be read from the EEPROM.
   * 
   *        @note The variable pointed by NumByteToRead is reset to 0 when all the 
@@ -265,10 +263,10 @@ uint32_t BSP_EEPROM_ReadBuffer(uint8_t* pBuffer, uint16_t ReadAddr, uint32_t* Nu
 
 /**
   * @brief  Writes buffer of data to the EEPROM device selected.
-  * @param  pBuffer : pointer to the buffer  containing the data to be written 
+  * @param  pBuffer pointer to the buffer  containing the data to be written 
   *         to the EEPROM.
-  * @param  WriteAddr : EEPROM's internal address to write to.
-  * @param  NumByteToWrite : number of bytes to write to the EEPROM.
+  * @param  WriteAddr EEPROM's internal address to write to.
+  * @param  NumByteToWrite number of bytes to write to the EEPROM.
   * @retval EEPROM_OK (0) if operation is correctly performed, else return value 
   *         different from EEPROM_OK (0) or the timeout user callback.
   */
@@ -473,10 +471,10 @@ static uint32_t EEPROM_I2C_Init(void)
 
 /**
   * @brief  Reads a block of data from the I2C EEPROM.
-  * @param  pBuffer : pointer to the buffer that receives the data read from 
+  * @param  pBuffer pointer to the buffer that receives the data read from 
   *         the EEPROM.
-  * @param  ReadAddr : EEPROM's internal address to start reading from.
-  * @param  NumByteToRead : pointer to the variable holding number of bytes to 
+  * @param  ReadAddr EEPROM's internal address to start reading from.
+  * @param  NumByteToRead pointer to the variable holding number of bytes to 
   *         be read from the EEPROM.
   * 
   * @retval EEPROM_OK (0) if operation is correctly performed, else return value 
@@ -505,10 +503,10 @@ static uint32_t EEPROM_I2C_ReadBuffer(uint8_t* pBuffer, uint16_t ReadAddr, uint3
   *         the function BSP_EEPROM_WriteBuffer() which calls EEPROM_WritePage() is 
   *         responsible of checking on Page boundaries).
   * 
-  * @param  pBuffer : pointer to the buffer containing the data to be written to 
+  * @param  pBuffer pointer to the buffer containing the data to be written to 
   *         the EEPROM.
-  * @param  WriteAddr : EEPROM's internal address to write to.
-  * @param  NumByteToWrite : pointer to the variable holding number of bytes to 
+  * @param  WriteAddr EEPROM's internal address to write to.
+  * @param  NumByteToWrite pointer to the variable holding number of bytes to 
   *         be written into the EEPROM. 
   * 
   *        @note The variable pointed by NumByteToWrite is reset to 0 when all the 
@@ -582,10 +580,10 @@ static uint32_t EEPROM_SPI_Init(void)
 
 /**
   * @brief  Reads a block of data from the SPI EEPROM.
-  * @param  pBuffer : pointer to the buffer that receives the data read from 
+  * @param  pBuffer pointer to the buffer that receives the data read from 
   *         the EEPROM.
-  * @param  ReadAddr : EEPROM's internal address to start reading from.
-  * @param  NumByteToRead : pointer to the variable holding number of bytes to 
+  * @param  ReadAddr EEPROM's internal address to start reading from.
+  * @param  NumByteToRead pointer to the variable holding number of bytes to 
   *         be read from the EEPROM.
   * 
   *        @note The variable pointed by NumByteToRead is reset to 0 when all the 
@@ -619,10 +617,10 @@ static uint32_t EEPROM_SPI_ReadBuffer(uint8_t* pBuffer, uint16_t ReadAddr, uint3
   *         the function BSP_EEPROM_WriteBuffer() which calls EEPROM_WritePage() is 
   *         responsible of checking on Page boundaries).
   * 
-  * @param  pBuffer : pointer to the buffer containing the data to be written to 
+  * @param  pBuffer pointer to the buffer containing the data to be written to 
   *         the EEPROM.
-  * @param  WriteAddr : EEPROM's internal address to write to.
-  * @param  NumByteToWrite : pointer to the variable holding number of bytes to 
+  * @param  WriteAddr EEPROM's internal address to write to.
+  * @param  NumByteToWrite pointer to the variable holding number of bytes to 
   *         be written into the EEPROM. 
   * 
   *        @note The variable pointed by NumByteToWrite is reset to 0 when all the 

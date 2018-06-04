@@ -36,8 +36,6 @@ Purpose     : Display controller initialization
   ******************************************************************************
   * @file    GUIConf.c
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Display controller initialization
   ******************************************************************************
   * @attention

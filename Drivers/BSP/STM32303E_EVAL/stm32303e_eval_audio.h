@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    stm32303e_eval_audio.h
   * @author  MCD Application Team
-  * @version V2.1.1
-  * @date    16-December-2016
   * @brief   This file contains all the functions prototypes for the 
   *          stm32303e_eval_audio.c driver.
   ******************************************************************************
@@ -119,8 +117,8 @@ typedef enum
 #define DMA_MAX_SZE                             0xFFFF
 
 /* Select the interrupt preemption priority and subpriority for the DMA interrupt */
-#define AUDIO_OUT_IRQ_PREPRIO                   5   /* Select the preemption priority level(0 is the highest) */
-#define AUDIO_OUT_IRQ_SUBPRIO                   0   /* Select the sub-priority level (0 is the highest) */
+#define AUDIO_OUT_IRQ_PREPRIO                   0x0E   /* Select the preemption priority level(0 is the highest) */   
+#define AUDIO_OUT_IRQ_SUBPRIO                   0      /* Select the sub-priority level (0 is the highest) */
 /*----------------------------------------------------------------------------*/
 
 /*------------------------------------------------------------------------------

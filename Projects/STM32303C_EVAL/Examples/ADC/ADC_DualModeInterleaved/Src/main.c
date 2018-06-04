@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    ADC/ADC_DualModeInterleaved/Src/main.c
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   This example provides a short description of how to use the ADC
   *          peripheral to convert a regular channel in Dual interleaved mode.
   ******************************************************************************
@@ -56,7 +54,7 @@ ADC_HandleTypeDef    AdcHandle1;
 ADC_HandleTypeDef    AdcHandle2;
 
 /* Variable used to get converted value */
-__IO uint16_t uhADCDualConvertedValue = 0;
+__IO uint16_t uhADCDualConvertedValue[256];
 
 /* Private function prototypes -----------------------------------------------*/
 static void SystemClock_Config(void);
@@ -116,7 +114,7 @@ int main(void)
   }
 
   /*##-3- Start ADC1 and ADC2 multimode conversion process and enable DMA ####*/
-  if (HAL_ADCEx_MultiModeStart_DMA(&AdcHandle1, (uint32_t *)&uhADCDualConvertedValue, 1) != HAL_OK)
+  if (HAL_ADCEx_MultiModeStart_DMA(&AdcHandle1, (uint32_t *)&uhADCDualConvertedValue[0], 256) != HAL_OK)
   {
     /* Start Error */
     Error_Handler();
@@ -299,7 +297,7 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc)
   * @param  line: assert_param error line source number
   * @retval None
   */
-void assert_failed(uint8_t *file, uint32_t line)
+void assert_failed(char *file, uint32_t line)
 {
   /* User can add his own implementation to report the file name and line number,
      ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */

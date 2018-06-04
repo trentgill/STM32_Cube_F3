@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    SDADC/SDADC_PressureMeasurement/Src/main.c
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   This example describes how to configure and use SDADC through
   *          the STM32F3xx HAL API to realize a pressure measurement. The sensor
   *          used is MPX2102A.
@@ -363,7 +361,7 @@ void Error_Handler(void)
   * @param  line: assert_param error line source number
   * @retval None
   */
-void assert_failed(uint8_t *file, uint32_t line)
+void assert_failed(char *file, uint32_t line)
 {
   /* User can add his own implementation to report the file name and line number,
      ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */

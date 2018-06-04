@@ -5,8 +5,6 @@
   ******************** (C) COPYRIGHT 2016 STMicroelectronics *******************
   * @file    Examples_LL/TIM/TIM_PWMOutput/readme.txt 
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Description of the TIM_PWMOutput example.
   ******************************************************************************
   *
@@ -43,11 +41,11 @@ Example using the STM32F3xx TIM LL API,
 peripheral initialization done using LL unitary services functions
 for optimization purpose (performance and size).
 
-  /* In this example TIM2 input clock TIM2CLK is set to APB1 clock (PCLK1),   */
-  /* since APB1 pre-scaler is equal to 1.                                     */
-  /*    TIM2CLK = PCLK1                                                       */
-  /*    PCLK1 = HCLK                                                          */
-  /*    => TIM2CLK = SystemCoreClock (2 MHz)                                  */
+In this example TIM2 input clock TIM2CLK is set to APB1 clock (PCLK1),
+since APB1 pre-scaler is equal to 1.
+    TIM2CLK = PCLK1
+    PCLK1 = HCLK
+    => TIM2CLK = HCLK = SystemCoreClock (64 MHz)
 
 To set the TIM2 counter clock frequency to 10 KHz, the pre-scaler (PSC) is
 calculated as follows:

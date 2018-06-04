@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    Examples_LL/SPI/SPI_TwoBoards_FullDuplex_DMA/Src/main.c
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   This example describes how to send/receive bytes over SPI IP using
   *          the STM32F3xx SPI LL API.
   *          Peripheral initialization done using LL unitary services functions.
@@ -83,7 +81,6 @@ void     WaitForUserButtonPress(void);
 #endif
 void     WaitAndCheckEndOfTransfer(void);
 uint8_t  Buffercmp8(uint8_t* pBuffer1, uint8_t* pBuffer2, uint8_t BufferLength);
-
 /* Private functions ---------------------------------------------------------*/
 
 /**
@@ -152,22 +149,29 @@ void Configure_DMA(void)
   NVIC_EnableIRQ(DMA1_Channel3_IRQn);
 
   /* (3) Configure the DMA1_Channel2 functional parameters */
-  LL_DMA_ConfigTransfer(DMA1, LL_DMA_CHANNEL_2,
+  LL_DMA_ConfigTransfer(DMA1,
+                        LL_DMA_CHANNEL_2,
                         LL_DMA_DIRECTION_PERIPH_TO_MEMORY | LL_DMA_PRIORITY_HIGH | LL_DMA_MODE_NORMAL |
                         LL_DMA_PERIPH_NOINCREMENT | LL_DMA_MEMORY_INCREMENT |
                         LL_DMA_PDATAALIGN_BYTE | LL_DMA_MDATAALIGN_BYTE);
-  LL_DMA_ConfigAddresses(DMA1, LL_DMA_CHANNEL_2, LL_SPI_DMA_GetRegAddr(SPI1), (uint32_t)aRxBuffer,
+  LL_DMA_ConfigAddresses(DMA1,
+                         LL_DMA_CHANNEL_2,
+                         LL_SPI_DMA_GetRegAddr(SPI1), (uint32_t)aRxBuffer,
                          LL_DMA_GetDataTransferDirection(DMA1, LL_DMA_CHANNEL_2));
   LL_DMA_SetDataLength(DMA1, LL_DMA_CHANNEL_2, ubNbDataToReceive);
 
+
+
   /* (4) Configure the DMA1_Channel3 functional parameters */
-  LL_DMA_ConfigTransfer(DMA1, LL_DMA_CHANNEL_3,
+  LL_DMA_ConfigTransfer(DMA1,
+                        LL_DMA_CHANNEL_3,
                         LL_DMA_DIRECTION_MEMORY_TO_PERIPH | LL_DMA_PRIORITY_HIGH | LL_DMA_MODE_NORMAL |
                         LL_DMA_PERIPH_NOINCREMENT | LL_DMA_MEMORY_INCREMENT |
                         LL_DMA_PDATAALIGN_BYTE | LL_DMA_MDATAALIGN_BYTE);
   LL_DMA_ConfigAddresses(DMA1, LL_DMA_CHANNEL_3, (uint32_t)aTxBuffer, LL_SPI_DMA_GetRegAddr(SPI1),
                          LL_DMA_GetDataTransferDirection(DMA1, LL_DMA_CHANNEL_3));
   LL_DMA_SetDataLength(DMA1, LL_DMA_CHANNEL_3, ubNbDataToTransmit);
+
 
   /* (5) Enable DMA interrupts complete/error */
   LL_DMA_EnableIT_TC(DMA1, LL_DMA_CHANNEL_2);
@@ -375,14 +379,12 @@ void WaitAndCheckEndOfTransfer(void)
   }
   /* Disable DMA1 Tx Channel */
   LL_DMA_DisableChannel(DMA1, LL_DMA_CHANNEL_3);
-
   /* 2 - Wait end of reception */
   while (ubReceptionComplete != 1)
   {
   }
   /* Disable DMA1 Rx Channel */
   LL_DMA_DisableChannel(DMA1, LL_DMA_CHANNEL_2);
-
   /* 3 - Compare Transmit data to receive data */
   if(Buffercmp8((uint8_t*)aTxBuffer, (uint8_t*)aRxBuffer, ubNbDataToTransmit))
   {
@@ -476,6 +478,7 @@ void SystemClock_Config(void)
   /* Update CMSIS variable (which can be updated also through SystemCoreClockUpdate function) */
   LL_SetSystemCoreClock(64000000);
 }
+
 /******************************************************************************/
 /*   USER IRQ HANDLER TREATMENT Functions                                     */
 /******************************************************************************/
@@ -524,7 +527,6 @@ void SPI1_TransferError_Callback(void)
 
   /* Disable DMA1 Tx Channel */
   LL_DMA_DisableChannel(DMA1, LL_DMA_CHANNEL_3);
-
   /* Set LED2 to Blinking mode to indicate error occurs */
   LED_Blinking(LED_BLINK_ERROR);
 }
@@ -538,7 +540,7 @@ void SPI1_TransferError_Callback(void)
   * @param  line: assert_param error line source number
   * @retval None
   */
-void assert_failed(uint8_t *file, uint32_t line)
+void assert_failed(char *file, uint32_t line)
 {
   /* User can add his own implementation to report the file name and line number,
      ex: printf("Wrong parameters value: file %s on line %d", file, line) */
@@ -549,7 +551,6 @@ void assert_failed(uint8_t *file, uint32_t line)
   }
 }
 #endif
-
 /**
   * @}
   */

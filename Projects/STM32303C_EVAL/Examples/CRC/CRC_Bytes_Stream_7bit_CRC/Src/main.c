@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    CRC/CRC_Bytes_Stream_7bit_CRC/Src/main.c
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   This sample code shows how to use the STM32F3xx CRC HAL API
   *          to compute 7-bit CRC codes from buffers of data bytes (8-bit data),
   *          based on a user-defined generating polynomial.
@@ -332,7 +330,7 @@ static void Error_Handler(void)
   * @param  line: assert_param error line source number
   * @retval None
   */
-void assert_failed(uint8_t *file, uint32_t line)
+void assert_failed(char *file, uint32_t line)
 {
   /* User can add his own implementation to report the file name and line number,
      ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */

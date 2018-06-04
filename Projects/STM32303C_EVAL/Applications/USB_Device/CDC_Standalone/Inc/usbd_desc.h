@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    USB_Device/CDC_Standalone/Inc/usbd_desc.h
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Header for usbd_desc.c module
   ******************************************************************************
   * @attention

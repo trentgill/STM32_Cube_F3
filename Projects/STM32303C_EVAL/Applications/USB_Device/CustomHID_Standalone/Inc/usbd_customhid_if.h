@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    USB_Device/CustomHID_Standalone/Inc/usbd_customhid_if.h
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Header for usbd_customhid_if.c file.
   ******************************************************************************
   * @attention

@@ -5,8 +5,6 @@
   ******************************************************************************
   * @file    USB_Device/DFU_Standalone/Binary/readme.txt 
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Description of the binary template example.
   ******************************************************************************
   *

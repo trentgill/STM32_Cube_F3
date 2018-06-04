@@ -5,8 +5,6 @@
   ********************* COPYRIGHT(c) 2016 STMicroelectronics *******************
   * @file    I2C/I2C_TwoBoards_RestartAdvComIT/readme.txt 
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Description of the I2C_TwoBoards_RestartAdvComIT I2C example.
   ******************************************************************************
   *
@@ -147,9 +145,6 @@ Depending of IDE, to watch content of Terminal I/O note that
    In Debug configuration window\ Startup, in addition to "monitor reset halt" add the command "monitor arm semihosting enable"
    Command Code is displayed on debugger as follows: Window--> Show View--> Console.
 
- - When resorting to Atollic TrueSTUDIO project: Open ST-Link-Utility : 
-   Select ST-LINK --> Printf via SWO viewer -->Set the System clock to 80MHz --> Start
-
 Other proposal to retrieve display of Command Code for all IDE is to use the Virtual Com.
 
 In order to select use of Virtual Com port feature of STLINK for connection between STM32F303K8-Nucleo RevC and PC,
@@ -216,9 +211,6 @@ Also only on Master board side, Terminal I/O can be used to watch the Request Co
  - When resorting to AC6 SW4STM32 IDE:
    In Debug configuration window\ Startup, in addition to "monitor reset halt" add the command "monitor arm semihosting enable"
    Command Code is displayed on debugger as follows: Window--> Show View--> Console.
-
- - When resorting to Atollic TrueSTUDIO project: Open ST-Link-Utility : 
-   Select ST-LINK --> Printf via SWO viewer -->Set the System clock to 80MHz --> Start
 
 Other proposal to retrieve display of Command Code for all IDE is to use the Virtual Com.
 

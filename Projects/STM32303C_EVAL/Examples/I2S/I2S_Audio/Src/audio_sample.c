@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    I2S/I2S_Audio/Src/audio_sample.c
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Audio sample file.
   ******************************************************************************
   * @attention

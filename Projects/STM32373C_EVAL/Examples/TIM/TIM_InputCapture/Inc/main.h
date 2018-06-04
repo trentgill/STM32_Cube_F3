@@ -1,9 +1,7 @@
 /**
   ******************************************************************************
-  * @file    TIM/TIM_InputCapture/Inc/main.h 
+  * @file    TIM/TIM_InputCapture/Inc/main.h
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Header for main.c module
   ******************************************************************************
   * @attention
@@ -34,19 +32,20 @@
   *
   ******************************************************************************
   */
-  
+
 /* Define to prevent recursive inclusion -------------------------------------*/
 #ifndef __MAIN_H
 #define __MAIN_H
 
 /* Includes ------------------------------------------------------------------*/
-#include "stm32373c_eval.h"
 #include "stm32f3xx_hal.h"
+#include "stm32373c_eval.h"
+
 
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
 /* Exported macro ------------------------------------------------------------*/
-/* User can use this section to tailor TIMx instance used and associated 
+/* User can use this section to tailor TIMx instance used and associated
    resources */
 /* Definition for TIMx clock resources */
 #define TIMx                           TIM4
@@ -54,9 +53,9 @@
 
 /* Definition for TIMx Pins */
 #define TIMx_CHANNEL_GPIO_PORT()       __HAL_RCC_GPIOB_CLK_ENABLE()
-#define GPIO_PORT                      GPIOB
-#define GPIO_PIN_CHANNEL2              GPIO_PIN_7
-#define GPIO_AF_TIMx                   GPIO_AF2_TIM4
+#define TIMx_GPIO_PORT                 GPIOB
+#define TIMx_GPIO_PIN_CHANNEL2         GPIO_PIN_7
+#define TIMx_GPIO_AF_TIMx              GPIO_AF2_TIM4
 
 /* Definition for TIMx's NVIC */
 #define TIMx_IRQn                      TIM4_IRQn

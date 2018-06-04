@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    PWR/PWR_CurrentConsumption/stm32f3xx_lp_modes.h
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Header for stm32f3xx_lp_modes.c module
   ******************************************************************************
   * @attention

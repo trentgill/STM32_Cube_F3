@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    Demonstrations/Adafruit_LCD_1_8_SD_Joystick/Src/fatfs_storage.c
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   This file includes the Storage (FatFs) driver 
   ******************************************************************************
   * @attention

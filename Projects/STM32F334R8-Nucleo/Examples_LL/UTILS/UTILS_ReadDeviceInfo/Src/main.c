@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    Examples_LL/UTILS/UTILS_ReadDeviceInfo/Src/main.c
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   This example describes how to read UID, Device ID and Revision ID 
   *          through the STM32F3xx UTILS LL API.
   ******************************************************************************

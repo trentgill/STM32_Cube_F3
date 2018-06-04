@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    stm32f3xx_nucleo_144.c
   * @author  MCD Application Team
-  * @version V1.0.2
-  * @date    16-December-2016
   * @brief   This file provides set of firmware functions to manage:
   *          - LEDs and push-button available on STM32F3XX-Nucleo-144 Kit 
   *            from STMicroelectronics
@@ -60,11 +58,11 @@
   */ 
 
 /**
-  * @brief STM32F3xx NUCLEO BSP Driver version number V1.0.2
+  * @brief STM32F3xx NUCLEO BSP Driver version number V1.0.3
   */
 #define __STM32F3xx_NUCLEO_BSP_VERSION_MAIN   (0x01) /*!< [31:24] main version */
 #define __STM32F3xx_NUCLEO_BSP_VERSION_SUB1   (0x00) /*!< [23:16] sub1 version */
-#define __STM32F3xx_NUCLEO_BSP_VERSION_SUB2   (0x02) /*!< [15:8]  sub2 version */
+#define __STM32F3xx_NUCLEO_BSP_VERSION_SUB2   (0x03) /*!< [15:8]  sub2 version */
 #define __STM32F3xx_NUCLEO_BSP_VERSION_RC     (0x00) /*!< [7:0]  release candidate */ 
 #define __STM32F3xx_NUCLEO_BSP_VERSION        ((__STM32F3xx_NUCLEO_BSP_VERSION_MAIN << 24)\
                                              |(__STM32F3xx_NUCLEO_BSP_VERSION_SUB1 << 16)\
@@ -165,7 +163,7 @@ uint32_t BSP_GetVersion(void)
 
 /**
   * @brief  Configures LED GPIO.
-  * @param  Led: Specifies the Led to be configured. 
+  * @param  Led Specifies the Led to be configured. 
   *   This parameter can be one of following parameters:
   *     @arg  LED1
   *     @arg  LED2
@@ -191,7 +189,7 @@ void BSP_LED_Init(Led_TypeDef Led)
 
 /**
   * @brief  DeInit LEDs.
-  * @param  Led: LED to be de-init. 
+  * @param  Led LED to be de-init. 
   *   This parameter can be one of the following values:
   *     @arg  LED1
   *     @arg  LED2
@@ -212,7 +210,7 @@ void BSP_LED_DeInit(Led_TypeDef Led)
 
 /**
   * @brief  Turns selected LED On.
-  * @param  Led: Specifies the Led to be set on. 
+  * @param  Led Specifies the Led to be set on. 
   *   This parameter can be one of following parameters:
   *     @arg LED2
   * @retval None
@@ -224,7 +222,7 @@ void BSP_LED_On(Led_TypeDef Led)
 
 /**
   * @brief  Turns selected LED Off.
-  * @param  Led: Specifies the Led to be set off. 
+  * @param  Led Specifies the Led to be set off. 
   *   This parameter can be one of following parameters:
   *     @arg  LED1
   *     @arg  LED2
@@ -238,7 +236,7 @@ void BSP_LED_Off(Led_TypeDef Led)
 
 /**
   * @brief  Toggles the selected LED.
-  * @param  Led: Specifies the Led to be toggled. 
+  * @param  Led Specifies the Led to be toggled. 
   *   This parameter can be one of following parameters:
   *     @arg  LED1
   *     @arg  LED2
@@ -252,9 +250,9 @@ void BSP_LED_Toggle(Led_TypeDef Led)
 
 /**
   * @brief  Configures Button GPIO and EXTI Line.
-  * @param  Button: Specifies the Button to be configured.
+  * @param  Button Specifies the Button to be configured.
   *   This parameter should be: BUTTON_USER
-  * @param  ButtonMode: Specifies Button mode.
+  * @param  ButtonMode Specifies Button mode.
   *   This parameter can be one of following parameters:   
   *     @arg BUTTON_MODE_GPIO: Button will be used as simple IO
   *     @arg BUTTON_MODE_EXTI: Button will be connected to EXTI line with interrupt
@@ -294,7 +292,7 @@ void BSP_PB_Init(Button_TypeDef Button, ButtonMode_TypeDef ButtonMode)
 
 /**
   * @brief  Push Button DeInit.
-  * @param  Button: Button to be configured
+  * @param  Button Button to be configured
   *   This parameter should be: BUTTON_USER
   * @note PB DeInit does not disable the GPIO clock
   * @retval None
@@ -310,7 +308,7 @@ void BSP_PB_DeInit(Button_TypeDef Button)
 
 /**
   * @brief  Returns the selected Button state.
-  * @param  Button: Specifies the Button to be checked.
+  * @param  Button Specifies the Button to be checked.
   *   This parameter should be: BUTTON_USER
   * @retval The Button GPIO pin value.
   */
@@ -408,9 +406,9 @@ static void SPIx_Init(void)
 
 /**
   * @brief  SPI Write a byte to device
-  * @param  DataIn: value to be written
-  * @param  DataOut: data out
-  * @param  DataLegnth: data length
+  * @param  DataIn value to be written
+  * @param  DataOut data out
+  * @param  DataLegnth data length
   * @retval None
   */
 static void SPIx_WriteReadData(const uint8_t *DataIn, uint8_t *DataOut, uint16_t DataLegnth)
@@ -429,7 +427,7 @@ static void SPIx_WriteReadData(const uint8_t *DataIn, uint8_t *DataOut, uint16_t
 
 /**
   * @brief  SPI Write a byte to device.
-  * @param  Value: value to be written
+  * @param  Value value to be written
   * @retval None
   */
 static void SPIx_Write(uint8_t Value)
@@ -510,7 +508,7 @@ void SD_IO_Init(void)
 
 /**
   * @brief  Set the SD_CS pin.
-  * @param  val: pin value.
+  * @param  val pin value.
   * @retval None
   */
 void SD_IO_CSState(uint8_t val)
@@ -527,9 +525,9 @@ void SD_IO_CSState(uint8_t val)
 
 /**
   * @brief  Write a byte on the SD.
-  * @param  DataIn: byte to send
-  * @param  DataOut: data out
-  * @param  DataLength: data length
+  * @param  DataIn byte to send
+  * @param  DataOut data out
+  * @param  DataLength data length
   * @retval None
   */
 void SD_IO_WriteReadData(const uint8_t *DataIn, uint8_t *DataOut, uint16_t DataLength)
@@ -542,7 +540,7 @@ void SD_IO_WriteReadData(const uint8_t *DataIn, uint8_t *DataOut, uint16_t DataL
 
 /**
   * @brief  Writes a byte on the SD.
-  * @param  Data: byte to send.
+  * @param  Data byte to send.
   * @retval None
   */
 uint8_t SD_IO_WriteByte(uint8_t Data)
@@ -586,7 +584,7 @@ void LCD_IO_Init(void)
 
 /**
   * @brief  Writes command to select the LCD register.
-  * @param  LCDReg: Address of the selected register.
+  * @param  LCDReg Address of the selected register.
   * @retval None
   */
 void LCD_IO_WriteReg(uint8_t LCDReg)
@@ -607,7 +605,7 @@ void LCD_IO_WriteReg(uint8_t LCDReg)
 /**
   * @brief  Writes data to select the LCD register.
   *         This function must be used after st7735_WriteReg() function
-  * @param  Data: data to write to the selected register.
+  * @param  Data data to write to the selected register.
   * @retval None
   */
 void LCD_IO_WriteData(uint8_t Data)

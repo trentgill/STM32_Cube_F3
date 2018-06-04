@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    USB_Device/DFU_Standalone/Src/usbd_conf.c
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   This file implements the USB Device library callbacks and MSP
   ******************************************************************************
   * @attention

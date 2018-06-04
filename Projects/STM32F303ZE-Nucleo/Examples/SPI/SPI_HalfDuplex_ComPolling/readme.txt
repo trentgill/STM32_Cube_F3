@@ -2,11 +2,9 @@
   @page SPI_HalfDuplex_ComPolling SPI Half Duplex Polling example
   
   @verbatim
-  ******************** (C) COPYRIGHT 2016 STMicroelectronics *******************
+  ******************** (C) COPYRIGHT 2017 STMicroelectronics *******************
   * @file    SPI/SPI_HalfDuplex_ComPolling/readme.txt 
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Description of the SPI Half Duplex Polling example.
   ******************************************************************************
   *
@@ -70,31 +68,29 @@ This later is calling the HAL_SPI_MspInit()function which core is implementing
 the configuration of the needed SPI resources according to the used hardware (CLOCK & 
 GPIO). You may update this function to change SPI configuration.
 
-The communication is handled with direct register access. 
-On slave side, a state machine manage the differents communication step, to handle
-two kinds of communication:
- - register read : master use this operation to get a value from the slave.
- - register write: master use this operation to update a value on slave side.
-On master side basic operations are done by calling the functions : Command_write 
-and Command_read
-
 The user can choose between Master and Slave through "#define MASTER_BOARD"
 in the "main.h" file.
 If the Master board is used, the "#define MASTER_BOARD" must be uncommented.
 If the Slave board is used the "#define MASTER_BOARD" must be commented.
 
-This example desmonstrate how to implement a basic protocol between master and slave. 
-The master is writting and reading a register and check that write and read value are 
-identical. The slave sw is an infinite loop which execute the operation requested by the master.
+For this example the aTxBuffer is predefined and the aRxBuffer size is same as aTxBuffer.
 
-In a first step after the user press the User push-button, SPI Master starts slave communication 
-, a loop to request READ_COUNTER_COMMAND and WRITE_COUNTER_COMMAND. The master control the 
-communcation by a comparaison between the read and write value. 
+In a first step after the user press the User push-button, SPI Master starts the
+communication by sending aTxBuffer through HAL_SPI_Transmit(), at the same time SPI Slave
+receives aRxBuffer through HAL_SPI_Receive(). 
+
+Then after 2 seconds delay, SPI Master starts reception of aRxBuffer, meanwhile SPI Slave
+will transmit the received buffer.
+
+Finally aRxBuffer and aTxBuffer are compared through Buffercmp() in order to 
+check buffers correctness.
 
 STM32 board's LEDs can be used to monitor the master transfer status:
- - LED1 toggles slowly on master board waiting User push-button to be pressed.
- - LED2 toggles quickly on master when the test is running.
- - LED3 turns ON on master when register comparison failed.   
+ - LED1 toggles quickly on master board waiting User push-button to be pressed.
+ - LED1 turns ON when the transmission process is complete.
+ - LED2 turns ON when aTxBuffer and aRxBuffer comparison is correct.
+ - LED3 turns ON when there is an error in transmission/reception process. 
+ - LED3 toggles slowly when there is a timeout error in transmission/reception process.  
 
 @note SPIx instance used and associated resources can be updated in "main.h"
       file depending hardware configuration used.

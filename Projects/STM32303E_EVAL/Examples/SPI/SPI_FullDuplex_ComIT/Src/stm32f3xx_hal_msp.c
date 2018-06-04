@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    SPI/SPI_FullDuplex_ComIT/Src/stm32f3xx_hal_msp.c
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   HAL MSP module.
   ******************************************************************************
   * @attention
@@ -124,11 +122,11 @@ void HAL_SPI_MspDeInit(SPI_HandleTypeDef *hspi)
     SPIx_RELEASE_RESET();
 
     /*##-2- Disable peripherals and GPIO Clocks ################################*/
-    /* Configure SPI SCK as alternate function  */
+    /* Deconfigure SPI SCK */
     HAL_GPIO_DeInit(SPIx_SCK_GPIO_PORT, SPIx_SCK_PIN);
-    /* Configure SPI MISO as alternate function  */
+    /* Deconfigure SPI MISO */
     HAL_GPIO_DeInit(SPIx_MISO_GPIO_PORT, SPIx_MISO_PIN);
-    /* Configure SPI MOSI as alternate function  */
+    /* Deconfigure SPI MOSI */
     HAL_GPIO_DeInit(SPIx_MOSI_GPIO_PORT, SPIx_MOSI_PIN);
 
     /*##-3- Disable the NVIC for SPI ###########################################*/

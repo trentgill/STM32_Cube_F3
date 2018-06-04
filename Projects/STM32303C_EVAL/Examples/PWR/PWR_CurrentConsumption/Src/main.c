@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    PWR/PWR_CurrentConsumption/Src/main.c 
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   This sample code shows how to use STM32F3xx PWR HAL API to enter
   *          and exit the sleep/stop/standby modes, to measure power consumption 
   *          in these different low power modes.  
@@ -229,7 +227,7 @@ RCC_OscInitTypeDef RCC_OscInitStruct;
   ret = HAL_RCC_OscConfig(&RCC_OscInitStruct);
   if(ret != HAL_OK)
   {
-    assert_failed((uint8_t *)__FILE__, __LINE__);
+    assert_failed((char *)__FILE__, __LINE__);
   }
 #else
   HAL_RCC_OscConfig(&RCC_OscInitStruct);
@@ -247,7 +245,7 @@ RCC_OscInitTypeDef RCC_OscInitStruct;
   ret = HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2);
   if(ret != HAL_OK)
   {
-    assert_failed((uint8_t *)__FILE__, __LINE__);
+    assert_failed((char *)__FILE__, __LINE__);
   }
 #else
   HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2);
@@ -326,7 +324,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
   * @param  line: assert_param error line source number
   * @retval None
   */
-void assert_failed(uint8_t* file, uint32_t line)
+void assert_failed(char* file, uint32_t line)
 { 
   /* User can add his own implementation to report the file name and line number,
      ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */

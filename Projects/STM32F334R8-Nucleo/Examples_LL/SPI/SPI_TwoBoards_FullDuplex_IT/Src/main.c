@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    Examples_LL/SPI/SPI_TwoBoards_FullDuplex_IT/Src/main.c
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   This example describes how to send/receive bytes over SPI IP using
   *          the STM32F3xx SPI LL API.
   *          Peripheral initialization done using LL unitary services functions.
@@ -83,7 +81,6 @@ void     WaitForUserButtonPress(void);
 #endif
 void     WaitAndCheckEndOfTransfer(void);
 uint8_t  Buffercmp8(uint8_t* pBuffer1, uint8_t* pBuffer2, uint8_t BufferLength);
-
 /* Private functions ---------------------------------------------------------*/
 
 /**
@@ -430,6 +427,7 @@ void SystemClock_Config(void)
   /* Update CMSIS variable (which can be updated also through SystemCoreClockUpdate function) */
   LL_SetSystemCoreClock(64000000);
 }
+
 /******************************************************************************/
 /*   USER IRQ HANDLER TREATMENT Functions                                     */
 /******************************************************************************/
@@ -496,7 +494,7 @@ void SPI1_TransferError_Callback(void)
   * @param  line: assert_param error line source number
   * @retval None
   */
-void assert_failed(uint8_t *file, uint32_t line)
+void assert_failed(char *file, uint32_t line)
 {
   /* User can add his own implementation to report the file name and line number,
      ex: printf("Wrong parameters value: file %s on line %d", file, line) */
@@ -507,7 +505,6 @@ void assert_failed(uint8_t *file, uint32_t line)
   }
 }
 #endif
-
 /**
   * @}
   */

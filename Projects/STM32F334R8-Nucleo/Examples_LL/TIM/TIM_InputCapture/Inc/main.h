@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    Examples_LL/TIM/TIM_InputCapture/Inc/main.h
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Header for main.c module
   ******************************************************************************
   * @attention
@@ -60,7 +58,7 @@
 
 #define LED2_PIN                           LL_GPIO_PIN_5
 #define LED2_GPIO_PORT                     GPIOA
-#define LED2_GPIO_CLK_ENABLE()             LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOA)  
+#define LED2_GPIO_CLK_ENABLE()             LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOA) 
 
 /**
   * @brief Toggle periods for various blinking modes

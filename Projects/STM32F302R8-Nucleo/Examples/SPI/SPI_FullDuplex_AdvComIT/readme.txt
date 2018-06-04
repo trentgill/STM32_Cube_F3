@@ -1,13 +1,11 @@
 /**
-  @page SPI_FullDuplex_AdvComIT SPI Full Duplex Interrupt example
+  @page SPI_FullDuplex_AdvComIT SPI Full Duplex Advanced Interrupt example
   
   @verbatim
   ******************** (C) COPYRIGHT 2016 STMicroelectronics *******************
-  * @file    SPI/SPI_FullDuplex_AdvComIT/readme.txt 
+  * @file    SPI/SPI_FullDuplex_AdvComIt/readme.txt 
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
-  * @brief   Description of the SPI Full Duplex Interrupt example.
+  * @brief   Description of the SPI Full Duplex Advanced Interrupt example.
   ******************************************************************************
   *
   * Redistribution and use in source and binary forms, with or without modification,
@@ -37,42 +35,36 @@
 
 @par Example Description
  
-This example guides you through the different configuration steps by mean of HAL API 
-to ensure SPI Data buffer transmission and reception using Interrupt, in an advance 
-communication mode.
-
-Master board is always sending command to slave before any transmission and Slave board
-is sending acknowledge before going further.
-
-- Hardware Description
+This example guides you through the different configuration steps by mean of HAL API
+to transmit/receive SPI data buffer using Interrupt, in an advanced communication mode :
+The master board always sends the command to the slave before any transmission is performed.
+The slave board sends an acknowledge before going further.
 
 To use this example, you need to load it on two STM32 boards (let's call them 
 BoardA and BoardB) then connect these two boards through SPI lines and GND.
 In the firmware example two project are provided to use the SPI peripheral as STM32
 Master device or as STM32 Slave .
-   _________________________                        _________________________
-  |           ______________|                      |______________           |
-  |          |SPI3          |                      |          SPI3|          |
-  |          |              |                      |              |          |
-  |          |     CLK(PC10)|______________________|(PC10)CLK     |          |
-  |          |              |                      |              |          |
-  |          |    MISO(PC11)|______________________|(PC11)MISO    |          |
-  |          |              |                      |              |          |
-  |          |    MOSI(PC12)|______________________|(PC12)MOSI    |          |
-  |          |              |                      |              |          |
-  |          |              |                      |              |          |
-  |          |              |                      |              |          |
-  |          |______________|                      |______________|          |
+
+   _________________________                       __________________________
+  |    _________CN7_________|                      |________CN7__________    |
+  |   |SPI3                 |                      |                SPI3|    |
+  |   |                     |                      |                    |    |
+  |   |(pin 1)     CLK(PC10)|______________________|(PC10)CLK    (pin 1)|    |
+  |   |                     |                      |                    |    |
+  |   |(pin 2)    MISO(PC11)|______________________|(PC11)MISO   (pin 2)|    |
+  |   |                     |                      |                    |    |
+  |   |(pin 3)    MOSI(PC12)|______________________|(PC12)MOSI   (pin 3)|    |
+  |   |                     |                      |                    |    |
+  |   |_____________________|                      |____________________|    |
   |      __                 |                      |                         |
   |     |__|                |                      |                         |
   |     USER                |                      |                         |
   |                      GND|______________________|GND                      |
   |                         |                      |                         |
   |_STM32F3 Master _________|                      |_STM32F3 Slave __________|
-  
+
 @note The connection between the pins should use a short wires and a common Ground.
 
-- Software Description  
 
 At the beginning of the main program the HAL_Init() function is called to reset 
 all the peripherals, initialize the Flash interface and the systick.
@@ -85,6 +77,9 @@ the configuration of the needed SPI resources according to the used hardware (CL
 GPIO). You may update this function to change SPI configuration.
 
 The SPI peripheral is configured in full duplex mode with baudrate = FCPU/16. 
+
+If the Master board is used, the "#define MASTER_BOARD" must be uncommented.
+If the Slave board is used the "#define MASTER_BOARD" must be commented.
                        
 In Master board, when the user button is pressed (used for only synchronization at startup)
 these steps are executed: 
@@ -98,8 +93,8 @@ these steps are executed:
  - Synchro with the Slave
  - Send the ACK to the Slave
  - Checks the correctness of data and in case of mismatch between sent and received data,
-   LED2 is On and communication is stopped (using infinite loop). Otherwise LED2 is Toggle
-   indicate that the data is received correctly.
+   LED2 is On and communication is stopped (using infinite loop). Otherwise LED2 toggles,
+   indicating that the data is received correctly.
  - Synchro with the Slave
  - Requests write operation by sending specific command to the slave that contain
    the master write command and the number of data to be written
@@ -128,17 +123,18 @@ In Slave board, these steps are executed:
    - Send the ACK to the Master
    - checks the correctness of data is performed and in case of mismatch between sent and
      received data, LED2 is On and communication is stopped (using infinite loop).
-     Otherwise LED2 Toggles indicating that the data is received correctly.
+     Otherwise LED2 toggles indicating that the data is received correctly.
 
-These previously steps are repeated in an infinitely loop.
+These previously steps are repeated in an infinite loop.
 
-STM32F3-Nucleo board's LEDs can be used to monitor the transfer status:
- - LED2 toggles quickly on Master board waiting for user button to be pushed.
- - LED2 toggles on Master side at end of each loop.
- - LED2 stays turned ON when there is an error in transmission/reception process.
+STM32 board's LEDs can be used to monitor the transfer status:
+ - LED2 toggles quickly on master board waiting User push-button to be pressed.
+ - LED2 toggles on Master board at end of each loop.
+ - LED2 toggles on both boards when the read comparison is OK.
+ - LED2 turns ON when there is an error in transmission/reception process. 
 
 @note SPIx instance used and associated resources can be updated in "main.h"
-       file depending hardware configuration used.
+      file depending hardware configuration used.
 
 @note Care must be taken when using HAL_Delay(), this function provides accurate delay (in milliseconds)
       based on variable incremented in SysTick ISR. This implies that if HAL_Delay() is called from
@@ -146,38 +142,42 @@ STM32F3-Nucleo board's LEDs can be used to monitor the transfer status:
       than the peripheral interrupt. Otherwise the caller ISR process will be blocked.
       To change the SysTick interrupt priority you have to use HAL_NVIC_SetPriority() function.
       
-@note The application need to ensure that the SysTick time base is always set to 1 millisecond
+@note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
+
 
 @par Directory contents 
 
   - SPI/SPI_FullDuplex_AdvComIT/Inc/stm32f3xx_hal_conf.h    HAL configuration file
-  - SPI/SPI_FullDuplex_AdvComIT/Inc/stm32f3xx_it.h          SPI interrupt handlers header file
+  - SPI/SPI_FullDuplex_AdvComIT/Inc/stm32f3xx_it.h          Interrupt handlers header file
   - SPI/SPI_FullDuplex_AdvComIT/Inc/main.h                  Header for main.c module  
-  - SPI/SPI_FullDuplex_AdvComIT/Src/stm32f3xx_it.c          SPI interrupt handlers
+  - SPI/SPI_FullDuplex_AdvComIT/Src/stm32f3xx_it.c          Interrupt handlers
   - SPI/SPI_FullDuplex_AdvComIT/Src/main.c                  Main program
-  - SPI/SPI_FullDuplex_AdvComIT/Src/system_stm32f3xx.c      STM32F3xx system source file
+  - SPI/SPI_FullDuplex_AdvComIT/Src/system_stm32f3xx.c      stm32f3xx system source file
   - SPI/SPI_FullDuplex_AdvComIT/Src/stm32f3xx_hal_msp.c     HAL MSP file
-  
 
-@par Hardware and Software environment  
-  - This example runs on STM32F302R8 devices.    
-  - This example has been tested with STMicroelectronics STM32F302R8-Nucleo RevC 
-    boards and can be easily tailored to any other supported device 
-    and development board.
+@par Hardware and Software environment
 
-  - STM32F302R8-Nucleo RevC Set-up
-    - Use LED2, connected to PB13 pin
-    - Use the USer Push Button 
-    - Connect BoardA SPI2 SCK pin  (PC10) to BoardB SPI2 SCK pin  (PC10)
-    - Connect BoardA SPI2 MISO pin (PC11) to BoardB SPI2 MOSI pin (PC11)
-    - Connect BoardA SPI2 MOSI pin (PC12) to BoardB SPI2 MOSI pin (PC12)
-    - Connect BoardA GND to BoardB GND
-    
+  - This example runs on STM32F302x8 devices.
+
+  - This example has been tested with STM32F302R8-Nucleo Rev C board and can be
+    easily tailored to any other supported device and development board.
+
+  - STM32F302R8-Nucleo Rev C Set-up
+    - Connect Master SPI3 SCK pin  (PC10) to Slave SPI3 SCK pin  (PC10) (pin 1 on CN7 connector)
+    - Connect Master SPI3 MISO pin (PC11) to Slave SPI3 MOSI pin (PC11) (pin 2 on CN7 connector)
+    - Connect Master SPI3 MOSI pin (PC12) to Slave SPI3 MOSI pin (PC12) (pin 3 on CN7 connector)
+    - Connect Master board GND  to Slave Board GND
+
 @par How to use it ? 
-In order to make the program work, you must do the following :
-- Open your preferred toolchain 
-- Rebuild all files and load your image into target memory
-- Firstly, Run the Master example, then run the Slave example
+
+In order to make the program work, you must do the following:
+ - Open your preferred toolchain 
+ - Rebuild all files and load your image into target memory
+    o Uncomment "#define MASTER_BOARD" and load the project in Master Board
+    o Comment "#define MASTER_BOARD" and load the project in Slave Board
+ - Run the example
+
  * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
- */ 
+ */
+ 

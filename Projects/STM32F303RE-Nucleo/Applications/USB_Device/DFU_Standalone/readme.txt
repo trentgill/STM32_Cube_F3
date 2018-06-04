@@ -5,8 +5,6 @@
   ******************** (C) COPYRIGHT 2016 STMicroelectronics *******************
   * @file    USB_Device/DFU_Standalone/readme.txt 
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Description of the USB DFU example.
   ******************************************************************************
   *
@@ -104,7 +102,7 @@ User can select USB line Interrupt through macro defined in main.h.
       detection. The correct way to detect the USB cable plug/unplug is to detect the availability of the VBUS line
       using a normal GPIO pin (external interrupt line).
 
-@note The USB_PD pin is awlays connected to 5V power supply.
+@note The USB_DP pin is awlays connected to 5V power supply.
       Thus, leaving the DFU mode via the DFUSE Demonstrator applet will not be possible.
 
 @par USB Library Configuration
@@ -138,13 +136,16 @@ Device's end address is the end address of the flash memory and it is dependent 
   - This example has been tested with STM32F303RE-Nucleo Rev C board and can be
     easily tailored to any other supported device and development board.    
       
-  - STM32F303RE-Nucleo Rev C Set-up
-      - Since there is no USB 2.0 Full speed connector (Type B) on the nucleo board, user has to make 
+  - STM32F303RE-Nucleo Rev C Set-up:
+    - Install the DFU driver available in "DfuSe Demonstrator" installation directory
+    - For Windows 8.1 and later : Update STM32 DFU device driver manually from Windows Device Manager.
+      The install of required device driver is available under "Program Files\STMicroelectronics\Software\DfuSe v3.0.5\Bin\Driver\Win8.1" directory.
+    - Since there is no USB 2.0 Full speed connector (Type B) on the nucleo board, user has to make 
       his own USB shield daughter board with the a USB connector and plug it on top of the CN8 and CN9 
       connectors of the STM32F303RE-Nucleo Rev C board. The USB connector has to be connected to the USB device associated GPIOs
       as follows:
-       - DP (D+ of the USB connector) <======> PA12 (Nucleo board)
-       - DM (D- of the USB connector) <======> PA11 (Nucleo board)
-      - External USB 1.5k  resistor pull-ups is required on the USB D+ Line and VDD (3V3).
-      - To improve EMC performance (noise immunity and signal integrity), it is recommended to connect a 100nF
+      - DP (D+ of the USB connector) <======> PA12 (Nucleo board)
+      - DM (D- of the USB connector) <======> PA11 (Nucleo board)
+    - External USB 1.5k  resistor pull-ups is required on the USB D+ Line and VDD (3V3).
+    - To improve EMC performance (noise immunity and signal integrity), it is recommended to connect a 100nF
       ceramic capacitor to the USB VDD pin.

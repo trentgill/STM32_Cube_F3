@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    SMBUS/SMBUS_TSENSOR/Src/stm32f3xx_tsensor.h
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   This file contains all the functions prototypes for
   *          the stm32f3xx_tsensor.c temperature sensor driver.
   ******************************************************************************

@@ -5,8 +5,6 @@
   ******************** (C) COPYRIGHT 2016 STMicroelectronics *******************
   * @file    HAL/HAL_TimeBase_RTC_ALARM/readme.txt 
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Description of the HAL TimeBase RTC Alarm example.
   ******************************************************************************
   *
@@ -40,7 +38,7 @@
 This example describes how to customize the HAL time base using RTC alarm instead 
 of Systick as main source of time base. The Key push-button will be used 
 to Suspend or Resume tick increment. 
-Each time the button is pressed; an interrupt is generated (EXTI_Line2)
+Each time the button is pressed; an interrupt is generated (EXTI_Line2_TSC)
 and in the ISR the uwIncrementState is checked:
   1- If the uwIncrementState = 0: the tick increment is suspended by calling 
      HAL_SuspendTick() API (RTC alarm interrupt is disabled).
@@ -63,7 +61,7 @@ The following time base functions are kept as implemented natively:
 HAL_IncTick()
 HAL_Delay()
 
-In an infinite loop, LED1 toggles spaced out over 500ms delay.
+In an infinite loop, LED1 toggles spaced out over 500ms delay, except when tick increment is suspended.
 
 @note Care must be taken when using HAL_Delay(), this function provides accurate delay (in milliseconds)
       based on variable incremented in HAL time base ISR. This implies that if HAL_Delay() is called from
@@ -73,6 +71,7 @@ In an infinite loop, LED1 toggles spaced out over 500ms delay.
       
 @note The application needs to ensure that the HAL time base is always set to 1 millisecond
       to have correct HAL operation.
+
 
 @par Directory contents  
 

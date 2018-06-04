@@ -5,8 +5,6 @@
   ******************************************************************************
   * @file    USB_Device/DFU_Standalone/readme.txt 
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Description of the USB DFU example.
   ******************************************************************************
   *
@@ -149,7 +147,10 @@ Device's end address is the end address of the flash memory and it is dependent 
     evaluation boards and can be easily tailored to any other supported device 
     and development board.
 
-  - STM32373C-EVAL Rev B Set-up
+  - STM32373C-EVAL Rev B Set-up:
+    - Install the DFU driver available in "DfuSe Demonstrator" installation directory
+    - For Windows 8.1 and later : Update STM32 DFU device driver manually from Windows Device Manager.
+      The install of required device driver is available under "Program Files\STMicroelectronics\Software\DfuSe v3.0.5\Bin\Driver\Win8.1" directory.
     - Connect the STM32373C-EVAL board to the PC through 'USB Type A-Male 
       to A-Male.
 

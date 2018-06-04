@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    UART/UART_TwoBoards_ComIT/Src/stm32f3xx_it.c 
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Main Interrupt Service Routines.
   *          This file provides template for all exceptions handler and 
   *          peripherals interrupt service routine.
@@ -63,7 +61,7 @@ extern UART_HandleTypeDef UartHandle;
 /******************************************************************************/
 
 /**
-  * @brief   This function handles NMI exception.
+  * @brief  This function handles NMI exception.
   * @param  None
   * @retval None
   */

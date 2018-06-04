@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    SPI/SPI_FullDuplex_ComDMA/Inc/main.h
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Header for main.c module
   ******************************************************************************
   * @attention
@@ -71,6 +69,7 @@
 /* Definition for SPIx's DMA */
 #define SPIx_TX_DMA_CHANNEL              DMA2_Channel2
 #define SPIx_RX_DMA_CHANNEL              DMA2_Channel1
+
 
 /* Definition for SPIx's NVIC */
 #define SPIx_DMA_TX_IRQn                 DMA2_Channel2_IRQn

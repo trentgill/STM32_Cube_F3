@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    Examples_LL/I2C/I2C_OneBoard_Communication_PollingAndIT/Src/main.c
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   This example describes how to send/receive bytes over I2C IP using
   *          the STM32F3xx I2C LL API.
   *          Peripheral initialization done using LL unitary services functions.
@@ -694,7 +692,7 @@ void Error_Callback(void)
   * @param  line: assert_param error line source number
   * @retval None
   */
-void assert_failed(uint8_t *file, uint32_t line)
+void assert_failed(char *file, uint32_t line)
 {
   /* User can add his own implementation to report the file name and line number,
      ex: printf("Wrong parameters value: file %s on line %d", file, line) */

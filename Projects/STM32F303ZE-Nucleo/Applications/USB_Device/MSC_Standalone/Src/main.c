@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    USB_Device/MSC_Standalone/Src/main.c
   * @author  MCD Application Team
-  * @version V1.0.2
-  * @date    21-September-2015
   * @brief   USB device Mass storage demo main file
   ******************************************************************************
   * @attention
@@ -234,7 +232,7 @@ static ShieldStatus TFT_ShieldDetect(void)
   * @param  line: assert_param error line source number
   * @retval None
   */
-void assert_failed(uint8_t* file, uint32_t line)
+void assert_failed(char* file, uint32_t line)
 { 
   /* User can add his own implementation to report the file name and line number,
      ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */

@@ -5,8 +5,6 @@
   ******************** (C) COPYRIGHT 2016 STMicroelectronics *******************
   * @file    CRC/CRC_Data_Reversing_16bit_CRC/readme.txt 
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   16-bit long CRC computation with data reversal options enabled.
   ******************************************************************************
   *

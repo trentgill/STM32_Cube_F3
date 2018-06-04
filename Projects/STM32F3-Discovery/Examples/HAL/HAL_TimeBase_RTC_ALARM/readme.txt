@@ -5,8 +5,6 @@
   ******************** (C) COPYRIGHT 2016 STMicroelectronics *******************
   * @file    HAL/HAL_TimeBase_RTC_ALARM/readme.txt 
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Description of the HAL TimeBase RTC Alarm example.
   ******************************************************************************
   *
@@ -63,7 +61,7 @@ The following time base functions are kept as implemented natively:
 HAL_IncTick()
 HAL_Delay()
 
-In an infinite loop, LED3 toggles spaced out over 500ms delay.
+In an infinite loop, LED3 toggles spaced out over 500ms delay, except when tick increment is suspended.
 
 @note Care must be taken when using HAL_Delay(), this function provides accurate delay (in milliseconds)
       based on variable incremented in HAL time base ISR. This implies that if HAL_Delay() is called from
@@ -73,6 +71,7 @@ In an infinite loop, LED3 toggles spaced out over 500ms delay.
       
 @note The application needs to ensure that the HAL time base is always set to 1 millisecond
       to have correct HAL operation.
+
 
 @par Directory contents  
 

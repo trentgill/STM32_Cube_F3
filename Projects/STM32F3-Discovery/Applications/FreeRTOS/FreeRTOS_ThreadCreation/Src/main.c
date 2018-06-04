@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    FreeRTOS/FreeRTOS_ThreadCreation/Src/main.c
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -123,7 +121,7 @@ static void LED_Thread1(void const *argument)
     count = osKernelSysTick() + 5000;
 
     /* Toggle LED3 every 200 ms for 5 s */
-    while (count >= osKernelSysTick())
+    while (count > osKernelSysTick())
     {
       BSP_LED_Toggle(LED3);
 
@@ -138,12 +136,12 @@ static void LED_Thread1(void const *argument)
 
     count = osKernelSysTick() + 5000;
 
-    /* Toggle LED3 every 400 ms for 5 s */
-    while (count >= osKernelSysTick())
+    /* Toggle LED3 every 500 ms for 5 s */
+    while (count > osKernelSysTick())
     {
       BSP_LED_Toggle(LED3);
 
-      osDelay(400);
+      osDelay(500);
     }
 
     /* Resume Thread 2*/
@@ -166,7 +164,7 @@ static void LED_Thread2(void const *argument)
     count = osKernelSysTick() + 10000;
 
     /* Toggle LED4 every 500 ms for 10 s */
-    while (count >= osKernelSysTick())
+    while (count > osKernelSysTick())
     {
       BSP_LED_Toggle(LED4);
 
@@ -240,7 +238,7 @@ void SystemClock_Config(void)
   * @param  line: assert_param error line source number
   * @retval None
   */
-void assert_failed(uint8_t *file, uint32_t line)
+void assert_failed(char *file, uint32_t line)
 {
   /* User can add his own implementation to report the file name and line number,
      ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */

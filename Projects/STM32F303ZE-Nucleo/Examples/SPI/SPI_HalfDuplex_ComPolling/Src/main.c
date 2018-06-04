@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    SPI/SPI_HalfDuplex_ComPolling/Src/main.c
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   This sample code shows how to use STM32F3xx SPI HAL API to transmit
   *          and receive a data buffer with a communication process based on
   *          Polling transfer.
@@ -11,7 +9,7 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT(c) 2016 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT(c) 2017 STMicroelectronics</center></h2>
   *
   * Redistribution and use in source and binary forms, with or without modification,
   * are permitted provided that the following conditions are met:
@@ -45,45 +43,38 @@
   * @{
   */
 
-/** @addtogroup SPI_FullDuplex_ComPolling
+/** @addtogroup SPI_HalfDuplex_ComPolling
   * @{
   */ 
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
+/* HalfDuplex communication direction */
+#define RX 0
+#define TX 1
+
 /* Private macro -------------------------------------------------------------*/
-#define SYNCHRO_WAIT(NB)       for(int i=0; i<NB; i++){__asm("dsb\n");}
-
-#define READ_REGISTER       0x80
-#define COMMAND_COUNTER     0x0F
-#define COMMAND_COUNTER_ADD 0x01
-#define COMMAND_COUNTER_SUB 0x02
-
 /* Private variables ---------------------------------------------------------*/
 /* SPI handler declaration */
 SPI_HandleTypeDef SpiHandle;
 
 /* Buffer used for transmission */
-uint8_t aTxBuffer[2];
+uint8_t aTxBuffer[] = "**** SPI  - Two Boards Half Duplex communication based on Polling **** SPI Message ******** ";
 
 /* Buffer used for reception */
-uint8_t aRxBuffer[2];
+uint8_t aRxBuffer[BUFFERSIZE];
 
-#ifdef MASTER_BOARD
-uint8_t counter_local = 20, counter_remote;
-#else
-uint8_t counter_val = 0xFF, cmd;
-#endif
+/* Transmission status */
+HAL_StatusTypeDef Errorcode = HAL_OK;
 
 /* Private function prototypes -----------------------------------------------*/
 static void SystemClock_Config(void);
 static void Error_Handler(void);
-static void SPI_Write(uint8_t val);
-static void SPI_Read(uint8_t *val);
-#ifdef MASTER_BOARD
-static void Command_write(uint8_t command, uint8_t val);
-static void Command_read(uint8_t command, uint8_t *val);
-#endif
+static void Timeout_Error_Handler(void);
+static uint16_t Buffercmp(uint8_t *pBuffer1, uint8_t *pBuffer2, uint16_t BufferLength);
+static void Check_Error (HAL_StatusTypeDef Errorcode, uint8_t Direction);
+
+
 /* Private functions ---------------------------------------------------------*/
 
 /**
@@ -112,7 +103,7 @@ int main(void)
   /*##-1- Configure the SPI peripheral #######################################*/
   /* Set the SPI parameters */
   SpiHandle.Instance               = SPIx;
-  SpiHandle.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_8;
+  SpiHandle.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_256;
   SpiHandle.Init.Direction         = SPI_DIRECTION_1LINE;
   SpiHandle.Init.CLKPhase          = SPI_PHASE_1EDGE;
   SpiHandle.Init.CLKPolarity       = SPI_POLARITY_LOW;
@@ -136,12 +127,11 @@ int main(void)
     /* Initialization Error */
     Error_Handler();
   }
-  /* set the line direction to prepare the send of the first command*/
-  SPI_1LINE_TX(&SpiHandle);
 
 #ifdef MASTER_BOARD
   /* Configure User push-button */
   BSP_PB_Init(BUTTON_USER, BUTTON_MODE_GPIO);
+
   /* Wait for User push-button press before starting the Communication */
   while (BSP_PB_GetState(BUTTON_USER) != GPIO_PIN_SET)
   {
@@ -150,187 +140,136 @@ int main(void)
   }
   BSP_LED_Off(LED1);
   
-  SPI_1LINE_TX(&SpiHandle);
-  __HAL_SPI_ENABLE(&SpiHandle);
-  
-  /* Initialize the remote counter */
-  Command_write(COMMAND_COUNTER, counter_local);
+  /*##-2- MASTER : Start the Half Duplex Communication : TX ########################*/
+  /* Timeout is set to 5 seconds */
+  Errorcode = HAL_SPI_Transmit(&SpiHandle, (uint8_t*)aTxBuffer, BUFFERSIZE, 5000);
+  Check_Error(Errorcode, TX);
 
-  /*## Read the remote counter value */
-  Command_read(COMMAND_COUNTER, &counter_remote);
-  
-  if(counter_local != counter_remote)
-  {
-    Error_Handler();
-  }
-    
-  do {
-    
-    /*## Execute the command counter add */
-    counter_local += 7;
-    Command_write(COMMAND_COUNTER_ADD, 7);
-    Command_read(COMMAND_COUNTER, &counter_remote);
-    
-    if(counter_local != counter_remote)
-    {
-      Error_Handler();
-    }
-    
-    /*## Execute the command counter sub */
-    counter_local -= 2;
-    Command_write(COMMAND_COUNTER_SUB, 2);
-    Command_read(COMMAND_COUNTER, &counter_remote);
-    
-    if(counter_local != counter_remote)
-    {
-      Error_Handler();
-    }
+  HAL_Delay(2000);
 
-    /* Infinite loop */
-    HAL_Delay(50);
-    BSP_LED_Toggle(LED2);
-  } while(1);
+  /*##-3- MASTER : Start the Half Duplex Communication : RX ########################*/
+  /* Timeout is set to 5 seconds */
+  /* Disable SPI before changing direction */
+  __HAL_SPI_DISABLE(&SpiHandle);
+  Errorcode = HAL_SPI_Receive(&SpiHandle, (uint8_t*)aRxBuffer, BUFFERSIZE, 5000);
+  Check_Error(Errorcode, RX);
 
 #else /* SLAVE_BOARD */
+  /*##-2- SLAVE : Start the Half Duplex Communication : RX ########################*/
+  /* Timeout is set to 60 seconds to wait Push-Button press */
+  Errorcode = HAL_SPI_Receive(&SpiHandle, (uint8_t*)aRxBuffer, BUFFERSIZE, 60000);
+  Check_Error(Errorcode, RX);
 
-  /* Enable the SPI to allow communication */
-  SPI_1LINE_RX(&SpiHandle);
-  __HAL_SPI_ENABLE(&SpiHandle);
-  
-  /* Infinite loop for the slave, to get command from the master */
-  do{
-    uint8_t val;
-    
-    /*## Get the command */
-    SPI_Read(&cmd);
-    
-    /*## execute the command */
-    switch(cmd)
-    {
-    case (COMMAND_COUNTER | READ_REGISTER) :
-      __HAL_SPI_DISABLE(&SpiHandle);
-      SPI_1LINE_TX(&SpiHandle);
-      __HAL_SPI_ENABLE(&SpiHandle);
+  /*##-3- SLAVE : Start the Half Duplex Communication : TX ########################*/
+  /* Timeout is set to 5 seconds */
+  /* Disable SPI before changing direction */
+  /* Transmission of the received buffer */
+  __HAL_SPI_DISABLE(&SpiHandle);
+  Errorcode = HAL_SPI_Transmit(&SpiHandle, (uint8_t*)aRxBuffer, BUFFERSIZE, 5000);
+  Check_Error(Errorcode, TX);
+
+#endif
+
+  /* Infinite loop */
+  while (1)
+  {
+  }
+}
+
+/**
+  * @brief  This function is executed to test the transmission status
+  * @param  None
+  * @retval None
+  */
+static void Check_Error (HAL_StatusTypeDef Errorcode, uint8_t Direction)
+{
+  switch(Errorcode)
+  {
+    case HAL_OK:
+      if (Direction == TX)
+      {
+        /* Turn LED1 on: Transmission complete */
+        BSP_LED_On(LED1);
+      }
+      else
+      {
+        if (Buffercmp((uint8_t *)aTxBuffer, (uint8_t *)aRxBuffer, BUFFERSIZE))
+        {
+          /* Turn LED3 on : Transfer error in transmission process */
+          Error_Handler();
+        }
+        else
+        {          
+          /* Turn LED2 on: Reception complete */
+           BSP_LED_On(LED2);
+        }
+      }
+    break;
       
-      SPI_Write(counter_val);
+    case HAL_TIMEOUT:
+      /* Toggle LED3 : A timeout occur */
+      Timeout_Error_Handler();
+    break;
       
-      __HAL_SPI_DISABLE(&SpiHandle);
-      SPI_1LINE_RX(&SpiHandle);
-      __HAL_SPI_ENABLE(&SpiHandle);
-      
-    break;
-    case COMMAND_COUNTER :
-      SPI_Read(&counter_val);
-    break;
-    case COMMAND_COUNTER_ADD :
-      SPI_Read(&val);
-      counter_val += val;
-    break;
-    case COMMAND_COUNTER_SUB :
-      SPI_Read(&val);
-      counter_val -= val;
-    break;
-    default :
+    case HAL_ERROR:
+      /* Toggle LED3 on : An error occur */
       Error_Handler();
-      break;
-    } 
-  }while(1);
+    break;
 
-#endif /* MASTER_BOARD */
+    default :
+    break;
+  } 
 }
 
 /**
-  * @brief  This function send a command through SPI bus.
-  * @param  command : command id.
-  * @param  val : value.
+  * @brief  This function is executed in case of timeout.
+  * @param  None
   * @retval None
   */
-void SPI_Write(uint8_t val)
+static void Timeout_Error_Handler(void)
 {
-  /* check TXE flag */
-  while((SpiHandle.Instance->SR & SPI_FLAG_TXE) != SPI_FLAG_TXE);
-  
-  /* Write the data */
-  *((__IO uint8_t*)&SpiHandle.Instance->DR) = val;
-  
-  /* Wait BSY flag */
-  while((SpiHandle.Instance->SR & SPI_FLAG_FTLVL) != SPI_FTLVL_EMPTY);
-  while((SpiHandle.Instance->SR & SPI_FLAG_BSY) == SPI_FLAG_BSY);
+  /* Toggle LED3 */
+  while(1)
+  {
+    BSP_LED_Toggle(LED3);
+    HAL_Delay(500);
+  }
 }
-
-/**
-  * @brief  This function send a command through SPI bus.
-  * @param  command : command id.
-  * @param  val : value.
-  * @retval None
-  */
-void SPI_Read(uint8_t *val)
-{
-#ifdef MASTER_BOARD
-   /* In master RX mode the clock is automaticaly generated on the SPI enable. 
-      So to guarantee the clock generation for only one data, the clock must be 
-      disabled after the first bit and before the latest bit */
-  __HAL_SPI_ENABLE(&SpiHandle);
-  __asm("dsb\n");
-  __asm("dsb\n");
-  __asm("dsb\n");
-  __asm("dsb\n");
-  __HAL_SPI_DISABLE(&SpiHandle);
-#endif
-  
-  while((SpiHandle.Instance->SR & SPI_FLAG_RXNE) != SPI_FLAG_RXNE);
-  /* read the received data */
-  *val = *(__IO uint8_t *)&SpiHandle.Instance->DR;
-  while((SpiHandle.Instance->SR & SPI_FLAG_BSY) == SPI_FLAG_BSY);
-}
-
-
-
-#ifdef MASTER_BOARD
-/**
-  * @brief  This function send a command through SPI bus.
-  * @param  command : command id.
-  * @param  val : value.
-  * @retval None
-  */
-void Command_write(uint8_t command, uint8_t val)
-{
-  SPI_Write(command);
-  SPI_Write(val);
-}
-
-/**
-  * @brief  This function send a command through SPI bus.
-  * @param  command : command id.
-  * @param  val : value.
-  * @retval None
-  */
-void Command_read(uint8_t command, uint8_t *val)
-{
-  SPI_Write(command | READ_REGISTER);
-  SYNCHRO_WAIT(300);
-  __HAL_SPI_DISABLE(&SpiHandle);
-  SPI_1LINE_RX(&SpiHandle);
-  SYNCHRO_WAIT(300);
-  SPI_Read(val);
-  SYNCHRO_WAIT(300);
-  SPI_1LINE_TX(&SpiHandle);
-  __HAL_SPI_ENABLE(&SpiHandle);
-  SYNCHRO_WAIT(300);
-}
-#endif
 
 /**
   * @brief  This function is executed in case of error occurrence.
   * @param  None
   * @retval None
   */
-void Error_Handler(void)
+static void Error_Handler(void)
 {
   /* Turn LED3 on */
   BSP_LED_On(LED3);
   while(1);
 }
+
+/**
+  * @brief  Compares two buffers.
+  * @param  pBuffer1, pBuffer2: buffers to be compared.
+  * @param  BufferLength: buffer's length
+  * @retval 0  : pBuffer1 identical to pBuffer2
+  *         >0 : pBuffer1 differs from pBuffer2
+  */
+static uint16_t Buffercmp(uint8_t* pBuffer1, uint8_t* pBuffer2, uint16_t BufferLength)
+{
+  while (BufferLength--)
+  {
+    if((*pBuffer1) != *pBuffer2)
+    {
+      return BufferLength;
+    }
+    pBuffer1++;
+    pBuffer2++;
+  }
+
+  return 0;
+}
+
 
 /**
   * @brief  System Clock Configuration
@@ -387,7 +326,7 @@ void SystemClock_Config(void)
   * @param  line: assert_param error line source number
   * @retval None
   */
-void assert_failed(uint8_t* file, uint32_t line)
+void assert_failed(char* file, uint32_t line)
 { 
   /* User can add his own implementation to report the file name and line number,
      ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */

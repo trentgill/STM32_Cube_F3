@@ -5,8 +5,6 @@
   ******************** (C) COPYRIGHT 2016 STMicroelectronics *******************
   * @file    IAP/IAP_Main/readme.txt 
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Description of implementation of the AN4045 (in-application programming
   *          using the USART (IAP)) on STM32F3xx devices.
   ******************************************************************************
@@ -74,8 +72,6 @@ In-Application Programming (IAP) through USART.
  - "IAP/IAP_Main/EWARM": contains pre-configured project for EWARM toolchain
 
  - "IAP/IAP_Main/SW4STM32": contains pre-configured project for SW4STM32 toolchain
-
- - "IAP/IAP_Main/TrueSTudio": contains pre-configured project for TrueStudio toolchain
 
  - "IAP/IAP_Main/Src": contains the IAP firmware source files
     - IAP/IAP_Main/Src/main.c              Main program

@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    stm32373c_eval_sd.h
   * @author  MCD Application Team
-  * @version V2.2.0
-  * @date    16-December-2016
   * @brief   This file contains the common defines and functions prototypes for
   *          the stm32373c_eval_sd.c driver.
   ******************************************************************************

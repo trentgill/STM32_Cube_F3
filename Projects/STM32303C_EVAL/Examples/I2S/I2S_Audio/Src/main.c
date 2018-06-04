@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    I2S/I2S_Audio/Src/main.c 
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -69,10 +67,6 @@ __IO uint32_t uwVolume = 70;
 uint32_t AudioTotalSize = 0xFFFF; /* This variable holds the total size of the audio file */
 uint32_t AudioRemSize   = 0xFFFF; /* This variable holds the remaining data in audio file */
 uint16_t* CurrentPos;              /* This variable holds the current position address of audio data */
-
-/* Variable to indicate that push buttons will be used for switching between 
-   Headphone and Speaker output modes. */
-uint32_t uwSpHpSwitch = 0;
 
 /* LCD display can't be used at the same time in background loop and thru an
    interruption handling (non re-entering API). Therefore variable uwInterruptIgnore
@@ -152,8 +146,8 @@ int main(void)
   {
     BSP_LCD_DisplayStringAtLine(3, (uint8_t *)"====================");
     BSP_LCD_DisplayStringAtLine(4, (uint8_t *)"Key   : Play/Pause ");
-    BSP_LCD_DisplayStringAtLine(5, (uint8_t *)"Up    : Vol+/Headph");
-    BSP_LCD_DisplayStringAtLine(6, (uint8_t *)"Down  : Vol-/Spkr  ");
+    BSP_LCD_DisplayStringAtLine(5, (uint8_t *)"Up    : Vol+       ");
+    BSP_LCD_DisplayStringAtLine(6, (uint8_t *)"Down  : Vol-       ");
     BSP_LCD_DisplayStringAtLine(7, (uint8_t *)"====================");
     BSP_LCD_DisplayStringAtLine(8, (uint8_t *)"  AUDIO CODEC   OK  ");    
   }
@@ -227,9 +221,6 @@ int main(void)
         
         /* Next time Resume command should be processed */
         uwCommand = AUDIO_RESUME;
-        
-        /* Push buttons will be used to switch between Speaker and Headphone modes */
-        uwSpHpSwitch = 1;
       }
       else
       {
@@ -240,9 +231,6 @@ int main(void)
         uwInterruptIgnore = 0;
         /* Next time Pause command should be processed */
         uwCommand = AUDIO_PAUSE;
-        
-        /* Push buttons will be used to control volume level */
-        uwSpHpSwitch = 0;
       }
     }
    
@@ -307,7 +295,7 @@ static void SystemClock_Config(void)
   ret = HAL_RCC_OscConfig(&RCC_OscInitStruct);
   if(ret != HAL_OK)
   {
-    assert_failed((uint8_t *)__FILE__, __LINE__);
+    assert_failed((char *)__FILE__, __LINE__);
   }
 #else
   HAL_RCC_OscConfig(&RCC_OscInitStruct);
@@ -325,7 +313,7 @@ static void SystemClock_Config(void)
   ret = HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2);
   if(ret != HAL_OK)
   {
-    assert_failed((uint8_t *)__FILE__, __LINE__);
+    assert_failed((char *)__FILE__, __LINE__);
   }
 #else
   HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2);
@@ -428,56 +416,32 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
       /* additional information will be indicated on LCD line 9,
         will be erased after some delay */
       uwEraseLCDLine9 = 1;
-      /* Check if the current state is paused (push buttons are used for volume control or for 
-      speaker/headphone mode switching) */
-      if (uwSpHpSwitch)
-      {
-        /* Set output to Headphone */
-        BSP_AUDIO_OUT_SetOutputMode(OUTPUT_DEVICE_HEADPHONE);
-        
-        /* Display the current state of the player */
-        BSP_LCD_DisplayStringAtLine(9, (uint8_t *)"      HEADPHONE     ");
-      }
+ 
+      /* Increase volume by 5% */
+      if (uwVolume < 95)
+        uwVolume += 5; 
       else
-      { 
-        /* Increase volume by 5% */
-        if (uwVolume < 95)
-          uwVolume += 5; 
-        else
-          uwVolume = 100; 
+        uwVolume = 100; 
         
-        /* Apply the new volume to the codec */
-        BSP_AUDIO_OUT_SetVolume(uwVolume);
-        BSP_LCD_DisplayStringAtLine(9, (uint8_t *)"       VOL:   +     "); 
-      }
+      /* Apply the new volume to the codec */
+      BSP_AUDIO_OUT_SetVolume(uwVolume);
+      BSP_LCD_DisplayStringAtLine(9, (uint8_t *)"       VOL:   +     "); 
     }
     else if(HAL_GPIO_ReadPin(DOWN_JOY_GPIO_PORT, DOWN_JOY_PIN) != GPIO_PIN_RESET)
     {
-        /* additional information will be indicated on LCD line 9,
-        will be erased after some delay */
-       uwEraseLCDLine9 = 1;
-      /* Check if the current state is paused (push buttons are used for volume control or for 
-      speaker/headphone mode switching) */
-      if (uwSpHpSwitch)
-      {
-        /* Set output to Speaker */
-        BSP_AUDIO_OUT_SetOutputMode(OUTPUT_DEVICE_SPEAKER);
-        
-        /* Display the current state of the player */
-        BSP_LCD_DisplayStringAtLine(9, (uint8_t *)"       SPEAKER      ");
-      }
+      /* additional information will be indicated on LCD line 9,
+      will be erased after some delay */
+      uwEraseLCDLine9 = 1;
+
+      /* Decrease volume by 5% */
+      if (uwVolume > 5)
+        uwVolume -= 5; 
       else
-      {        
-        /* Decrease volume by 5% */
-        if (uwVolume > 5)
-          uwVolume -= 5; 
-        else
-          uwVolume = 0; 
+        uwVolume = 0; 
         
-        /* Apply the new volume to the codec */
-        BSP_AUDIO_OUT_SetVolume(uwVolume);
-        BSP_LCD_DisplayStringAtLine(9, (uint8_t *)"       VOL:   -     ");
-      }
+      /* Apply the new volume to the codec */
+      BSP_AUDIO_OUT_SetVolume(uwVolume);
+      BSP_LCD_DisplayStringAtLine(9, (uint8_t *)"       VOL:   -     ");
     } 
   } /* if (uwInterruptIgnore != 1) */
 }
@@ -493,7 +457,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
   * @param  line: assert_param error line source number
   * @retval None
   */
-void assert_failed(uint8_t* file, uint32_t line)
+void assert_failed(char* file, uint32_t line)
 { 
   /* User can add his own implementation to report the file name and line number,
      ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */

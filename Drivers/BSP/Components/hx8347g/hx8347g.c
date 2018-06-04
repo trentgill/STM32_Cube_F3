@@ -2,13 +2,13 @@
   ******************************************************************************
   * @file    hx8347g.c
   * @author  MCD Application Team
-  * @version V1.1.1
-  * @date    16-February-2016
+  * @version V1.1.0
+  * @date    10-February-2015
   * @brief   This file includes the LCD driver for HX8347G LCD.
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT(c) 2016 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT(c) 2015 STMicroelectronics</center></h2>
   *
   * Redistribution and use in source and binary forms, with or without modification,
   * are permitted provided that the following conditions are met:
@@ -125,12 +125,8 @@ void hx8347g_Init(void)
   if(Is_hx8347g_Initialized == 0)
   {
     Is_hx8347g_Initialized = 1;
-    
     /* Initialise HX8347G low level bus layer --------------------------------*/
     LCD_IO_Init();
-    
-    /* HX8347G requests 120ms (worst case) after reset */
-    LCD_Delay(120);
     
     /* Driving ability setting */
     hx8347g_WriteReg(LCD_REG_234, 0x00);
@@ -270,9 +266,6 @@ uint16_t hx8347g_ReadID(void)
   if(Is_hx8347g_Initialized == 0)
   {
     LCD_IO_Init();
-
-    /* HX8347G requests 120ms (worst case) after reset */
-    LCD_Delay(120);
   }
   return (hx8347g_ReadReg(0x00));
 }
@@ -343,14 +336,11 @@ void hx8347g_WriteReg(uint8_t LCDReg, uint16_t LCDRegValue)
 
 /**
   * @brief  Reads the selected LCD Register.
-  * @param  LCDReg: address of the selected register.
+* @param  LCDReg: address of the selected register.
   * @retval LCD Register Value.
   */
 uint16_t hx8347g_ReadReg(uint8_t LCDReg)
 {
-  /* Write 16-bit Index (then Read Reg) */
-  LCD_IO_WriteReg(LCDReg);
-
   /* Read 16-bit Reg */
   return (LCD_IO_ReadData(LCDReg));
 }

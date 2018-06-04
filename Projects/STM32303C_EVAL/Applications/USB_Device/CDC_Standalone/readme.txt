@@ -5,8 +5,6 @@
   ******************************************************************************
   * @file    USB_Device/CDC_Standalone/readme.txt 
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Description of the USB Device CDC example.
   ******************************************************************************
   *
@@ -173,7 +171,7 @@ User can select USB line Interrupt through macro defined in main.h.
     - Connect the STM32303C-EVAL board to the PC through 'USB Type A-Male 
       to A-Male'
     - Connect the STM32303C-EVAL board to the PC (or to another evaluation board) through RS232 (USART)
-      serial cable CN12 connector. Please ensure that jumper JP13 is fitted in RS232_RX position.        
+      serial cable CN8 connector. Please ensure that jumper JP13 is fitted in RS232_RX position.        
     - For loopback mode test: remove RS232 cable on CN8 and connect directly USART TX and RX pins:
       PE1 and PC4.
 

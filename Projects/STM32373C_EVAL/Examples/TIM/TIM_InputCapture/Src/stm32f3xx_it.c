@@ -1,11 +1,9 @@
 /**
   ******************************************************************************
-  * @file    TIM/TIM_InputCapture/Src/stm32f3xx_it.c 
+  * @file    TIM/TIM_InputCapture/Src/stm32f3xx_it.c
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Main Interrupt Service Routines.
-  *          This file provides template for all exceptions handler and 
+  *          This file provides template for all exceptions handler and
   *          peripherals interrupt service routine.
   ******************************************************************************
   * @attention
@@ -40,7 +38,6 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stm32f3xx_it.h"
-   
 
 /** @addtogroup STM32F3xx_HAL_Examples
   * @{
@@ -176,21 +173,14 @@ void SysTick_Handler(void)
 void TIMx_IRQHandler(void)
 {
   HAL_TIM_IRQHandler(&TimHandle);
-
 }
-
-/**
-  * @brief  This function handles PPP interrupt request.
-  * @param  None
-  * @retval None
-  */ 
-/*void PPP_IRQHandler(void)
-{
-}*/
 
 /**
   * @}
   */
 
+/**
+  * @}
+  */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

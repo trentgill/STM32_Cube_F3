@@ -1,8 +1,6 @@
 /**
   ******************************************************************************
   * @file    stm32f3xx_hal_timebase_rtc_wakeup.c 
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   HAL time base based on the hardware RTC_WAKEUP.
   *    
   *          This file overrides the native HAL time base functions (defined as weak)
@@ -85,12 +83,15 @@
 /* #define RTC_CLOCK_SOURCE_LSE */
 /* #define RTC_CLOCK_SOURCE_LSI */
 
-#ifdef RTC_CLOCK_SOURCE_HSE
+#if defined(RTC_CLOCK_SOURCE_HSE)
   #define RTC_ASYNCH_PREDIV       49U
   #define RTC_SYNCH_PREDIV        4U
-#else /* RTC_CLOCK_SOURCE_LSE || RTC_CLOCK_SOURCE_LSI */
+#elif define(RTC_CLOCK_SOURCE_LSE)
   #define RTC_ASYNCH_PREDIV       0U
   #define RTC_SYNCH_PREDIV        31U
+#else  /* RTC_CLOCK_SOURCE_LSI */
+  #define RTC_ASYNCH_PREDIV       0U
+  #define RTC_SYNCH_PREDIV        39U
 #endif /* RTC_CLOCK_SOURCE_HSE */
 
 /* Private macro -------------------------------------------------------------*/
@@ -112,7 +113,7 @@ void RTC_WKUP_IRQHandler(void);
                         = 1 ms
   * @note   This function is called  automatically at the beginning of program after
   *         reset by HAL_Init() or at any time when clock is configured, by HAL_RCC_ClockConfig(). 
-  * @param  TickPriority: Tick interrupt priority.
+  * @param  TickPriority Tick interrupt priority.
   * @retval HAL status
   */
 HAL_StatusTypeDef HAL_InitTick (uint32_t TickPriority)
@@ -152,15 +153,15 @@ HAL_StatusTypeDef HAL_InitTick (uint32_t TickPriority)
       /* Enable RTC Clock */
       __HAL_RCC_RTC_ENABLE();
       /* The time base should be 1ms 
-         Time base = ((RTC_ASYNCH_PREDIV + 1) * (RTC_SYNCH_PREDIV + 1)) / RTC_CLOCK 
+         Time base = ((RTC_ASYNCH_PREDIV + 1U) * (RTC_SYNCH_PREDIV + 1U)) / RTC_CLOCK 
          HSE/32 as RTC clock and HSE 8MHz
-           Time base = ((49 + 1) * (4 + 1)) / 250kHz
+           Time base = ((49U + 1U) * (4U + 1U)) / 250kHz
                      = 1ms
          LSE as RTC clock 
-           Time base = ((31 + 1) * (0 + 1)) / 32.768Khz
+           Time base = ((31U + 1U) * (0U + 1U)) / 32.768Khz
                      = ~1ms
          LSI as RTC clock 
-           Time base = ((31 + 1) * (0 + 1)) / 32Khz
+           Time base = ((39U + 1U) * (0U + 1U)) / 40Khz
                      = 1ms
       */
       hRTC_Handle.Instance = RTC;
@@ -197,7 +198,7 @@ HAL_StatusTypeDef HAL_InitTick (uint32_t TickPriority)
       __HAL_RTC_WAKEUPTIMER_CLEAR_FLAG(&hRTC_Handle, RTC_FLAG_WUTF);
 
       /* Configure the Wake-up Timer counter */
-      hRTC_Handle.Instance->WUTR = (uint32_t)0U;
+      hRTC_Handle.Instance->WUTR = 0U;
 
       /* Clear the Wake-up Timer clock source bits in CR register */
       hRTC_Handle.Instance->CR &= (uint32_t)~RTC_CR_WUCKSEL;
@@ -264,7 +265,7 @@ void HAL_ResumeTick(void)
   * @note   This function is called  when RTC_WKUP interrupt took place, inside
   * RTC_WKUP_IRQHandler(). It makes a direct call to HAL_IncTick() to increment
   * a global variable "uwTick" used as application time base.
-  * @param  hrtc : RTC handle
+  * @param  hrtc RTC handle
   * @retval None
   */
 void HAL_RTCEx_WakeUpTimerEventCallback(RTC_HandleTypeDef *hrtc)

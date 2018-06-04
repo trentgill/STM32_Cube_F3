@@ -12,7 +12,7 @@
       <name>C-SPY</name>
       <archiveVersion>2</archiveVersion>
       <data>
-        <version>26</version>
+        <version>25</version>
         <wantNonLocal>1</wantNonLocal>
         <debug>1</debug>
         <option>
@@ -45,7 +45,7 @@
         </option>
         <option>
           <name>MemFile</name>
-          <state>$TOOLKIT_DIR$\CONFIG\debugger\ST\STM32F373xC.ddf</state>
+          <state>$TOOLKIT_DIR$\CONFIG\debugger\ST\STM32F373VC.ddf</state>
         </option>
         <option>
           <name>RunToEnable</name>
@@ -89,7 +89,7 @@
         </option>
         <option>
           <name>OCLastSavedByProductVersion</name>
-          <state>7.10.3.6927</state>
+          <state>6.70.3.6347</state>
         </option>
         <option>
           <name>OCDownloadAttachToProgram</name>
@@ -183,30 +183,6 @@
           <name>OCAllMTBOptions</name>
           <state>1</state>
         </option>
-        <option>
-          <name>OCMulticoreNrOfCores</name>
-          <state>1</state>
-        </option>
-        <option>
-          <name>OCMulticoreMaster</name>
-          <state>0</state>
-        </option>
-        <option>
-          <name>OCMulticorePort</name>
-          <state>53461</state>
-        </option>
-        <option>
-          <name>OCMulticoreWorkspace</name>
-          <state></state>
-        </option>
-        <option>
-          <name>OCMulticoreSlaveProject</name>
-          <state></state>
-        </option>
-        <option>
-          <name>OCMulticoreSlaveConfiguration</name>
-          <state></state>
-        </option>
       </data>
     </settings>
     <settings>
@@ -281,7 +257,7 @@
       <name>CMSISDAP_ID</name>
       <archiveVersion>2</archiveVersion>
       <data>
-        <version>2</version>
+        <version>1</version>
         <wantNonLocal>1</wantNonLocal>
         <debug>1</debug>
         <option>
@@ -442,10 +418,6 @@
           <name>ICpuName</name>
           <state></state>
         </option>
-        <option>
-          <name>OCJetEmuParams</name>
-          <state>1</state>
-        </option>
       </data>
     </settings>
     <settings>
@@ -520,7 +492,7 @@
       <name>IJET_ID</name>
       <archiveVersion>2</archiveVersion>
       <data>
-        <version>3</version>
+        <version>2</version>
         <wantNonLocal>1</wantNonLocal>
         <debug>1</debug>
         <option>
@@ -713,10 +685,6 @@
         <option>
           <name>ICpuName</name>
           <state></state>
-        </option>
-        <option>
-          <name>OCJetEmuParams</name>
-          <state>1</state>
         </option>
       </data>
     </settings>
@@ -1303,6 +1271,14 @@
       </plugin>
       <plugin>
         <file>$TOOLKIT_DIR$\plugins\rtos\OpenRTOS\OpenRTOSPlugin.ewplugin</file>
+        <loadFlag>0</loadFlag>
+      </plugin>
+      <plugin>
+        <file>$TOOLKIT_DIR$\plugins\rtos\PowerPac\PowerPacRTOS.ewplugin</file>
+        <loadFlag>0</loadFlag>
+      </plugin>
+      <plugin>
+        <file>$TOOLKIT_DIR$\plugins\rtos\Quadros\Quadros_EWB6_Plugin.ewplugin</file>
         <loadFlag>0</loadFlag>
       </plugin>
       <plugin>

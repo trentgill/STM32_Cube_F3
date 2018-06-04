@@ -5,8 +5,6 @@
   ******************** (C) COPYRIGHT 2016 STMicroelectronics *******************
   * @file    HRTIM/HRTIM_TM_PFC/readme.txt 
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Description of HRTIM_TM_PFC example
   ******************************************************************************
   *
@@ -38,7 +36,7 @@
 
 @par Example Description 
   This example shows how to configure the HRTIM to control a transition mode PFC.
- 
+   
   This is done with the TD1 output (PB14).
   The TD1 control signal has a constant Ton time and variable frequency.
   
@@ -46,17 +44,21 @@
   - Over-current signal ("OC", on EEV3/PB7)
   - Zero-crossing detection signal ("ZCD", on EEV4/PB6)
   
-  The OC signal is filtered so has to have a minimum ON time guaranteed and 
-  filter-out noise occuring at the Turn on time.
-  The ZCD signal is conditioned so as to have:
-  - a maximum operating frequency in case of too frequent ZCD information
-  - a timeout in case no ZCD is present
-  
-  The various operating modes can be tested with function generator:
-  - if the OC signal is generated during the Ton time, the pulse will be shortened
-  - the ZCD signal is resetting the timer counter and will cause the switching 
-  frequency to be changed accordingly.
-  
+  OC is a single-shot short pulse ( typically 200ns ) triggered by TD1 rising edge. It has to be 
+  delayed to shorten Ton (Ton< Ton max) ==> the delay from TD1 to OC rising edge OC period should be
+  less than Ton max.
+  If the delay from TD1 to OC rising edge is lower than Ton min, the OC signal is ignored.
+
+  ZCD signal is a periodic signal with a pulse length ~ 200 ns.  The period must be varied to verify
+  the 3 operating ranges:
+      1. If ZCD signal is not present, the converter will run with a period equal to Ton + Toffmax
+         (converter is free-running)
+      2. The ZCD signal will serve as external synchronization when its period is: 
+         Ton + Toffmin < ZCD period < Tonmax + Toff max (converter is locked)
+      3. When the ZCD is < Ton + Toff min, the TD1 will lost synchronization with ZCD, but TD1 period
+         will remain >= Ton + Toff min (converter operates at its high frequency limit)
+      In the above equation,  Ton min < Ton < Ton max
+ 
   The FAULT1 input is enabled on PA12 (active low) to demonstrate PWM shut down 
   (low level sensitive).
   When the fault is triggered (PA12 input connected to GND, TD1 signal only is
@@ -65,6 +67,8 @@
   LEDs are indicating the following:
   Green LED: blinks during normal operation
   Orange LED: blinks when FAULT is triggered
+  
+  For more details, refer to Application Note AN4539 "HRTIM cookbook".
 
 
 @note Care must be taken when using HAL_Delay(), this function provides accurate delay (in milliseconds)
@@ -93,6 +97,8 @@
     board and can be easily tailored to any other supported device and development board.
   
   - STM32F3348-DISCO Set-up: PA12 must be briefly tied to ground to simulate a fault event
+  
+  - Two function generators are needed to generate OC and ZCD signals.
 
 @par How to use it ? 
 

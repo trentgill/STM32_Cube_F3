@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    TIM/TIM_OCActive/Src/main.c
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   This example shows how to configure the Timer to generate four 
   *          delayed signals.
   ******************************************************************************
@@ -96,8 +94,6 @@ int main(void)
   /* Turn off LED1 */
   BSP_LED_Off(LED1);
 
-  /* De-assert trig ouput pin */
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);
 
   /* Compute the prescaler value to have TIMx counter clock equal to 10 kHz */
   uwPrescalerValue = ((SystemCoreClock) / 10000) - 1;
@@ -159,13 +155,9 @@ int main(void)
     Error_Handler();
   }
   
-  /*##-3- Turn On LED1: use PA.05 rising edge as reference ####################*/
+  /*##-3- Turn On LED1: use PB.00 rising edge as reference ####################*/ 
   /* Turn on LED1 */
   BSP_LED_On(LED1);
-
-  /* Assert trig ouput pin */
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET);
-
   
   /*##-4- Start signals generation #######################################*/ 
   /* Start channel 1 in Output compare mode */
@@ -205,11 +197,12 @@ int main(void)
   */
 static void Error_Handler(void)
 {
-  /* Turn LED2 on */
-  BSP_LED_On(LED2);
-  while (1)
-  {
-  }
+  /* LED2 is slowly blinking (1 sec. period) */
+  while(1)
+  {    
+    BSP_LED_Toggle(LED2); 
+    HAL_Delay(1000);
+  } 
 }
 
 /**
@@ -268,7 +261,7 @@ void SystemClock_Config(void)
   * @param  line: assert_param error line source number
   * @retval None
   */
-void assert_failed(uint8_t *file, uint32_t line)
+void assert_failed(char *file, uint32_t line)
 {
   /* User can add his own implementation to report the file name and line number,
      ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */

@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    stm32303e_eval_lcd.c
   * @author  MCD Application Team
-  * @version V2.1.1
-  * @date    16-December-2016
   * @brief   This file includes the driver for Liquid Crystal Display modules
   *          mounted on STM32303E-EVAL evaluation board.
   ******************************************************************************
@@ -209,7 +207,7 @@ uint16_t BSP_LCD_GetBackColor(void)
 
 /**
   * @brief  Sets the LCD text color.
-  * @param  Color: Text color code RGB(5-6-5)
+  * @param  Color Text color code RGB(5-6-5)
   * @retval None
   */
 void BSP_LCD_SetTextColor(uint16_t Color)
@@ -219,7 +217,7 @@ void BSP_LCD_SetTextColor(uint16_t Color)
 
 /**
   * @brief  Sets the LCD background color.
-  * @param  Color: Background color code RGB(5-6-5)
+  * @param  Color Background color code RGB(5-6-5)
   * @retval None
   */
 void BSP_LCD_SetBackColor(uint16_t Color)
@@ -229,7 +227,7 @@ void BSP_LCD_SetBackColor(uint16_t Color)
 
 /**
   * @brief  Sets the LCD text font.
-  * @param  pFonts: Font to be used
+  * @param  pFonts Font to be used
   * @retval None
   */
 void BSP_LCD_SetFont(sFONT *pFonts)
@@ -248,7 +246,7 @@ sFONT *BSP_LCD_GetFont(void)
 
 /**
   * @brief  Clears the hole LCD.
-  * @param  Color: Color of the background
+  * @param  Color Color of the background
   * @retval None
   */
 void BSP_LCD_Clear(uint16_t Color)
@@ -269,7 +267,7 @@ void BSP_LCD_Clear(uint16_t Color)
 
 /**
   * @brief  Clears the selected line.
-  * @param  Line: Line to be cleared
+  * @param  Line Line to be cleared
   *          This parameter can be one of the following values:
   *            @arg  0..9: if the Current fonts is Font16x24
   *            @arg  0..19: if the Current fonts is Font12x12 or Font8x12
@@ -290,9 +288,9 @@ void BSP_LCD_ClearStringLine(uint16_t Line)
 
 /**
   * @brief  Displays one character.
-  * @param  Xpos: Start column address
-  * @param  Ypos: Line where to display the character shape.
-  * @param  Ascii: Character ascii code
+  * @param  Xpos Start column address
+  * @param  Ypos Line where to display the character shape.
+  * @param  Ascii Character ascii code
   *           This parameter must be a number between Min_Data = 0x20 and Max_Data = 0x7E 
   * @retval None
   */
@@ -304,10 +302,10 @@ void BSP_LCD_DisplayChar(uint16_t Xpos, uint16_t Ypos, uint8_t Ascii)
 
 /**
   * @brief  Displays characters on the LCD.
-  * @param  Xpos: X position (in pixel)
-  * @param  Ypos: Y position (in pixel)   
-  * @param  pText: Pointer to string to display on LCD
-  * @param  Mode: Display mode
+  * @param  Xpos X position (in pixel)
+  * @param  Ypos Y position (in pixel)   
+  * @param  pText Pointer to string to display on LCD
+  * @param  Mode Display mode
   *          This parameter can be one of the following values:
   *            @arg  CENTER_MODE
   *            @arg  RIGHT_MODE
@@ -365,12 +363,12 @@ void BSP_LCD_DisplayStringAt(uint16_t Xpos, uint16_t Ypos, uint8_t *pText, Line_
 
 /**
   * @brief  Displays a character on the LCD.
-  * @param  Line: Line where to display the character shape
+  * @param  Line Line where to display the character shape
   *          This parameter can be one of the following values:
   *            @arg  0..9: if the Current fonts is Font16x24  
   *            @arg  0..19: if the Current fonts is Font12x12 or Font8x12
   *            @arg  0..29: if the Current fonts is Font8x8
-  * @param  pText: Pointer to string to display on LCD
+  * @param  pText Pointer to string to display on LCD
   * @retval None
   */
 void BSP_LCD_DisplayStringAtLine(uint16_t Line, uint8_t *pText)
@@ -380,8 +378,8 @@ void BSP_LCD_DisplayStringAtLine(uint16_t Line, uint8_t *pText)
 
 /**
   * @brief  Reads an LCD pixel.
-  * @param  Xpos: X position 
-  * @param  Ypos: Y position 
+  * @param  Xpos X position 
+  * @param  Ypos Y position 
   * @retval RGB pixel color
   */
 uint16_t BSP_LCD_ReadPixel(uint16_t Xpos, uint16_t Ypos)
@@ -398,9 +396,9 @@ uint16_t BSP_LCD_ReadPixel(uint16_t Xpos, uint16_t Ypos)
 
 /**
   * @brief  Draws an horizontal line.
-  * @param  Xpos: X position
-  * @param  Ypos: Y position
-  * @param  Length: Line length
+  * @param  Xpos X position
+  * @param  Ypos Y position
+  * @param  Length Line length
   * @retval None
   */
 void BSP_LCD_DrawHLine(uint16_t Xpos, uint16_t Ypos, uint16_t Length)
@@ -422,9 +420,9 @@ void BSP_LCD_DrawHLine(uint16_t Xpos, uint16_t Ypos, uint16_t Length)
 
 /**
   * @brief  Draws a vertical line.
-  * @param  Xpos: X position
-  * @param  Ypos: Y position
-  * @param  Length: Line length
+  * @param  Xpos X position
+  * @param  Ypos Y position
+  * @param  Length Line length
   * @retval None
   */
 void BSP_LCD_DrawVLine(uint16_t Xpos, uint16_t Ypos, uint16_t Length)
@@ -448,10 +446,10 @@ void BSP_LCD_DrawVLine(uint16_t Xpos, uint16_t Ypos, uint16_t Length)
 
 /**
   * @brief  Draws an uni-line (between two points).
-  * @param  X1: Point 1 X position
-  * @param  Y1: Point 1 Y position
-  * @param  X2: Point 2 X position
-  * @param  Y2: Point 2 Y position
+  * @param  X1 Point 1 X position
+  * @param  Y1 Point 1 Y position
+  * @param  X2 Point 2 X position
+  * @param  Y2 Point 2 Y position
   * @retval None
   */
 void BSP_LCD_DrawLine(uint16_t X1, uint16_t Y1, uint16_t X2, uint16_t Y2)
@@ -523,10 +521,10 @@ void BSP_LCD_DrawLine(uint16_t X1, uint16_t Y1, uint16_t X2, uint16_t Y2)
 
 /**
   * @brief  Draws a rectangle.
-  * @param  Xpos: X position
-  * @param  Ypos: Y position
-  * @param  Width: Rectangle width  
-  * @param  Height: Rectangle height
+  * @param  Xpos X position
+  * @param  Ypos Y position
+  * @param  Width Rectangle width  
+  * @param  Height Rectangle height
   * @retval None
   */
 void BSP_LCD_DrawRect(uint16_t Xpos, uint16_t Ypos, uint16_t Width, uint16_t Height)
@@ -542,9 +540,9 @@ void BSP_LCD_DrawRect(uint16_t Xpos, uint16_t Ypos, uint16_t Width, uint16_t Hei
                             
 /**
   * @brief  Draws a circle.
-  * @param  Xpos: X position
-  * @param  Ypos: Y position
-  * @param  Radius: Circle radius
+  * @param  Xpos X position
+  * @param  Ypos Y position
+  * @param  Radius Circle radius
   * @retval None
   */
 void BSP_LCD_DrawCircle(uint16_t Xpos, uint16_t Ypos, uint16_t Radius)
@@ -593,8 +591,8 @@ void BSP_LCD_DrawCircle(uint16_t Xpos, uint16_t Ypos, uint16_t Radius)
 
 /**
   * @brief  Draws an poly-line (between many points).
-  * @param  pPoints: Pointer to the points array
-  * @param  PointCount: Number of points
+  * @param  pPoints Pointer to the points array
+  * @param  PointCount Number of points
   * @retval None
   */
 void BSP_LCD_DrawPolygon(pPoint pPoints, uint16_t PointCount)
@@ -620,10 +618,10 @@ void BSP_LCD_DrawPolygon(pPoint pPoints, uint16_t PointCount)
 
 /**
   * @brief  Draws an ellipse on LCD.
-  * @param  Xpos: X position
-  * @param  Ypos: Y position
-  * @param  XRadius: Ellipse X radius
-  * @param  YRadius: Ellipse Y radius
+  * @param  Xpos X position
+  * @param  Ypos Y position
+  * @param  XRadius Ellipse X radius
+  * @param  YRadius Ellipse Y radius
   * @retval None
   */
 void BSP_LCD_DrawEllipse(int Xpos, int Ypos, int XRadius, int YRadius)
@@ -654,9 +652,9 @@ void BSP_LCD_DrawEllipse(int Xpos, int Ypos, int XRadius, int YRadius)
 
 /**
   * @brief  Draws a bitmap picture loaded in the internal Flash (32 bpp).
-  * @param  Xpos: Bmp X position in the LCD
-  * @param  Ypos: Bmp Y position in the LCD
-  * @param  pBmp: Pointer to Bmp picture address in the internal Flash
+  * @param  Xpos Bmp X position in the LCD
+  * @param  Ypos Bmp Y position in the LCD
+  * @param  pBmp Pointer to Bmp picture address in the internal Flash
   * @retval None
   */
 void BSP_LCD_DrawBitmap(uint16_t Xpos, uint16_t Ypos, uint8_t *pBmp)
@@ -689,10 +687,10 @@ void BSP_LCD_DrawBitmap(uint16_t Xpos, uint16_t Ypos, uint8_t *pBmp)
 
 /**
   * @brief  Draws a full rectangle.
-  * @param  Xpos: X position
-  * @param  Ypos: Y position
-  * @param  Width: Rectangle width  
-  * @param  Height: Rectangle height
+  * @param  Xpos X position
+  * @param  Ypos Y position
+  * @param  Width Rectangle width  
+  * @param  Height Rectangle height
   * @retval None
   */
 void BSP_LCD_FillRect(uint16_t Xpos, uint16_t Ypos, uint16_t Width, uint16_t Height)
@@ -707,9 +705,9 @@ void BSP_LCD_FillRect(uint16_t Xpos, uint16_t Ypos, uint16_t Width, uint16_t Hei
 
 /**
   * @brief  Draws a full circle.
-  * @param  Xpos: X position
-  * @param  Ypos: Y position
-  * @param  Radius: Circle radius
+  * @param  Xpos X position
+  * @param  Ypos Y position
+  * @param  Radius Circle radius
   * @retval None
   */
 void BSP_LCD_FillCircle(uint16_t Xpos, uint16_t Ypos, uint16_t Radius)
@@ -756,10 +754,10 @@ void BSP_LCD_FillCircle(uint16_t Xpos, uint16_t Ypos, uint16_t Radius)
 
 /**
   * @brief  Draws a full ellipse.
-  * @param  Xpos: X position
-  * @param  Ypos: Y position
-  * @param  XRadius: Ellipse X radius
-  * @param  YRadius: Ellipse Y radius  
+  * @param  Xpos X position
+  * @param  Ypos Y position
+  * @param  XRadius Ellipse X radius
+  * @param  YRadius Ellipse Y radius  
   * @retval None
   */
 void BSP_LCD_FillEllipse(int Xpos, int Ypos, int XRadius, int YRadius)
@@ -819,9 +817,9 @@ void BSP_LCD_DisplayOff(void)
   
 /**
   * @brief  Draws a pixel on LCD.
-  * @param  Xpos: X position 
-  * @param  Ypos: Y position
-  * @param  RGBCode: Pixel color in RGB mode (5-6-5)  
+  * @param  Xpos X position 
+  * @param  Ypos Y position
+  * @param  RGBCode Pixel color in RGB mode (5-6-5)  
   * @retval None
   */
 static void LCD_DrawPixel(uint16_t Xpos, uint16_t Ypos, uint16_t RGBCode)
@@ -834,9 +832,9 @@ static void LCD_DrawPixel(uint16_t Xpos, uint16_t Ypos, uint16_t RGBCode)
 
 /**
   * @brief  Draws a character on LCD.
-  * @param  Xpos: Line where to display the character shape
-  * @param  Ypos: Start column address
-  * @param  pChar: Pointer to the character data
+  * @param  Xpos Line where to display the character shape
+  * @param  Ypos Start column address
+  * @param  pChar Pointer to the character data
   * @retval None
   */
 static void LCD_DrawChar(uint16_t Xpos, uint16_t Ypos, const uint8_t *pChar)
@@ -903,10 +901,10 @@ static void LCD_DrawChar(uint16_t Xpos, uint16_t Ypos, const uint8_t *pChar)
 
 /**
   * @brief  Sets display window.
-  * @param  Xpos: LCD X position
-  * @param  Ypos: LCD Y position
-  * @param  Width: LCD window width
-  * @param  Height: LCD window height  
+  * @param  Xpos LCD X position
+  * @param  Ypos LCD Y position
+  * @param  Width LCD window width
+  * @param  Height LCD window height  
   * @retval None
   */
 static void LCD_SetDisplayWindow(uint16_t Xpos, uint16_t Ypos, uint16_t Width, uint16_t Height)

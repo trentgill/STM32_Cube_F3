@@ -10,6 +10,7 @@
       <TargetName>STM32303E_EVAL</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
+      <pCCUsed>5060422::V5.06 update 4 (build 422)::ARMCC</pCCUsed>
       <TargetOption>
         <TargetCommonOption>
           <Device>STM32F303VE</Device>
@@ -334,7 +335,7 @@
               <MiscControls>--C99</MiscControls>
               <Define>USE_HAL_DRIVER,STM32F303xE,USE_STM32303E_EVAL</Define>
               <Undefine></Undefine>
-              <IncludePath>../Inc;../../../../../../Drivers/CMSIS/Device/ST/STM32F3xx/Include;../../../../../../Drivers/CMSIS/Include;../../../../../../Drivers/STM32F3xx_HAL_Driver/Inc;../../../../../../Drivers/BSP/STM32303E_EVAL;../../../../../../Drivers/BSP/Components/Common;../../../../../../Utilities/Log;../../../../../../Utilities/CPU</IncludePath>
+              <IncludePath>../Inc;../../../../../../Drivers/CMSIS/Device/ST/STM32F3xx/Include;../../../../../../Drivers/STM32F3xx_HAL_Driver/Inc;../../../../../../Drivers/BSP/STM32303E_EVAL;../../../../../../Drivers/BSP/Components/Common;../../../../../../Utilities/Log;../../../../../../Utilities/CPU</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>

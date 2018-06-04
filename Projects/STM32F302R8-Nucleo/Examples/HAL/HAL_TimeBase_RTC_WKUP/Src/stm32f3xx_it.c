@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    HAL/HAL_TimeBase_RTC_WAKEUP/Src/stm32f3xx_it.c
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Interrupt Service Routines.
   ******************************************************************************
   * @attention

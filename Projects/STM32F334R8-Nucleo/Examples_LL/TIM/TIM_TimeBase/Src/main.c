@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    Examples_LL/TIM/TIM_TimeBase/Src/main.c
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   This example describes how to use a timer instance to generate a 
   *          time base using the STM32F3xx TIM LL API.
   *          Peripheral initialization done using LL unitary services functions.
@@ -64,6 +62,9 @@ static uint32_t InitialAutoreload = 0;
 /* Actual autoreload value multiplication factor */
 static uint8_t AutoreloadMult = 1;
 
+/* TIM2 Clock */
+static uint32_t TimOutClock = 1;
+
 /* Private function prototypes -----------------------------------------------*/
 __STATIC_INLINE void     SystemClock_Config(void);
 __STATIC_INLINE void     Configure_TIMTimeBase(void);
@@ -116,19 +117,19 @@ __STATIC_INLINE void  Configure_TIMTimeBase(void)
 
   /* Set the pre-scaler value to have TIM2 counter clock equal to 10 kHz      */
   /*
-    In this example TIM2 input clock (TIM2CLK)  is set to APB1 clock (PCLK1),
-    since APB1 prescaler is equal to 1.
-      TIM2CLK = PCLK1
-      PCLK1 = HCLK
-      => TIM2CLK = HCLK = SystemCoreClock
-    To get TIM2 counter clock at 10 KHz, the Prescaler is computed as following:
-    Prescaler = (TIM2CLK / TIM2 counter clock) - 1
-    Prescaler = (SystemCoreClock /10 KHz) - 1
+In this example TIM2 input clock (TIM2CLK)  is set to APB1 clock (PCLK1),
+since APB1 prescaler is equal to 1.
+   TIM2CLK = PCLK1
+   PCLK1 = HCLK
+   => TIM2CLK = HCLK = SystemCoreClock (64MHz)
   */
   LL_TIM_SetPrescaler(TIM2, __LL_TIM_CALC_PSC(SystemCoreClock, 10000));
   
   /* Set the auto-reload value to have an initial update event frequency of 10 Hz */
-  InitialAutoreload = __LL_TIM_CALC_ARR(SystemCoreClock, LL_TIM_GetPrescaler(TIM2), 10);
+    /* TIM2CLK = SystemCoreClock / (APB prescaler & multiplier)                 */
+  TimOutClock = SystemCoreClock/1;
+  
+  InitialAutoreload = __LL_TIM_CALC_ARR(TimOutClock, LL_TIM_GetPrescaler(TIM2), 10);
   LL_TIM_SetAutoReload(TIM2, InitialAutoreload);
   
   /* Enable the update interrupt */
@@ -247,6 +248,7 @@ void SystemClock_Config(void)
   /* Update CMSIS variable (which can be updated also through SystemCoreClockUpdate function) */
   LL_SetSystemCoreClock(64000000);
 }
+
 /******************************************************************************/
 /*   USER IRQ HANDLER TREATMENT                                               */
 /******************************************************************************/
@@ -291,7 +293,7 @@ void TimerUpdate_Callback(void)
   * @param  line: assert_param error line source number
   * @retval None
   */
-void assert_failed(uint8_t *file, uint32_t line)
+void assert_failed(char *file, uint32_t line)
 {
   /* User can add his own implementation to report the file name and line number,
      ex: printf("Wrong parameters value: file %s on line %d", file, line) */

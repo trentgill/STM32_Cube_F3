@@ -5,8 +5,6 @@
   ******************** (C) COPYRIGHT 2016 STMicroelectronics *******************
   * @file    Examples_LL/TIM/TIM_TimeBase/readme.txt 
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Description of the TIM_TimeBase example.
   ******************************************************************************
   *
@@ -42,14 +40,11 @@ Example using the STM32F3xx TIM LL API,
 peripheral initialization done using LL unitary services functions
 for optimization purpose (performance and size).
 
-    In this example TIM2 input clock (TIM2CLK)  is set to APB1 clock (PCLK1),
-    since APB1 prescaler is equal to 1.
-      TIM2CLK = PCLK1
-      PCLK1 = HCLK
-      => TIM2CLK = HCLK = SystemCoreClock
-    To get TIM2 counter clock at 10 KHz, the Prescaler is computed as following:
-    Prescaler = (TIM2CLK / TIM2 counter clock) - 1
-    Prescaler = (SystemCoreClock /10 KHz) - 1
+In this example TIM2 input clock (TIM2CLK)  is set to APB1 clock (PCLK1),
+since APB1 prescaler is equal to 1.
+   TIM2CLK = PCLK1
+   PCLK1 = HCLK
+   => TIM2CLK = HCLK = SystemCoreClock (64MHz)
 
 To set the TIM2 counter clock frequency to 10 KHz, the pre-scaler (PSC) is calculated as follows:
 PSC = (TIM2CLK / TIM2 counter clock) - 1
@@ -62,8 +57,9 @@ meaning that initial time base frequency is 10 Hz.
 ARR = (TIM2 counter clock / time base frequency) - 1
 ARR = (TIM2 counter clock / 10) - 1
 
-Update interrupts are enabled. Within the update interrupt service routine pin PA.05
-(connected to LED2 on board STM32F334R8-Nucleo Rev C) is toggled.
+Update interrupts are enabled. Within the update interrupt service routine, pin PA.05
+(connected to LED2 on board STM32F334R8-Nucleo Rev C) is toggled. So the period of 
+blinking of LED2 = 2 * time base period.
 
 User push-button can be used to modify the time base period from 100 ms
 to 1 s in 100 ms steps. To do so, every time User push-button is pressed, the

@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    stm32373c_eval_eeprom.c
   * @author  MCD Application Team
-  * @version V2.2.0
-  * @date    16-December-2016
   * @brief   This file provides a set of functions needed to manage a M24LR64 
   *          or M24M01 I2C EEPROM memory.
   *          
@@ -195,10 +193,10 @@ uint32_t BSP_EEPROM_Init(void)
 
 /**
   * @brief  Reads a block of data from the EEPROM.
-  * @param  pBuffer : pointer to the buffer that receives the data read from 
+  * @param  pBuffer pointer to the buffer that receives the data read from 
   *         the EEPROM.
-  * @param  ReadAddr : EEPROM's internal address to start reading from.
-  * @param  NumByteToRead : pointer to the variable holding number of bytes to 
+  * @param  ReadAddr EEPROM's internal address to start reading from.
+  * @param  NumByteToRead pointer to the variable holding number of bytes to 
   *         be read from the EEPROM.
   * 
   *        @note The variable pointed by NumByteToRead is reset to 0 when all the 
@@ -231,10 +229,10 @@ uint32_t BSP_EEPROM_ReadBuffer(uint8_t* pBuffer, uint16_t ReadAddr, uint32_t* Nu
   *         the function EEPROM_WriteBuffer() which calls EEPROM_WritePage() is 
   *         responsible of checking on Page boundaries).
   * 
-  * @param  pBuffer : pointer to the buffer containing the data to be written to 
+  * @param  pBuffer pointer to the buffer containing the data to be written to 
   *         the EEPROM.
-  * @param  WriteAddr : EEPROM's internal address to write to.
-  * @param  NumByteToWrite : pointer to the variable holding number of bytes to 
+  * @param  WriteAddr EEPROM's internal address to write to.
+  * @param  NumByteToWrite pointer to the variable holding number of bytes to 
   *         be written into the EEPROM. 
   * 
   *        @note The variable pointed by NumByteToWrite is reset to 0 when all the 
@@ -269,10 +267,10 @@ static uint32_t EEPROM_WritePage(uint8_t* pBuffer, uint16_t WriteAddr, uint32_t*
 
 /**
   * @brief  Writes buffer of data to the I2C EEPROM.
-  * @param  pBuffer : pointer to the buffer  containing the data to be written 
+  * @param  pBuffer pointer to the buffer  containing the data to be written 
   *         to the EEPROM.
-  * @param  WriteAddr : EEPROM's internal address to write to.
-  * @param  NumByteToWrite : number of bytes to write to the EEPROM.
+  * @param  WriteAddr EEPROM's internal address to write to.
+  * @param  NumByteToWrite number of bytes to write to the EEPROM.
   * @retval EEPROM_OK (0) if operation is correctly performed, else return value 
   *         different from EEPROM_OK (0) or the timeout user callback.
   */

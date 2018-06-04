@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    TIM/TIM_InputCapture/Src/main.c
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   This example shows how to use the TIM peripheral to measure only 
   *          the frequency  of an external signal.
   ******************************************************************************
@@ -82,7 +80,6 @@ static void Error_Handler(void);
   */
 int main(void)
 {
-
   /* STM32F3xx HAL library initialization:
        - Configure the Flash prefetch
        - Systick timer is configured by default as source of time base, but user 
@@ -95,11 +92,11 @@ int main(void)
      */
   HAL_Init();
 
-  /* Configure LED3 */
-  BSP_LED_Init(LED3);
-
   /* Configure the system clock to 72 MHz */
   SystemClock_Config();
+
+  /* Configure LED3 */
+  BSP_LED_Init(LED3);
 
   /*##-1- Configure the TIM peripheral #######################################*/
   /* TIM1 configuration: Input Capture mode ---------------------
@@ -161,13 +158,13 @@ int main(void)
 void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
 {
   if (htim->Channel == HAL_TIM_ACTIVE_CHANNEL_2)
-{
+  {
     if(uhCaptureIndex == 0)
     {
       /* Get the 1st Input Capture value */
       uwIC2Value1 = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_2);
       uhCaptureIndex = 1;
-}
+    }
     else if(uhCaptureIndex == 1)
     {
       /* Get the 2nd Input Capture value */
@@ -180,7 +177,8 @@ void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
       }
       else if (uwIC2Value2 < uwIC2Value1)
       {
-        uwDiffCapture = ((0xFFFFFFFF - uwIC2Value1) + uwIC2Value2) + 1;
+        /* 0xFFFF is max TIM1_CCRx value */
+        uwDiffCapture = ((0xFFFF - uwIC2Value1) + uwIC2Value2) + 1;
       }
       else
       {
@@ -226,7 +224,8 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct)!= HAL_OK)
   {
-    Error_Handler(); 
+    /* Initialization Error */
+    while(1); 
   }
     	
   /* Select PLL as system clock source and configure the HCLK, PCLK1 and PCLK2 
@@ -238,7 +237,8 @@ void SystemClock_Config(void)
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2)!= HAL_OK)
   {
-    Error_Handler(); 
+    /* Initialization Error */
+    while(1); 
   }
 }
 /**
@@ -263,7 +263,7 @@ static void Error_Handler(void)
   * @param  line: assert_param error line source number
   * @retval None
   */
-void assert_failed(uint8_t *file, uint32_t line)
+void assert_failed(char *file, uint32_t line)
 {
   /* User can add his own implementation to report the file name and line number,
      ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */

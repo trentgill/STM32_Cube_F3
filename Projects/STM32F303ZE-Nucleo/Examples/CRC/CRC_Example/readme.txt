@@ -5,8 +5,6 @@
   ******************** (C) COPYRIGHT 2016 STMicroelectronics *******************
   * @file    CRC/CRC_Example/readme.txt 
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Description of Cyclic Redundancy Check Example.
   ******************************************************************************
   *
@@ -54,7 +52,7 @@ You can update HAL_CRC_Init() input parameters to change the CRC configuration.
 The calculated CRC code is stored in uwCRCValue variable
 and compared with the expected one stored in uwExpectedCRCValue variable.
 
-STM32 Eval board LEDs are used to monitor the example status:
+STM32 board LEDs are used to monitor the example status:
   - LED1 (GREEN) is ON when a correct CRC value is calculated
   - LED3 (RED) is ON when an incorrect CRC value is calculated or when there is an initialization error.
 

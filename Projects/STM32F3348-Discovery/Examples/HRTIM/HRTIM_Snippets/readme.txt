@@ -5,8 +5,6 @@
   ******************** (C) COPYRIGHT 2016 STMicroelectronics *******************
   * @file    HRTIM/HRTIM_Snippets/readme.txt 
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   This example describes how to generate basic PWM waveforms with the 
   * HRTIM, as per HRTIM Cookbook basic examples.
   ******************************************************************************
@@ -69,12 +67,12 @@
 
 @par Directory contents 
 
-  - HRTIM/HRTIM_DualBuck/Inc/stm32f3xx_hal_conf.h    HAL configuration file
-  - HRTIM/HRTIM_DualBuck/Inc/stm32f3xx_it.h          PPP interrupt handlers header file
-  - HRTIM/HRTIM_DualBuck/Inc/main.h                  Header for main.c module  
-  - HRTIM/HRTIM_DualBuck/Src/stm32f3xx_it.c          PPP interrupt handlers
-  - HRTIM/HRTIM_DualBuck/Src/main.c                  Main program
-  - HRTIM/HRTIM_DualBuck/Src/stm32f3xx_hal_msp.c     HAL MSP file
+  - HRTIM/HRTIM_Snippsets/Inc/stm32f3xx_hal_conf.h    HAL configuration file
+  - HRTIM/HRTIM_Snippsets/Inc/stm32f3xx_it.h          PPP interrupt handlers header file
+  - HRTIM/HRTIM_Snippsets/Inc/main.h                  Header for main.c module  
+  - HRTIM/HRTIM_Snippsets/Src/stm32f3xx_it.c          PPP interrupt handlers
+  - HRTIM/HRTIM_Snippsets/Src/main.c                  Main program
+  - HRTIM/HRTIM_Snippsets/Src/stm32f3xx_hal_msp.c     HAL MSP file
 
 @par Hardware and Software environment 
 
@@ -82,8 +80,6 @@
     
   - This example has been tested with STM32F3348-DISCO
     board and can be easily tailored to any other supported device and development board.
-  
-  - STM32F3348-DISCO Set-up: PA12 must be briefly tied to ground to simulate a fault event
 
 @par How to use it ? 
 

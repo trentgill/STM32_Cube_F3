@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    EEPROM_Emulation/inc/eeprom.h 
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   This file contains all the functions prototypes for the EEPROM 
   *          emulation firmware library.
   ******************************************************************************

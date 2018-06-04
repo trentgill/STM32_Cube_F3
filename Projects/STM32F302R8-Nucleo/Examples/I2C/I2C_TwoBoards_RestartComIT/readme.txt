@@ -5,8 +5,6 @@
   ********************* COPYRIGHT(c) 2016 STMicroelectronics *******************
   * @file    I2C/I2C_TwoBoards_RestartComIT/readme.txt 
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Description of the I2C Two Boards IT Communication with Restart condition example.
   ******************************************************************************
   *
@@ -138,7 +136,7 @@ or buffers compared error. (communication is stopped if any, using infinite loop
 
 @par Hardware and Software environment
 
-  - This example runs on STM32F302R8 devices.
+  - This example runs on STM32F302x8 devices.
     
   - This example has been tested with STM32F302R8-Nucleo Rev C board and can be
     easily tailored to any other supported device and development board.    

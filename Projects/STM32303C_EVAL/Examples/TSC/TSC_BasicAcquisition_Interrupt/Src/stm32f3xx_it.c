@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    TSC/TSC_BasicAcquisition_Interrupt/Src/stm32f3xx_it.c
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Main Interrupt Service Routines.
   ******************************************************************************
   * @attention

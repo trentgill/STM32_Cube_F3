@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    stm32f3xx_hal_flash.c
   * @author  MCD Application Team
-  * @version V1.4.0
-  * @date    16-December-2016
   * @brief   FLASH HAL module driver.
   *          This file provides firmware functions to manage the following 
   *          functionalities of the internal FLASH memory:
@@ -437,7 +435,7 @@ void HAL_FLASH_IRQHandler(void)
 
 /**
   * @brief  FLASH end of operation interrupt callback
-  * @param  ReturnValue: The value saved in this parameter depends on the ongoing procedure
+  * @param  ReturnValue The value saved in this parameter depends on the ongoing procedure
   *                 - Mass Erase: No return value expected
   *                 - Pages Erase: Address of the page which has been erased 
   *                    (if 0xFFFFFFFF, it means that all the selected pages have been erased)
@@ -456,7 +454,7 @@ __weak void HAL_FLASH_EndOfOperationCallback(uint32_t ReturnValue)
 
 /**
   * @brief  FLASH operation error interrupt callback
-  * @param  ReturnValue: The value saved in this parameter depends on the ongoing procedure
+  * @param  ReturnValue The value saved in this parameter depends on the ongoing procedure
   *                 - Mass Erase: No return value expected
   *                 - Pages Erase: Address of the page which returned an error
   *                 - Program: Address which was selected for data program
@@ -497,18 +495,22 @@ __weak void HAL_FLASH_OperationErrorCallback(uint32_t ReturnValue)
   */
 HAL_StatusTypeDef HAL_FLASH_Unlock(void)
 {
-  if (HAL_IS_BIT_SET(FLASH->CR, FLASH_CR_LOCK))
+  HAL_StatusTypeDef status = HAL_OK;
+
+  if(READ_BIT(FLASH->CR, FLASH_CR_LOCK) != RESET)
   {
     /* Authorize the FLASH Registers access */
     WRITE_REG(FLASH->KEYR, FLASH_KEY1);
     WRITE_REG(FLASH->KEYR, FLASH_KEY2);
-  }
-  else
-  {
-    return HAL_ERROR;
+
+    /* Verify Flash is unlocked */
+    if(READ_BIT(FLASH->CR, FLASH_CR_LOCK) != RESET)
+    {
+      status = HAL_ERROR;
+    }
   }
 
-  return HAL_OK; 
+  return status;
 }
 
 /**

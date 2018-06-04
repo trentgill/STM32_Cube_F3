@@ -1,11 +1,9 @@
 /**
   ******************************************************************************
-  * @file    TIM/TIM_DMA/Src/stm32f3xx_it.c  
+  * @file    TIM/TIM_DMA/Src/stm32f3xx_it.c
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Main Interrupt Service Routines.
-  *          This file provides template for all exceptions handler and 
+  *          This file provides template for all exceptions handler and
   *          peripherals interrupt service routine.
   ******************************************************************************
   * @attention
@@ -40,7 +38,6 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stm32f3xx_it.h"
-   
 
 /** @addtogroup STM32F3xx_HAL_Examples
   * @{
@@ -54,7 +51,7 @@
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
-extern TIM_HandleTypeDef    TimHandle;
+extern    TIM_HandleTypeDef    TimHandle;
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
 
@@ -170,12 +167,12 @@ void SysTick_Handler(void)
 
 /**
 * @brief  This function handles DMA interrupt request.
-  * @param  None
-  * @retval None
-  */
+* @param  None
+* @retval None
+*/
 void TIMx_DMA_IRQHandler(void)
 {
-  HAL_DMA_IRQHandler(TimHandle.hdma[TIM_DMA_ID_CC2]);
+  HAL_DMA_IRQHandler(TimHandle.hdma[TIM_DMA_ID_CC3]);
 }
 
 /**
@@ -187,10 +184,9 @@ void TIMx_DMA_IRQHandler(void)
 {
 }*/
 
-
 /**
   * @}
-  */ 
+  */
 
 /**
   * @}

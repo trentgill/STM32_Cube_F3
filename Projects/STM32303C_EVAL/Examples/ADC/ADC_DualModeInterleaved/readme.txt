@@ -5,8 +5,6 @@
   ******************** (C) COPYRIGHT 2016 STMicroelectronics *******************
   * @file    ADC/ADC_DualModeInterleaved/readme.txt 
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Description of the Dual interleaved mode and DMA mode3 Example
   ******************************************************************************
   *
@@ -46,7 +44,7 @@ triggered by software.
 The Dual interleaved delay is configured to 6 ADC clk cycles (ADC_TWOSAMPLINGDELAY_6CYCLES).
 
 On each DMA request (two data items are available) two bytes representing two 
-ADC-converted data items are transferred as a half word to uhADCDualConvertedValue variable.
+ADC-converted data items are transferred as a half word to uhADCDualConvertedValue array of 256 values.
 
 A DMA request is generated each time 2 data items are available
 1st request: ADC_CDR[15:0] = (ADC2_DR[7:0] << 8) | ADC1_DR[7:0] 

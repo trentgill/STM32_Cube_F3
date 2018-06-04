@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    IAP_Main/Src/menu.c 
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   This file provides the software which contains the main menu routine.
   *          The main menu gives the options of:
   *             - downloading a new binary file, 

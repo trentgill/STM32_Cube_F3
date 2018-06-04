@@ -1,13 +1,11 @@
 /**
-  @page HRTIM HRTIM_BuckBoost
+  @page HRTIM HRTIM_BuckBoost_AN4449
 
   @verbatim
   ******************** (C) COPYRIGHT 2016 STMicroelectronics *******************
-  * @file    HRTIM/HRTIM_DualBuck/readme.txt 
+  * @file    HRTIM/HRTIM_BuckBoost_AN4449/readme.txt 
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
-  * @brief   Description of HRTIM_DualBuck example.
+  * @brief   Description of HRTIM_BuckBoost_AN4449 example.
   ******************************************************************************
   *
   * Redistribution and use in source and binary forms, with or without modification,
@@ -60,12 +58,12 @@
 
 @par Directory contents 
 
-  - HRTIM/HRTIM_BuckBoost/Inc/stm32f3xx_hal_conf.h    HAL configuration file
-  - HRTIM/HRTIM_BuckBoost/Inc/stm32f3xx_it.h          PPP interrupt handlers header file
-  - HRTIM/HRTIM_BuckBoost/Inc/main.h                  Header for main.c module  
-  - HRTIM/HRTIM_BuckBoost/Src/stm32f3xx_it.c          PPP interrupt handlers
-  - HRTIM/HRTIM_BuckBoost/Src/main.c                  Main program
-  - HRTIM/HRTIM_BuckBoost/Src/stm32f3xx_hal_msp.c     HAL MSP file
+  - HRTIM/HRTIM_BuckBoost_AN4449/Inc/stm32f3xx_hal_conf.h    HAL configuration file
+  - HRTIM/HRTIM_BuckBoost_AN4449/Inc/stm32f3xx_it.h          PPP interrupt handlers header file
+  - HRTIM/HRTIM_BuckBoost_AN4449/Inc/main.h                  Header for main.c module  
+  - HRTIM/HRTIM_BuckBoost_AN4449/Src/stm32f3xx_it.c          PPP interrupt handlers
+  - HRTIM/HRTIM_BuckBoost_AN4449/Src/main.c                  Main program
+  - HRTIM/HRTIM_BuckBoost_AN4449/Src/stm32f3xx_hal_msp.c     HAL MSP file
 
 @par Hardware and Software environment 
 

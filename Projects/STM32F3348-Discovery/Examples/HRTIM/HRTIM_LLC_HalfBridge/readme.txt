@@ -5,8 +5,6 @@
   ******************** (C) COPYRIGHT 2016 STMicroelectronics *******************
   * @file    HRTIM/HRTIM_LLC_HalfBridge/readme.txt 
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Description of HRTIM_LLC_HalfBridge example.
   ******************************************************************************
   *

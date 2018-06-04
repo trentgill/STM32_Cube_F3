@@ -5,8 +5,6 @@
   ******************** (C) COPYRIGHT 2016 STMicroelectronics *******************
   * @file    TIM/TIM_InputCapture/readme.txt 
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Description of the TIM_InputCapture example.
   ******************************************************************************
   *
@@ -57,8 +55,8 @@
   The minimum frequency value to measure is TIM1 counter clock / CCR MAX
                                               = 72 MHz / 65535
 
-  Due to TIM1_CC_IRQHandler processing time (arround 3.50us), the maximum
-  frequency value to measure is arround 300kHz.
+  Due to TIM1_CC_IRQHandler processing time (around 3.50us), the maximum
+  frequency value to measure is around 300kHz.
 
 @note Care must be taken when using HAL_Delay(), this function provides accurate delay (in milliseconds)
       based on variable incremented in SysTick ISR. This implies that if HAL_Delay() is called from
@@ -68,6 +66,7 @@
 
 @note The application need to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
+
 
 @par Directory contents 
 
@@ -83,6 +82,7 @@
 @par Hardware and Software environment
 
   - This example runs on STM32F303xE devices.
+  - In this example, the clock is set to 72 MHz.
     
   - This example has been tested with STMicroelectronics STM32303E-EVAL RevC
     board and can be easily tailored to any other supported device 

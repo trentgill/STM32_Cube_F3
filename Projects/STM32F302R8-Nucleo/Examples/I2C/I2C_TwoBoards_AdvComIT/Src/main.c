@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    I2C/I2C_TwoBoards_AdvComIT/Src/main.c
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   This sample code shows how to use STM32F3xx I2C HAL API to transmit
   *          and receive a data buffer with a communication process based on
   *          IT transfer.
@@ -535,7 +533,7 @@ static void Flush_Buffer(uint8_t* pBuffer, uint16_t BufferLength)
   * @param  line: assert_param error line source number
   * @retval None
   */
-void assert_failed(uint8_t* file, uint32_t line)
+void assert_failed(char* file, uint32_t line)
 {
   /* User can add his own implementation to report the file name and line number,
      ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */

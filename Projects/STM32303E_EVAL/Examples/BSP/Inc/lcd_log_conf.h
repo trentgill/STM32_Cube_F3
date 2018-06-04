@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    lcd_log_conf.h
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   lcd_log configuration template file.
   *          This file should be copied to the application folder and modified 
   *          as follows:

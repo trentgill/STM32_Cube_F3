@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    COMP/COMP_AnalogWatchdog/Src/main.c 
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   This example provides a short description of how to use the COMP 
   *          peripheral to make an analog watchdog.
   ******************************************************************************
@@ -209,7 +207,7 @@ static void SystemClock_Config(void)
   ret = HAL_RCC_OscConfig(&RCC_OscInitStruct);
   if(ret != HAL_OK)
   {
-    assert_failed((uint8_t *)__FILE__, __LINE__);
+    assert_failed((char *)__FILE__, __LINE__);
   }
 #else
   HAL_RCC_OscConfig(&RCC_OscInitStruct);
@@ -227,7 +225,7 @@ static void SystemClock_Config(void)
   ret = HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2);
   if(ret != HAL_OK)
   {
-    assert_failed((uint8_t *)__FILE__, __LINE__);
+    assert_failed((char *)__FILE__, __LINE__);
   }
 #else
   HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2);
@@ -365,7 +363,7 @@ void HAL_COMP_TriggerCallback(COMP_HandleTypeDef *hcomp)
   * @param  line: assert_param error line source number
   * @retval None
   */
-void assert_failed(uint8_t* file, uint32_t line)
+void assert_failed(char* file, uint32_t line)
 { 
   /* User can add his own implementation to report the file name and line number,
      ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */

@@ -36,8 +36,6 @@ Purpose     : Display controller configuration (single layer)
   ******************************************************************************
   * @file    LCDConf_stm32303e_eval.c
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Driver for STM32303E-EVAL RevC board LCD
   ******************************************************************************
   * @attention

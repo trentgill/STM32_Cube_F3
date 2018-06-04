@@ -5,8 +5,6 @@
   ******************** (C) COPYRIGHT 2016 STMicroelectronics *******************
   * @file    TIM/TIM_OCActive/readme.txt 
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   This example shows how to configure the Timer to generate four 
   *          delayed signals.
   ******************************************************************************
@@ -64,8 +62,12 @@
   TIM1_CH4 delay = CCR4_Val/TIM1 counter clock = 125 ms
   so the TIM1 Channel 4 generates a signal with a delay equal to 125 ms.
 
-  The delay correspond to the time difference between PA.05 rising edge and
+  The delay correspond to the time difference between PB.00 rising edge and
   TIM1_CHx signal rising edges.
+  STM32 board LED can be used to monitor the example status:
+  - LED1 turns ON if example is OK.
+  - LED2 toggles slowly in case of error.   
+
 
 @note Delay values mentioned above are theoretical (obtained when the system clock frequency 
       is exactly 64 MHz). Since the generated system clock frequency may vary from one board to another observed
@@ -79,6 +81,7 @@
       
 @note The application need to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
+
 
 @par Directory contents 
 
@@ -101,7 +104,7 @@
 
   - STM32F303ZE-Nucleo Rev B Set-up
    Connect the following pins to an oscilloscope to monitor the different waveforms:
-      - Use PA.05 (Reference)
+      - Use LED1 connected to PB.00 (Reference) (connected to pin 31 on CN10 Connector)
       - PE.09: (TIM1_CH1) (Arduino D6 - connected to pin 4 on CN10 Connector)
       - PE.11: (TIM1_CH2) (Arduino D5 - connected to pin 6 on CN10 Connector)
       - PE.13: (TIM1_CH3) (Arduino D3 - connected to pin 10 on CN10 Connector)

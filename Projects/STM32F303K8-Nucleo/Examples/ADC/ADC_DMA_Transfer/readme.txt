@@ -5,8 +5,6 @@
   ******************** (C) COPYRIGHT 2016 STMicroelectronics *******************
   * @file    ADC/ADC_DMA_Transfer/readme.txt 
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Description of the ADC DMA Transfer example.
   ******************************************************************************
   *
@@ -44,11 +42,15 @@ The ADC is configured to convert continuously ADC_CHANNEL_1, resolution is set t
 bits right aligned, conversion is software-triggered.
 
 DMA1_Channel2 is configured in Circular mode to transfer continuously
-the content of the ADC_DR (Data Register) to aResultDMA which stores the
-conversion result.
+the content of ADC_DR (Data Register) to "aADCxConvertedData" variable which 
+stores the conversion result.
 
-User may watch variable array "aADCxConvertedData" and check that its value is modified
-according to the voltage applied to pin GPIOA GPIO_PIN_4.
+User may watch variable array "aADCxConvertedData" and check that its values are modified
+according to the voltage applied to pin PA.04 (Arduino connector CN4 pin 9).
+
+STM32 board LED can be used to monitor the conversion:
+  - LED3 is ON when there is an error in initialization.
+
 
 @note Care must be taken when using HAL_Delay(), this function provides accurate delay (in milliseconds)
       based on variable incremented in SysTick ISR. This implies that if HAL_Delay() is called from
@@ -72,10 +74,15 @@ according to the voltage applied to pin GPIOA GPIO_PIN_4.
 
 @par Hardware and Software environment
 
-  - This example runs on STM32F303K8-Nucleo RevC devices.
+  - This example runs on STM32F303xx devices.
 
   - This example has been tested with STM32F303K8-Nucleo RevC board and can be
     easily tailored to any other supported device and development board.
+
+  - STM32F303K8-Nucleo RevC Set-up
+    Use an external power supply, adjust supply voltage and connect it to pin PA.04 (Arduino connector CN4 pin 9).
+
+  - To monitor the conversion result, put the "aADCxConvertedData" variable in the debugger live watch.
 
 @par How to use it ?
 

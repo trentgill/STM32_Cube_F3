@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    SPI/SPI_FullDuplex_ComIT/Src/main.c
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   This sample code shows how to use STM32F3xx SPI HAL API to transmit
   *          and receive a data buffer with a communication process based on
   *          Interrupt transfer.
@@ -51,6 +49,12 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
+enum {
+	TRANSFER_WAIT,
+	TRANSFER_COMPLETE,
+	TRANSFER_ERROR
+};
+
 /* Private macro -------------------------------------------------------------*/
 /* Uncomment this line to use the board as master, if not it is used as slave */
 //#define MASTER_BOARD
@@ -64,6 +68,9 @@ uint8_t aTxBuffer[] = "****SPI - Two Boards communication based on Interrupt ***
 
 /* Buffer used for reception */
 uint8_t aRxBuffer[BUFFERSIZE];
+
+/* transfer state */
+__IO uint32_t wTransferState = TRANSFER_WAIT;
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
@@ -79,6 +86,7 @@ static uint16_t Buffercmp(uint8_t *pBuffer1, uint8_t *pBuffer2, uint16_t BufferL
   */
 int main(void)
 {
+
   /* STM32F3xx HAL library initialization:
        - Configure the Flash prefetch
        - Systick timer is configured by default as source of time base, but user 
@@ -91,13 +99,13 @@ int main(void)
      */
   HAL_Init();
 
+  /* Configure the system clock to 72 MHz */
+  SystemClock_Config();
+
   /* Configure LED1, LED2 and LED3 */
   BSP_LED_Init(LED1);
   BSP_LED_Init(LED2);
   BSP_LED_Init(LED3);
-
-  /* Configure the system clock to 72 MHz */
-  SystemClock_Config();
 
   /*##-1- Configure the SPI peripheral #######################################*/
   /* Set the SPI parameters */
@@ -106,14 +114,14 @@ int main(void)
   SpiHandle.Init.Direction         = SPI_DIRECTION_2LINES;
   SpiHandle.Init.CLKPhase          = SPI_PHASE_1EDGE;
   SpiHandle.Init.CLKPolarity       = SPI_POLARITY_LOW;
-  SpiHandle.Init.CRCCalculation    = SPI_CRCCALCULATION_DISABLE;
-  SpiHandle.Init.CRCPolynomial     = 7;
   SpiHandle.Init.DataSize          = SPI_DATASIZE_8BIT;
   SpiHandle.Init.FirstBit          = SPI_FIRSTBIT_MSB;
-  SpiHandle.Init.NSS               = SPI_NSS_SOFT;
   SpiHandle.Init.TIMode            = SPI_TIMODE_DISABLE;
-  SpiHandle.Init.NSSPMode          = SPI_NSS_PULSE_DISABLE;
+  SpiHandle.Init.CRCCalculation    = SPI_CRCCALCULATION_DISABLE;
+  SpiHandle.Init.CRCPolynomial     = 7;
   SpiHandle.Init.CRCLength         = SPI_CRC_LENGTH_8BIT;
+  SpiHandle.Init.NSS               = SPI_NSS_SOFT;
+  SpiHandle.Init.NSSPMode          = SPI_NSS_PULSE_DISABLE;
 
 #ifdef MASTER_BOARD
   SpiHandle.Init.Mode = SPI_MODE_MASTER;
@@ -128,13 +136,13 @@ int main(void)
   }
   
 #ifdef MASTER_BOARD
-  /* Configure Key push-button */
-  BSP_PB_Init(BUTTON_KEY, BUTTON_MODE_GPIO);
+  /* Configure Key push-button button */
+  BSP_PB_Init(BUTTON_KEY,BUTTON_MODE_GPIO);
   /* Wait for Key push-button press before starting the Communication */
   while (BSP_PB_GetState(BUTTON_KEY) != GPIO_PIN_RESET)
   {
     BSP_LED_Toggle(LED1);
-    HAL_Delay(40);
+    HAL_Delay(100);
   }
   BSP_LED_Off(LED1);
 #endif /* MASTER_BOARD */
@@ -149,21 +157,28 @@ int main(void)
   }
 
   /*##-3- Wait for the end of the transfer ###################################*/  
-  /*  Before starting a new communication transfer, you need to check the current   
-      state of the peripheral; if it’s busy you need to wait for the end of current
-      transfer before starting a new one.
+  /*  Before starting a new communication transfer, you must wait the callback call 
+      to get the transfer complete confirmation or an error detection.
       For simplicity reasons, this example is just waiting till the end of the 
       transfer, but application may perform other tasks while transfer operation
       is ongoing. */  
-  while (HAL_SPI_GetState(&SpiHandle) != HAL_SPI_STATE_READY)
+  while (wTransferState == TRANSFER_WAIT)
   {
-  } 
-
-  /*##-4- Compare the sent and received buffers ##############################*/
-  if(Buffercmp((uint8_t*)aTxBuffer, (uint8_t*)aRxBuffer, BUFFERSIZE))
+  }
+  
+  switch(wTransferState)
   {
-    /* Processing Error */
-    Error_Handler();     
+    case TRANSFER_COMPLETE :
+      /*##-4- Compare the sent and received buffers ##############################*/
+      if(Buffercmp((uint8_t*)aTxBuffer, (uint8_t*)aRxBuffer, BUFFERSIZE))
+      {
+        /* Processing Error */
+        Error_Handler();     
+      }
+    break;
+    default : 
+      Error_Handler();
+    break;
   }
 
   /* Infinite loop */  
@@ -202,7 +217,8 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct)!= HAL_OK)
   {
-    Error_Handler(); 
+    /* Initialization Error */
+    while(1); 
   }
     	
   /* Select PLL as system clock source and configure the HCLK, PCLK1 and PCLK2 
@@ -214,7 +230,8 @@ void SystemClock_Config(void)
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2)!= HAL_OK)
   {
-    Error_Handler(); 
+    /* Initialization Error */
+    while(1); 
   }
 }
 /**
@@ -230,6 +247,7 @@ void HAL_SPI_TxRxCpltCallback(SPI_HandleTypeDef *hspi)
   BSP_LED_On(LED1);
   /* Turn LED on: Transfer in reception process is correct */
   BSP_LED_On(LED2);
+  wTransferState = TRANSFER_COMPLETE;
 }
 
 /**
@@ -241,8 +259,7 @@ void HAL_SPI_TxRxCpltCallback(SPI_HandleTypeDef *hspi)
   */
 void HAL_SPI_ErrorCallback(SPI_HandleTypeDef *hspi)
 {
-  /* Turn LED3 on: Transfer error in reception/transmission process */
-  BSP_LED_On(LED3);
+  wTransferState = TRANSFER_ERROR;
 }
 
 /**
@@ -289,7 +306,7 @@ static uint16_t Buffercmp(uint8_t *pBuffer1, uint8_t *pBuffer2, uint16_t BufferL
   * @param  line: assert_param error line source number
   * @retval None
   */
-void assert_failed(uint8_t *file, uint32_t line)
+void assert_failed(char *file, uint32_t line)
 {
   /* User can add his own implementation to report the file name and line number,
      ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
@@ -300,6 +317,7 @@ void assert_failed(uint8_t *file, uint32_t line)
   }
 }
 #endif
+
 
 /**
   * @}

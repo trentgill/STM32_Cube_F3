@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    stm32303e_eval.c
   * @author  MCD Application Team
-  * @version V2.1.1
-  * @date    16-December-2016
   * @brief   This file provides a set of firmware functions to manage Leds, 
   *          push-button and COM ports
   ******************************************************************************
@@ -79,11 +77,11 @@
 #define EEPROM_WIP_FLAG         0x01  /*!< Write In Progress (WIP) flag */
 
 /**
- * @brief STM32303E EVAL BSP Driver version number V2.1.1
+ * @brief STM32303E EVAL BSP Driver version number V2.1.2
    */
 #define __STM32303E_EVAL_BSP_VERSION_MAIN       (0x02) /*!< [31:24] main version */
 #define __STM32303E_EVAL_BSP_VERSION_SUB1       (0x01) /*!< [23:16] sub1 version */
-#define __STM32303E_EVAL_BSP_VERSION_SUB2       (0x01) /*!< [15:8]  sub2 version */
+#define __STM32303E_EVAL_BSP_VERSION_SUB2       (0x02) /*!< [15:8]  sub2 version */
 #define __STM32303E_EVAL_BSP_VERSION_RC         (0x00) /*!< [7:0]  release candidate */
 #define __STM32303E_EVAL_BSP_VERSION            ((__STM32303E_EVAL_BSP_VERSION_MAIN << 24)\
                                                 |(__STM32303E_EVAL_BSP_VERSION_SUB1 << 16)\
@@ -275,7 +273,7 @@ uint32_t BSP_GetVersion(void)
 
 /**
   * @brief  Configures LED GPIO.
-  * @param  Led: Specifies the Led to be configured. 
+  * @param  Led Specifies the Led to be configured. 
   *   This parameter can be one of following parameters:
   *     @arg LED1
   *     @arg LED2
@@ -303,7 +301,7 @@ void BSP_LED_Init(Led_TypeDef Led)
 
 /**
   * @brief  Turns selected LED On.
-  * @param  Led: Specifies the Led to be set on. 
+  * @param  Led Specifies the Led to be set on. 
   *   This parameter can be one of following parameters:
   *     @arg LED1
   *     @arg LED2
@@ -318,7 +316,7 @@ void BSP_LED_On(Led_TypeDef Led)
 
 /**
   * @brief  Turns selected LED Off.
-  * @param  Led: Specifies the Led to be set off. 
+  * @param  Led Specifies the Led to be set off. 
   *   This parameter can be one of following parameters:
   *     @arg LED1
   *     @arg LED2
@@ -333,7 +331,7 @@ void BSP_LED_Off(Led_TypeDef Led)
 
 /**
   * @brief  Toggles the selected LED.
-  * @param  Led: Specifies the Led to be toggled. 
+  * @param  Led Specifies the Led to be toggled. 
   *   This parameter can be one of following parameters:
   *     @arg LED1
   *     @arg LED2
@@ -348,7 +346,7 @@ void BSP_LED_Toggle(Led_TypeDef Led)
 
 /**
   * @brief  Configures push button GPIO and EXTI Line.
-  * @param  Button: Button to be configured.
+  * @param  Button Button to be configured.
   *   This parameter can be one of the following values: 
   *     @arg BUTTON_KEY: Key Push Button 
   *     @arg BUTTON_SEL   : Sel Push Button on Joystick
@@ -356,7 +354,7 @@ void BSP_LED_Toggle(Led_TypeDef Led)
   *     @arg BUTTON_RIGHT : Right Push Button on Joystick
   *     @arg BUTTON_DOWN  : Down Push Button on Joystick
   *     @arg BUTTON_UP    : Up Push Button on Joystick
-  * @param  Button_Mode: Button mode requested.
+  * @param  Button_Mode Button mode requested.
   *   This parameter can be one of the following values:   
   *     @arg BUTTON_MODE_GPIO: Button will be used as simple IO 
   *     @arg BUTTON_MODE_EXTI: Button will be connected to EXTI line
@@ -404,7 +402,7 @@ void BSP_PB_Init(Button_TypeDef Button, ButtonMode_TypeDef Button_Mode)
 
 /**
   * @brief  Returns the selected button state.
-  * @param  Button: Button to be checked.
+  * @param  Button Button to be checked.
   *   This parameter can be one of the following values:
   *     @arg BUTTON_KEY: Key Push Button 
   * @retval The Button GPIO pin value
@@ -416,7 +414,7 @@ uint32_t BSP_PB_GetState(Button_TypeDef Button)
 
 /**
   * @brief  Configures all button of the joystick in GPIO or EXTI modes.
-  * @param  Joy_Mode: Joystick mode.
+  * @param  Joy_Mode Joystick mode.
   *    This parameter can be one of the following values:
   *     @arg  JOY_MODE_GPIO: Joystick pins will be used as simple IOs
   *     @arg  JOY_MODE_EXTI: Joystick pins will be connected to EXTI line 
@@ -492,10 +490,10 @@ JOYState_TypeDef BSP_JOY_GetState(void)
 #if defined(HAL_UART_MODULE_ENABLED)
 /**
   * @brief  Configures COM port.
-  * @param  COM: Specifies the COM port to be configured.
+  * @param  COM Specifies the COM port to be configured.
   *   This parameter can be one of following parameters:    
   *     @arg COM1  
-  * @param  huart: pointer to a UART_HandleTypeDef structure that
+  * @param  huart pointer to a UART_HandleTypeDef structure that
   *   contains the configuration information for the specified UART peripheral.
   * @retval None
   */
@@ -543,7 +541,7 @@ void BSP_COM_Init(COM_TypeDef COM, UART_HandleTypeDef* huart)
 
 /**
   * @brief Eval I2Cx MSP Initialization
-  * @param hi2c: I2C handle
+  * @param hi2c I2C handle
   * @retval None
   */
 static void I2Cx_MspInit(I2C_HandleTypeDef *hi2c)
@@ -588,11 +586,11 @@ static void I2Cx_MspInit(I2C_HandleTypeDef *hi2c)
     EVAL_I2Cx_RELEASE_RESET(); 
     
     /* Enable and set Eval I2Cx Interrupt to the highest priority */
-    HAL_NVIC_SetPriority(EVAL_I2Cx_EV_IRQn, 0x00, 0);
+    HAL_NVIC_SetPriority(EVAL_I2Cx_EV_IRQn, 0x0F, 0);
     HAL_NVIC_EnableIRQ(EVAL_I2Cx_EV_IRQn);
     
     /* Enable and set Eval I2Cx Interrupt to the highest priority */
-    HAL_NVIC_SetPriority(EVAL_I2Cx_ER_IRQn, 0x00, 0);
+    HAL_NVIC_SetPriority(EVAL_I2Cx_ER_IRQn, 0x0F, 0);
     HAL_NVIC_EnableIRQ(EVAL_I2Cx_ER_IRQn);  
   }
 }
@@ -622,10 +620,10 @@ static void I2Cx_Init(void)
 
 /**
   * @brief  Write a value in a register of the device through BUS.
-  * @param  Addr: Device address on BUS Bus.  
-  * @param  Reg: The target register address to write
-  * @param  RegSize: The target register size (can be 8BIT or 16BIT)
-  * @param  Value: The target register value to be written 
+  * @param  Addr Device address on BUS Bus.  
+  * @param  Reg The target register address to write
+  * @param  RegSize The target register size (can be 8BIT or 16BIT)
+  * @param  Value The target register value to be written 
   * @retval None 
   */
 static void I2Cx_WriteData(uint16_t Addr, uint8_t Reg, uint16_t RegSize, uint8_t Value)
@@ -644,11 +642,11 @@ static void I2Cx_WriteData(uint16_t Addr, uint8_t Reg, uint16_t RegSize, uint8_t
 
 /**
   * @brief  Write a value in a register of the device through BUS.
-  * @param  Addr: Device address on BUS Bus.  
-  * @param  Reg: The target register address to write
-  * @param  RegSize: The target register size (can be 8BIT or 16BIT)
-  * @param  pBuffer: The target register value to be written 
-  * @param  Length: buffer size to be written
+  * @param  Addr Device address on BUS Bus.  
+  * @param  Reg The target register address to write
+  * @param  RegSize The target register size (can be 8BIT or 16BIT)
+  * @param  pBuffer The target register value to be written 
+  * @param  Length buffer size to be written
   * @retval None
   */
 static HAL_StatusTypeDef I2Cx_WriteBuffer(uint16_t Addr, uint8_t Reg, uint16_t RegSize, uint8_t *pBuffer, uint16_t Length)
@@ -668,9 +666,9 @@ static HAL_StatusTypeDef I2Cx_WriteBuffer(uint16_t Addr, uint8_t Reg, uint16_t R
 
 /**
   * @brief  Read a register of the device through BUS
-  * @param  Addr: Device address on BUS
-  * @param  Reg: The target register address to read
-  * @param  RegSize: The target register size (can be 8BIT or 16BIT)
+  * @param  Addr Device address on BUS
+  * @param  Reg The target register address to read
+  * @param  RegSize The target register size (can be 8BIT or 16BIT)
   * @retval read register value
   */
 static uint8_t I2Cx_ReadData(uint16_t Addr, uint8_t Reg, uint16_t RegSize)
@@ -692,11 +690,11 @@ static uint8_t I2Cx_ReadData(uint16_t Addr, uint8_t Reg, uint16_t RegSize)
 
 /**
   * @brief  Reads multiple data on the BUS.
-  * @param  Addr: I2C Address
-  * @param  Reg: Reg Address 
-  * @param  RegSize : The target register size (can be 8BIT or 16BIT)
-  * @param  pBuffer: pointer to read data buffer
-  * @param  Length: length of the data
+  * @param  Addr I2C Address
+  * @param  Reg Reg Address 
+  * @param  RegSize The target register size (can be 8BIT or 16BIT)
+  * @param  pBuffer pointer to read data buffer
+  * @param  Length length of the data
   * @retval 0 if no problems to read multiple data
   */
 static HAL_StatusTypeDef I2Cx_ReadBuffer(uint16_t Addr, uint8_t Reg, uint16_t RegSize, uint8_t *pBuffer, uint16_t Length)
@@ -717,8 +715,8 @@ static HAL_StatusTypeDef I2Cx_ReadBuffer(uint16_t Addr, uint8_t Reg, uint16_t Re
 /**
 * @brief  Checks if target device is ready for communication. 
 * @note   This function is used with Memory devices
-* @param  DevAddress: Target device address
-* @param  Trials: Number of trials
+* @param  DevAddress Target device address
+* @param  Trials Number of trials
 * @retval HAL status
 */
 static HAL_StatusTypeDef I2Cx_IsDeviceReady(uint16_t DevAddress, uint32_t Trials)
@@ -829,7 +827,7 @@ static uint32_t SPIx_Read(void)
 
 /**
   * @brief SPI Write a byte to device
-  * @param Value: value to be written
+  * @param Value value to be written
   * @retval None
   */
 static void SPIx_Write(uint8_t Value)
@@ -1044,7 +1042,7 @@ void SD_IO_Init(void)
 
 /**
   * @brief  Writes a byte on the SD.
-  * @param  Data: byte to send.
+  * @param  Data byte to send.
   * @retval None
   */
 void SD_IO_WriteByte(uint8_t Data)
@@ -1075,10 +1073,10 @@ uint8_t SD_IO_ReadByte(void)
 
 /**
   * @brief  Sends 5 bytes command to the SD card and get response
-  * @param  Cmd: The user expected command to send to SD card.
-  * @param  Arg: The command argument.
-  * @param  Crc: The CRC.
-  * @param  Response: Expected response from the SD card
+  * @param  Cmd The user expected command to send to SD card.
+  * @param  Arg The command argument.
+  * @param  Crc The CRC.
+  * @param  Response Expected response from the SD card
   * @retval  HAL_StatusTypeDef HAL Status
   */
 HAL_StatusTypeDef SD_IO_WriteCmd(uint8_t Cmd, uint32_t Arg, uint8_t Crc, uint8_t Response)
@@ -1113,7 +1111,7 @@ HAL_StatusTypeDef SD_IO_WriteCmd(uint8_t Cmd, uint32_t Arg, uint8_t Crc, uint8_t
 
 /**
   * @brief  Waits response from the SD card
-  * @param  Response: Expected response from the SD card
+  * @param  Response Expected response from the SD card
   * @retval  HAL_StatusTypeDef HAL Status
   */
 HAL_StatusTypeDef SD_IO_WaitResponse(uint8_t Response)
@@ -1182,7 +1180,7 @@ void EEPROM_SPI_IO_Init(void)
 
 /**
   * @brief  Write a byte on the EEPROM.
-  * @param  Data: byte to send.
+  * @param  Data byte to send.
   * @retval None
   */
 void EEPROM_SPI_IO_WriteByte(uint8_t Data)
@@ -1208,9 +1206,9 @@ uint8_t EEPROM_SPI_IO_ReadByte(void)
 
 /**
   * @brief  Write data to SPI EEPROM driver
-  * @param  MemAddress: Internal memory address
-  * @param  pBuffer: Pointer to data buffer
-  * @param  BufferSize: Amount of data to be read
+  * @param  MemAddress Internal memory address
+  * @param  pBuffer Pointer to data buffer
+  * @param  BufferSize Amount of data to be read
   * @retval HAL_StatusTypeDef HAL Status
   */
 HAL_StatusTypeDef EEPROM_SPI_IO_WriteData(uint16_t MemAddress, uint8_t* pBuffer, uint32_t BufferSize)
@@ -1270,9 +1268,9 @@ HAL_StatusTypeDef EEPROM_SPI_IO_WriteData(uint16_t MemAddress, uint8_t* pBuffer,
 
 /**
   * @brief  Read data from SPI EEPROM driver
-  * @param  MemAddress: Internal memory address
-  * @param  pBuffer: Pointer to data buffer
-  * @param  BufferSize: Amount of data to be read
+  * @param  MemAddress Internal memory address
+  * @param  pBuffer Pointer to data buffer
+  * @param  BufferSize Amount of data to be read
   * @retval HAL_StatusTypeDef HAL Status
   */
 HAL_StatusTypeDef EEPROM_SPI_IO_ReadData(uint16_t MemAddress, uint8_t* pBuffer, uint32_t BufferSize)
@@ -1360,10 +1358,10 @@ void EEPROM_I2C_IO_Init(void)
 
 /**
   * @brief  Write data to I2C EEPROM driver
-  * @param  DevAddress: Target device address
-  * @param  MemAddress: Internal memory address
-  * @param  pBuffer: Pointer to data buffer
-  * @param  BufferSize: Amount of data to be sent
+  * @param  DevAddress Target device address
+  * @param  MemAddress Internal memory address
+  * @param  pBuffer Pointer to data buffer
+  * @param  BufferSize Amount of data to be sent
   * @retval HAL status
   */
 HAL_StatusTypeDef EEPROM_I2C_IO_WriteData(uint16_t DevAddress, uint16_t MemAddress, uint8_t* pBuffer, uint32_t BufferSize)
@@ -1373,10 +1371,10 @@ HAL_StatusTypeDef EEPROM_I2C_IO_WriteData(uint16_t DevAddress, uint16_t MemAddre
 
 /**
   * @brief  Read data from I2C EEPROM driver
-  * @param  DevAddress: Target device address
-  * @param  MemAddress: Internal memory address
-  * @param  pBuffer: Pointer to data buffer
-  * @param  BufferSize: Amount of data to be read
+  * @param  DevAddress Target device address
+  * @param  MemAddress Internal memory address
+  * @param  pBuffer Pointer to data buffer
+  * @param  BufferSize Amount of data to be read
   * @retval HAL status
   */
 HAL_StatusTypeDef EEPROM_I2C_IO_ReadData(uint16_t DevAddress, uint16_t MemAddress, uint8_t* pBuffer, uint32_t BufferSize)
@@ -1387,8 +1385,8 @@ HAL_StatusTypeDef EEPROM_I2C_IO_ReadData(uint16_t DevAddress, uint16_t MemAddres
 /**
 * @brief  Checks if target device is ready for communication. 
 * @note   This function is used with Memory devices
-* @param  DevAddress: Target device address
-* @param  Trials: Number of trials
+* @param  DevAddress Target device address
+* @param  Trials Number of trials
 * @retval HAL status
 */
 HAL_StatusTypeDef EEPROM_I2C_IO_IsDeviceReady(uint16_t DevAddress, uint32_t Trials)
@@ -1408,10 +1406,10 @@ void TSENSOR_IO_Init(void)
 
 /**
   * @brief  Writes one byte to the TSENSOR.
-  * @param  DevAddress: Target device address
-  * @param  pBuffer: Pointer to data buffer
-  * @param  WriteAddr: TSENSOR's internal address to write to.
-  * @param  Length: Number of data to write
+  * @param  DevAddress Target device address
+  * @param  pBuffer Pointer to data buffer
+  * @param  WriteAddr TSENSOR's internal address to write to.
+  * @param  Length Number of data to write
   * @retval None
   */
 void TSENSOR_IO_Write(uint16_t DevAddress, uint8_t* pBuffer, uint8_t WriteAddr, uint16_t Length)
@@ -1421,10 +1419,10 @@ void TSENSOR_IO_Write(uint16_t DevAddress, uint8_t* pBuffer, uint8_t WriteAddr, 
 
 /**
   * @brief  Reads one byte from the TSENSOR.
-  * @param  DevAddress: Target device address
-  * @param  pBuffer : pointer to the buffer that receives the data read from the TSENSOR.
-  * @param  ReadAddr : TSENSOR's internal address to read from.
-  * @param  Length: Number of data to read
+  * @param  DevAddress Target device address
+  * @param  pBuffer pointer to the buffer that receives the data read from the TSENSOR.
+  * @param  ReadAddr TSENSOR's internal address to read from.
+  * @param  Length Number of data to read
   * @retval None
   */
 void TSENSOR_IO_Read(uint16_t DevAddress, uint8_t* pBuffer, uint8_t ReadAddr, uint16_t Length)
@@ -1434,8 +1432,8 @@ void TSENSOR_IO_Read(uint16_t DevAddress, uint8_t* pBuffer, uint8_t ReadAddr, ui
 
 /**
 * @brief  Checks if Temperature Sensor is ready for communication. 
-  * @param  DevAddress: Target device address
-  * @param  Trials: Number of trials
+  * @param  DevAddress Target device address
+  * @param  Trials Number of trials
 * @retval HAL status
 */
 uint16_t TSENSOR_IO_IsDeviceReady(uint16_t DevAddress, uint32_t Trials)
@@ -1465,9 +1463,9 @@ void AUDIO_IO_DeInit(void)
 
 /**
   * @brief  Writes a single data on the Audio Codec.
-  * @param  DevAddress: Target device address
-  * @param  Reg: Target Register address 
-  * @param  Value: Data to be written
+  * @param  DevAddress Target device address
+  * @param  Reg Target Register address 
+  * @param  Value Data to be written
   * @retval None
   */
 void AUDIO_IO_Write(uint16_t DevAddress, uint8_t Reg, uint8_t Value)
@@ -1477,8 +1475,8 @@ void AUDIO_IO_Write(uint16_t DevAddress, uint8_t Reg, uint8_t Value)
 
 /**
   * @brief  Reads a single data from the Audio Codec.
-  * @param  DevAddress: Target device address
-  * @param  Reg: Target Register address 
+  * @param  DevAddress Target device address
+  * @param  Reg Target Register address 
   * @retval Data to be read
   */
 uint8_t AUDIO_IO_Read(uint16_t DevAddress, uint8_t Reg)

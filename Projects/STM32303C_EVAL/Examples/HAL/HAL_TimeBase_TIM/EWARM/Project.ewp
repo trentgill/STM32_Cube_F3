@@ -98,7 +98,7 @@
         </option>
         <option>
           <name>OGChipSelectEditMenu</name>
-          <state>STM32F303xC	ST STM32F303xC</state>
+          <state>STM32F303VC	ST STM32F303VC</state>
         </option>
         <option>
           <name>GenLowLevelInterface</name>

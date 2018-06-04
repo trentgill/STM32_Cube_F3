@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    USB_Device/CustomHID_Standalone/Src/usbd_desc.c
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   This file provides the USBD descriptors and string formating method.
   ******************************************************************************
   * @attention

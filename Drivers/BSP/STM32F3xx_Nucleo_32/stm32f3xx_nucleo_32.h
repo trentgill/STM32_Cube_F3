@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    stm32f3xx_nucleo_32.h
   * @author  MCD Application Team
-  * @version V1.0.3
-  * @date    16-December-2016
   * @brief   This file contains definitions for:
   *          - LED available on STM32F3xx-Nucleo_32 Kit from STMicroelectronics
   *          - 7 segment display from Gravitech

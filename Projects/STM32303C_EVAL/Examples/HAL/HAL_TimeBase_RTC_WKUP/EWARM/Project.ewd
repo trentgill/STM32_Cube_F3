@@ -45,7 +45,7 @@
         </option>
         <option>
           <name>MemFile</name>
-          <state>$TOOLKIT_DIR$\CONFIG\debugger\ST\STM32F303xC.ddf</state>
+          <state>$TOOLKIT_DIR$\CONFIG\debugger\ST\STM32F303VC.ddf</state>
         </option>
         <option>
           <name>RunToEnable</name>

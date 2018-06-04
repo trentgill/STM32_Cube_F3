@@ -1,11 +1,9 @@
 /**
   ******************************************************************************
-  * @file    TIM/TIM_DMA/Src/main.c 
+  * @file    TIM/TIM_DMA/Src/main.c
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   This sample code shows how to use DMA with TIM1 Update request to
-  *          transfer Data from memory to TIM1 Capture Compare Register 2 (CCR2).
+  *          transfer Data from memory to TIM1 Capture Compare Register 3 (CCR3).
   ******************************************************************************
   * @attention
   *
@@ -61,7 +59,7 @@ TIM_OC_InitTypeDef sConfig;
 uint32_t aCCValue_Buffer[3] = {0, 0, 0};
 
 /* Timer Period*/
-uint32_t uhTimerPeriod  = 0;
+uint32_t uwTimerPeriod  = 0;
 
 /* Private function prototypes -----------------------------------------------*/
 static void SystemClock_Config(void);
@@ -76,6 +74,9 @@ static void Error_Handler(void);
   */
 int main(void)
 {
+ /* This sample code shows how to use DMA with TIM1 Update request to transfer
+  Data from memory to TIM1 Capture Compare Register 3 (CCR3), through the
+  STM32F3xx HAL API. To proceed, 3 steps are required */
 
   /* STM32F3xx HAL library initialization:
        - Configure the Flash prefetch
@@ -89,51 +90,50 @@ int main(void)
      */
   HAL_Init();
 
-  /* Configure LED2 */
-  BSP_LED_Init(LED2);
-  
-  /* Configure the system clock to have a system clock = 64 Mhz */
+  /* Configure the system clock to 64 MHz */
   SystemClock_Config();
 
+  /* Configure LED2 */
+  BSP_LED_Init(LED2);
+
   /* Compute the value of ARR regiter to generate signal frequency at 17.57 Khz */
-  uhTimerPeriod = (uint32_t) ((SystemCoreClock / 17570 ) - 1);
+  uwTimerPeriod = (uint32_t)((SystemCoreClock / 17570) - 1);
   /* Compute CCR1 value to generate a duty cycle at 75% */
-  aCCValue_Buffer[0] = (uint32_t)(((uint32_t) 75 * (uhTimerPeriod - 1)) / 100);
+  aCCValue_Buffer[0] = (uint32_t)(((uint32_t) 75 * (uwTimerPeriod - 1)) / 100);
   /* Compute CCR2 value to generate a duty cycle at 50% */
-  aCCValue_Buffer[1] = (uint32_t)(((uint32_t) 50 * (uhTimerPeriod - 1)) / 100);
+  aCCValue_Buffer[1] = (uint32_t)(((uint32_t) 50 * (uwTimerPeriod - 1)) / 100);
   /* Compute CCR3 value to generate a duty cycle at 25% */
-  aCCValue_Buffer[2] = (uint32_t)(((uint32_t) 25 * (uhTimerPeriod - 1)) / 100);
+  aCCValue_Buffer[2] = (uint32_t)(((uint32_t) 25 * (uwTimerPeriod - 1)) / 100);
 
-  
-  /*##-1- Configure the TIM peripheral #######################################*/ 
+  /*##-1- Configure the TIM peripheral #######################################*/
   /* ---------------------------------------------------------------------------
-  TIM1 input clock (TIM1CLK) is set to APB2 clock (PCLK2), since APB2 
-  prescaler is 1.   
-    TIM1CLK = PCLK2  
-    PCLK2 = HCLK 
+  TIM1 input clock (TIM1CLK) is set to APB2 clock (PCLK2), since APB2
+  prescaler is 1.
+    TIM1CLK = PCLK2
+    PCLK2 = HCLK
     => TIM1CLK = HCLK = SystemCoreClock
-  
-  TIM1CLK = SystemCoreClock, Prescaler = 0, TIM1 counter clock = SystemCoreClock
-  SystemCoreClock is set to 64 MHz for STM32F302R8 Nucleo board.
 
-  The objective is to configure TIM1 channel 2 to generate complementary PWM
+  TIM1CLK = SystemCoreClock, Prescaler = 0, TIM1 counter clock = SystemCoreClock
+  SystemCoreClock is set to 64 MHz for STM32F3xx devices.
+
+  The objective is to configure TIM1 channel 3 to generate a PWM
   signal with a frequency equal to 17.57 KHz:
      - TIM1_Period = (SystemCoreClock / 17570) - 1
   and a variable duty cycle that is changed by the DMA after a specific number of
   Update DMA request.
-  
-  The number of this repetitive requests is defined by the TIM1 Repetion counter,
-  each 4 Update Requests, the TIM1 Channel 2 Duty Cycle changes to the next new 
+
+  The number of this repetitive requests is defined by the TIM1 Repetition counter,
+  each 4 Update Requests, the TIM1 Channel 3 Duty Cycle changes to the next new
   value defined by the aCCValue_Buffer.
-   
-  Note: 
+
+    Note:
      SystemCoreClock variable holds HCLK frequency and is defined in system_stm32f3xx.c file.
-     Each time the core clock (HCLK) changes, user had to update SystemCoreClock 
+     Each time the core clock (HCLK) changes, user had to update SystemCoreClock
      variable value. Otherwise, any configuration based on this variable will be incorrect.
      This variable is updated in three ways:
       1) by calling CMSIS function SystemCoreClockUpdate()
       2) by calling HAL API function HAL_RCC_GetSysClockFreq()
-      3) each time HAL_RCC_ClockConfig() is called to configure the system clock frequency  
+      3) each time HAL_RCC_ClockConfig() is called to configure the system clock frequency
   -----------------------------------------------------------------------------*/
   /* Initialize TIM1 peripheral as follows:
       + Period = TimerPeriod (To have an output frequency equal to 17.570 KHz)
@@ -141,43 +141,62 @@ int main(void)
       + Prescaler = 0
       + ClockDivision = 0
       + Counter direction = Up
-     */
+  */
   TimHandle.Instance = TIMx;
 
-  TimHandle.Init.Period            = uhTimerPeriod;
+  TimHandle.Init.Period            = uwTimerPeriod;
   TimHandle.Init.RepetitionCounter = 3;
   TimHandle.Init.Prescaler         = 0;
   TimHandle.Init.ClockDivision     = 0;
   TimHandle.Init.CounterMode       = TIM_COUNTERMODE_UP;
   TimHandle.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
-  if(HAL_TIM_PWM_Init(&TimHandle) != HAL_OK)
+  if (HAL_TIM_PWM_Init(&TimHandle) != HAL_OK)
   {
     /* Initialization Error */
     Error_Handler();
   }
-  
-  /*##-2- Configure the PWM channel 2 ########################################*/ 
-  sConfig.OCMode     = TIM_OCMODE_PWM1;
-  sConfig.OCPolarity = TIM_OCPOLARITY_HIGH;
-  sConfig.Pulse      = aCCValue_Buffer[0];
-  if(HAL_TIM_PWM_ConfigChannel(&TimHandle, &sConfig, TIM_CHANNEL_2) != HAL_OK)
+
+  /*##-2- Configure the PWM channel 3 ########################################*/
+  sConfig.OCMode       = TIM_OCMODE_PWM1;
+  sConfig.OCPolarity   = TIM_OCPOLARITY_HIGH;
+  sConfig.Pulse        = aCCValue_Buffer[0];
+  sConfig.OCNPolarity  = TIM_OCNPOLARITY_HIGH;
+  sConfig.OCFastMode   = TIM_OCFAST_DISABLE;
+  sConfig.OCIdleState  = TIM_OCIDLESTATE_RESET;
+  sConfig.OCNIdleState = TIM_OCNIDLESTATE_RESET;
+  if (HAL_TIM_PWM_ConfigChannel(&TimHandle, &sConfig, TIM_CHANNEL_3) != HAL_OK)
   {
     /* Configuration Error */
     Error_Handler();
   }
 
-  /*##-3- Start PWM signal generation in DMA mode ############################*/ 
-  if(HAL_TIM_PWM_Start_DMA(&TimHandle, TIM_CHANNEL_2, aCCValue_Buffer, 3) != HAL_OK)
+  /*##-3- Start PWM signal generation in DMA mode ############################*/
+  if (HAL_TIM_PWM_Start_DMA(&TimHandle, TIM_CHANNEL_3, aCCValue_Buffer, 3) != HAL_OK)
   {
-    /* Starting PWM generation Error */
+    /* Starting Error */
     Error_Handler();
   }
-  
+
   while (1)
   {
   }
 
 }
+
+/**
+  * @brief  This function is executed in case of error occurrence.
+  * @param  None
+  * @retval None
+  */
+static void Error_Handler(void)
+{
+  /* Turn LED2 on */
+  BSP_LED_On(LED2);
+  while (1)
+  {
+  }
+}
+
 
 /**
   * @brief  System Clock Configuration
@@ -205,7 +224,8 @@ static void SystemClock_Config(void)
   RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL16;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct)!= HAL_OK)
   {
-    Error_Handler();
+    /* Initialization Error */
+    while(1); 
   }
 
   /* Select PLL as system clock source and configure the HCLK, PCLK1 and PCLK2 
@@ -217,23 +237,8 @@ static void SystemClock_Config(void)
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2)!= HAL_OK)
   {
-    Error_Handler();
-  }
-}
-
-/**
-  * @brief  This function is executed in case of error occurrence.
-  * @param  None
-  * @retval None
-  */
-static void Error_Handler(void)
-{
-  /* User may add here some code to deal with this error */
-  while(1)
-  {
-    /* Toggle LED2 */
-    BSP_LED_Toggle(LED2);
-    HAL_Delay(1000);
+    /* Initialization Error */
+    while(1); 
   }
 }
 
@@ -246,8 +251,8 @@ static void Error_Handler(void)
   * @param  line: assert_param error line source number
   * @retval None
   */
-void assert_failed(uint8_t* file, uint32_t line)
-{ 
+void assert_failed(char *file, uint32_t line)
+{
   /* User can add his own implementation to report the file name and line number,
      ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
 

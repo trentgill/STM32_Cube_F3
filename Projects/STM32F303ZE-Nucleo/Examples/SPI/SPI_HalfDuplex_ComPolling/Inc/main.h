@@ -2,13 +2,11 @@
   ******************************************************************************
   * @file    SPI/SPI_HalfDuplex_ComPolling/Inc/main.h
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Header for main.c module
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT(c) 2016 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT(c) 2017 STMicroelectronics</center></h2>
   *
   * Redistribution and use in source and binary forms, with or without modification,
   * are permitted provided that the following conditions are met:
@@ -45,7 +43,7 @@
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
 /* Uncomment this line to use the board as master, if not it is used as slave */
-#define MASTER_BOARD
+//#define MASTER_BOARD
 
 /* User can use this section to tailor SPIx instance used and associated
    resources */

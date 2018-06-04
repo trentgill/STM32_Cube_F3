@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    stm32f3348_discovery.h
   * @author  MCD Application Team
-  * @version V2.0.3
-  * @date    16-December-2016
   * @brief   This file contains definitions for STM32F3348-DISCO Kit's Leds and
   *          push-button hardware resources.
   ******************************************************************************

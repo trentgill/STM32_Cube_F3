@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    Examples_LL/USART/USART_Communication_Rx_IT_Continuous/Inc/main.h
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Header for main.c module
   ******************************************************************************
   * @attention

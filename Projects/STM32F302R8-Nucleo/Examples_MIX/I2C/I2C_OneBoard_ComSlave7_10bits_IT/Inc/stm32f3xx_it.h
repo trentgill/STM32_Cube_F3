@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    Examples_MIX/I2C/I2C_OneBoard_ComSlave7_10bits_IT/Inc/stm32f3xx_it.h 
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   This file contains the headers of the interrupt handlers.
   ******************************************************************************
   * @attention

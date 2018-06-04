@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    SMBUS/SMBUS_TSENSOR/Src/stm32f3xx_tsensor.c
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   This file provides a set of functions needed to manage the SMBUS  
   *          temperature sensor (STTS751) mounted on STM32303C-EVAL board . 
   *          It implements a high level communication layer for initialized,

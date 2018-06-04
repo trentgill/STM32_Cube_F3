@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    stm32f3_discovery.h
   * @author  MCD Application Team
-  * @version V2.1.4
-  * @date    16-December-2016
   * @brief   This file contains definitions for STM32F3-Discovery's Leds, push-
   *          buttons hardware resources.
   ******************************************************************************

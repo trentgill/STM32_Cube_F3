@@ -5,8 +5,6 @@
   ******************** (C) COPYRIGHT 2016 STMicroelectronics *******************
   * @file    TIM/TIM_InputCapture/readme.txt 
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Description of the TIM_InputCapture example.
   ******************************************************************************
   *
@@ -35,14 +33,14 @@
   ******************************************************************************
   @endverbatim
 
-@par Example Description
+@par Example Description 
 
   This example shows how to use the TIM peripheral to measure the frequency of
   an external signal.
 
   The TIM1CLK frequency is set to SystemCoreClock (Hz), the Prescaler is 0,
   so the TIM1 counter clock is SystemCoreClock (Hz).
-  SystemCoreClock is set to 72 MHz for STM32F303xC devices.
+  SystemCoreClock is set to 72 MHz for STM32F3xx Devices.
 
   TIM1 is configured in Input Capture Mode: the external signal is connected to 
   TIM1 Channel2 used as input pin.
@@ -55,38 +53,40 @@
 
 
   The minimum frequency value to measure is TIM1 counter clock / CCR MAX
-                                              = 72MHz / 65535
-                                              = 1099 Hz
-  Due to TIM1_CC_IRQHandler processing time (arround 3.50us), the maximum
-  frequency value to measure is arround 300kHz.
+                                              = 72 MHz / 65535
+
+  Due to TIM1_CC_IRQHandler processing time (around 3.50us), the maximum
+  frequency value to measure is around 300kHz.
 
 @note Care must be taken when using HAL_Delay(), this function provides accurate delay (in milliseconds)
       based on variable incremented in SysTick ISR. This implies that if HAL_Delay() is called from
       a peripheral ISR process, then the SysTick interrupt must have higher priority (numerically lower)
       than the peripheral interrupt. Otherwise the caller ISR process will be blocked.
       To change the SysTick interrupt priority you have to use HAL_NVIC_SetPriority() function.
-      
+
 @note The application need to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+
 @par Directory contents 
 
-  - TIM/TIM_InputCapture/Src/main.c                 Main program
-  - TIM/TIM_InputCapture/Src/system_stm32f3xx.c     STM32F3xx system clock configuration file
-  - TIM/TIM_InputCapture/Src/stm32f3xx_it.c         Interrupt handlers 
-  - TIM/TIM_InputCapture/Src/stm32f3xx_hal_msp.c    HAL MSP module
-  - TIM/TIM_InputCapture/Inc/main.h                 Main program header file  
-  - TIM/TIM_InputCapture/Inc/stm32f3xx_hal_conf.h   HAL Configuration file
-  - TIM/TIM_InputCapture/Inc/stm32f3xx_it.h         Interrupt handlers header file
+  - TIM/TIM_InputCapture/Inc/stm32f3xx_hal_conf.h    HAL configuration file
+  - TIM/TIM_InputCapture/Inc/stm32f3xx_it.h          Interrupt handlers header file
+  - TIM/TIM_InputCapture/Inc/main.h                  Header for main.c module  
+  - TIM/TIM_InputCapture/Src/stm32f3xx_it.c          Interrupt handlers
+  - TIM/TIM_InputCapture/Src/main.c                  Main program
+  - TIM/TIM_InputCapture/Src/stm32f3xx_hal_msp.c     HAL MSP file
+  - TIM/TIM_InputCapture/Src/system_stm32f3xx.c      STM32F3xx system source file
 
-        
-@par Hardware and Software environment  
 
-  - This example runs on STM32F303xC devices.
+@par Hardware and Software environment
+
+  - This example runs on STM32F3xx devices.
+  - In this example, the clock is set to 72 MHz.
     
   - This example has been tested with STMicroelectronics STM32303C-EVAL RevC
-    boards and can be easily tailored to any other supported device 
-    and development board.
+    board and can be easily tailored to any other supported device 
+    and development board.      
 
   - STM32303C-EVAL RevC Set-up
     - Connect the external signal to measure to the TIM1 CH2 pin (PE.11).

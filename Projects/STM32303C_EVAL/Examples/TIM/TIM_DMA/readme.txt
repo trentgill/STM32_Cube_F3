@@ -5,8 +5,6 @@
   ******************** (C) COPYRIGHT 2016 STMicroelectronics *******************
   * @file    TIM/TIM_DMA/readme.txt 
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Description of the TIM DMA example.
   ******************************************************************************
   *
@@ -35,12 +33,11 @@
   ******************************************************************************
   @endverbatim
 
-@par Example Description
+@par Example Description 
 
-  This example provides a description of how to use DMA with TIM1 Update request
-  to transfer Data from memory to TIM1 Capture Compare Register 3 (TIMx_CCR3).
+This example provides a description of how to use DMA with TIMER Update request
+to transfer Data from memory to TIMER Capture Compare Register 3 (TIMx_CCR3).
 
-  This is done using TIM1 Update request and TIM1 CCR2 register.
   The following configuration values are used in this example:
 
     - TIM1CLK = SystemCoreClock
@@ -56,9 +53,9 @@
   The number of this repetitive requests is defined by the TIM1 Repetition counter,
   each 4 Update Requests, the TIM1 Channel 3 Duty Cycle changes to the next new 
   value defined by the aCCValue_Buffer.
-
+  
   The PWM waveform can be displayed using an oscilloscope.
-
+ 
 
 
 @note PWM signal frequency value mentioned above is theoretical (obtained when the system clock frequency 
@@ -73,22 +70,23 @@
 @note The application need to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+
 @par Directory contents 
 
   - TIM/TIM_DMA/Inc/stm32f3xx_hal_conf.h    HAL configuration file
   - TIM/TIM_DMA/Inc/stm32f3xx_it.h          Interrupt handlers header file
   - TIM/TIM_DMA/Inc/main.h                  Header for main.c module  
   - TIM/TIM_DMA/Src/stm32f3xx_it.c          Interrupt handlers
-  - TIM/TIM_DMA/Src/main.c                 Main program
+  - TIM/TIM_DMA/Src/main.c                  Main program
   - TIM/TIM_DMA/Src/stm32f3xx_hal_msp.c     HAL MSP file
   - TIM/TIM_DMA/Src/system_stm32f3xx.c      STM32F3xx system source file
-        
-@par Hardware and Software environment  
 
-  - This example runs on STM32F303xE devices.
+@par Hardware and Software environment
+
+  - This example runs on STM32F303xC devices.
   - In this example, the clock is set to 72 MHz.
     
-  - This example has been tested with STMicroelectronics STM32303C-EVAL RevC
+  - This example has been tested with STMicroelectronics STM32303C-EVAL RevC 
     board and can be easily tailored to any other supported device 
     and development board.
 

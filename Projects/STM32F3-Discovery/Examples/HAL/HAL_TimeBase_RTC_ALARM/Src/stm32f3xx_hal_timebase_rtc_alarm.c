@@ -1,8 +1,6 @@
 /**
   ******************************************************************************
   * @file    stm32f3xx_hal_timebase_rtc_alarm.c
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   HAL time base based on the hardware RTC_ALARM.
   *
   *          This file override the native HAL time base functions (defined as weak)
@@ -84,12 +82,15 @@
 /* #define RTC_CLOCK_SOURCE_LSE */
 /* #define RTC_CLOCK_SOURCE_LSI */
 
-#ifdef RTC_CLOCK_SOURCE_HSE
+#if defined(RTC_CLOCK_SOURCE_HSE)
   #define RTC_ASYNCH_PREDIV       49U
   #define RTC_SYNCH_PREDIV        4U
-#else /* RTC_CLOCK_SOURCE_LSE || RTC_CLOCK_SOURCE_LSI */
+#elif defined(RTC_CLOCK_SOURCE_LSE)  
   #define RTC_ASYNCH_PREDIV       0U
   #define RTC_SYNCH_PREDIV        31U
+#else /*RTC_CLOCK_SOURCE_LSI */
+  #define RTC_ASYNCH_PREDIV       0U
+  #define RTC_SYNCH_PREDIV        39U
 #endif /* RTC_CLOCK_SOURCE_HSE */
 
 /* Private macro -------------------------------------------------------------*/
@@ -105,7 +106,7 @@ void RTC_Alarm_IRQHandler(void);
   *         Tick interrupt priority. 
   * @note   This function is called  automatically at the beginning of program after
   *         reset by HAL_Init() or at any time when clock is configured, by HAL_RCC_ClockConfig().
-  * @param  TickPriority: Tick interrupt priority.
+  * @param  TickPriority Tick interrupt priority.
   * @retval HAL status
   */
 HAL_StatusTypeDef HAL_InitTick (uint32_t TickPriority)
@@ -145,15 +146,15 @@ HAL_StatusTypeDef HAL_InitTick (uint32_t TickPriority)
       /* Enable RTC Clock */
       __HAL_RCC_RTC_ENABLE();
       /* The time base should be 1ms
-         Time base = ((RTC_ASYNCH_PREDIV + 1) * (RTC_SYNCH_PREDIV + 1)) / RTC_CLOCK 
+         Time base = ((RTC_ASYNCH_PREDIV + 1U) * (RTC_SYNCH_PREDIV + 1U)) / RTC_CLOCK 
          HSE/32 as RTC clock and HSE 8MHz
-           Time base = ((49 + 1) * (4 + 1)) / 250kHz
+           Time base = ((49U + 1U) * (4U + 1U)) / 250kHz
                      = 1ms
          LSE as RTC clock 
-           Time base = ((31 + 1) * (0 + 1)) / 32.768KHz
+           Time base = ((31U + 1U) * (0U + 1U)) / 32.768KHz
                      = ~1ms
          LSI as RTC clock 
-           Time base = ((31 + 1) * (0 + 1)) / 32KHz
+           Time base = ((39U + 1U) * (0U + 1U)) / 40KHz
                      = 1ms
       */
       hRTC_Handle.Instance = RTC;
@@ -184,7 +185,7 @@ HAL_StatusTypeDef HAL_InitTick (uint32_t TickPriority)
         }
       }
 
-      hRTC_Handle.Instance->ALRMAR = (uint32_t)0x01U;
+      hRTC_Handle.Instance->ALRMAR = 0x01U;
 
       /* Configure the Alarm state: Enable Alarm */
       __HAL_RTC_ALARMA_ENABLE(&hRTC_Handle);
@@ -262,7 +263,7 @@ void HAL_ResumeTick(void)
   * @note   This function is called  when RTC_ALARM interrupt took place, inside
   * RTC_Alarm_IRQHandler(). It makes a direct call to HAL_IncTick() to increment
   * a global variable "uwTick" used as application time base.
-  * @param  hrtc : RTC handle
+  * @param  hrtc RTC handle
   * @retval None
   */
 void HAL_RTC_AlarmAEventCallback(RTC_HandleTypeDef *hrtc)

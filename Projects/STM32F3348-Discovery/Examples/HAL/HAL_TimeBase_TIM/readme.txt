@@ -5,8 +5,6 @@
   ******************** (C) COPYRIGHT 2016 STMicroelectronics *******************
   * @file    HAL/HAL_TimeBase_TIM/readme.txt 
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Description of the HAL time base example.
   ******************************************************************************
   *
@@ -61,7 +59,7 @@ HAL_Delay()
 
 When user pushes the User push-button, the Tick increment is suspended if it is already
 enabled, else it will be resumed.
-In an infinite loop, LED5 toggles spaced out over 1s delay.
+In an infinite loop, LED5 toggles spaced out over 1s delay, except when tick increment is suspended.
 
 @note Care must be taken when using HAL_Delay(), this function provides accurate delay (in milliseconds)
       based on variable incremented in TIM6 ISR. This implies that if HAL_Delay() is called from
@@ -71,6 +69,7 @@ In an infinite loop, LED5 toggles spaced out over 1s delay.
       
 @note The application needs to ensure that the TIM6 time base is always set to 1 millisecond
       to have correct HAL operation.
+
 
 @par Directory contents  
 

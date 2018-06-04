@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-
 <project>
   <fileVersion>2</fileVersion>
   <configuration>
@@ -12,7 +11,7 @@
       <name>General</name>
       <archiveVersion>3</archiveVersion>
       <data>
-        <version>24</version>
+        <version>22</version>
         <wantNonLocal>1</wantNonLocal>
         <debug>1</debug>
         <option>
@@ -26,6 +25,11 @@
         <option>
           <name>ListPath</name>
           <state>STM32F303K8_NUCLEO\List</state>
+        </option>
+        <option>
+          <name>Variant</name>
+          <version>20</version>
+          <state>34</state>
         </option>
         <option>
           <name>GEndianMode</name>
@@ -54,6 +58,11 @@
           <state>0</state>
         </option>
         <option>
+          <name>FPU</name>
+          <version>4</version>
+          <state>6</state>
+        </option>
+        <option>
           <name>OGCoreOrChip</name>
           <state>1</state>
         </option>
@@ -77,7 +86,7 @@
         </option>
         <option>
           <name>OGLastSavedByProductVersion</name>
-          <state>7.60.1.11206</state>
+          <state>7.20.5.7621</state>
         </option>
         <option>
           <name>GeneralEnableMisra</name>
@@ -126,9 +135,14 @@
           <state>$TOOLKIT_DIR$\INC\c\DLib_Config_Full.h</state>
         </option>
         <option>
+          <name>GFPUCoreSlave</name>
+          <version>20</version>
+          <state>34</state>
+        </option>
+        <option>
           <name>GBECoreSlave</name>
-          <version>24</version>
-          <state>39</state>
+          <version>20</version>
+          <state>34</state>
         </option>
         <option>
           <name>OGUseCmsis</name>
@@ -141,34 +155,6 @@
         <option>
           <name>GRuntimeLibThreads</name>
           <state>0</state>
-        </option>
-        <option>
-          <name>CoreVariant</name>
-          <version>24</version>
-          <state>39</state>
-        </option>
-        <option>
-          <name>GFPUDeviceSlave</name>
-          <state>STM32F303K8	ST STM32F303K8</state>
-        </option>
-        <option>
-          <name>FPU2</name>
-          <version>0</version>
-          <state>4</state>
-        </option>
-        <option>
-          <name>NrRegs</name>
-          <version>0</version>
-          <state>1</state>
-        </option>
-        <option>
-          <name>NEON</name>
-          <state>0</state>
-        </option>
-        <option>
-          <name>GFPUCoreSlave2</name>
-          <version>24</version>
-          <state>39</state>
         </option>
       </data>
     </settings>
@@ -602,7 +588,7 @@
         <debug>1</debug>
         <option>
           <name>OOCOutputFormat</name>
-          <version>3</version>
+          <version>2</version>
           <state>1</state>
         </option>
         <option>
@@ -629,7 +615,6 @@
       <data>
         <extensions></extensions>
         <cmdline></cmdline>
-        <hasPrio>0</hasPrio>
       </data>
     </settings>
     <settings>
@@ -649,7 +634,7 @@
       <name>ILINK</name>
       <archiveVersion>0</archiveVersion>
       <data>
-        <version>17</version>
+        <version>16</version>
         <wantNonLocal>1</wantNonLocal>
         <debug>1</debug>
         <option>
@@ -933,10 +918,6 @@
           <name>IlinkThreadsSlave</name>
           <state>1</state>
         </option>
-        <option>
-          <name>IlinkLogCallGraph</name>
-          <state>0</state>
-        </option>
       </data>
     </settings>
     <settings>
@@ -973,6 +954,27 @@
     </file>
   </group>
   <group>
+    <name>Example</name>
+    <group>
+      <name>User</name>
+      <file>
+        <name>$PROJ_DIR$\..\Src\main.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\Src\stm32f3xx_it.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\Src\stm32f3xx_hal_msp.c</name>
+      </file>
+    </group>
+    <group>
+      <name>EWARM</name>
+      <file>
+        <name>$PROJ_DIR$\startup_stm32f303x8.s</name>
+      </file>
+    </group>
+  </group>
+  <group>
     <name>Drivers</name>
     <group>
       <name>BSP</name>
@@ -984,12 +986,6 @@
       </group>
     </group>
     <group>
-      <name>CMSIS</name>
-      <file>
-        <name>$PROJ_DIR$\..\Src\system_stm32f3xx.c</name>
-      </file>
-    </group>
-    <group>
       <name>STM32F3xx_HAL_Driver</name>
       <file>
         <name>$PROJ_DIR$\..\..\..\..\..\..\Drivers\STM32F3xx_HAL_Driver\Src\stm32f3xx_hal.c</name>
@@ -998,13 +994,13 @@
         <name>$PROJ_DIR$\..\..\..\..\..\..\Drivers\STM32F3xx_HAL_Driver\Src\stm32f3xx_hal_cortex.c</name>
       </file>
       <file>
-        <name>$PROJ_DIR$\..\..\..\..\..\..\Drivers\STM32F3xx_HAL_Driver\Src\stm32f3xx_hal_dma.c</name>
-      </file>
-      <file>
         <name>$PROJ_DIR$\..\..\..\..\..\..\Drivers\STM32F3xx_HAL_Driver\Src\stm32f3xx_hal_gpio.c</name>
       </file>
       <file>
         <name>$PROJ_DIR$\..\..\..\..\..\..\Drivers\STM32F3xx_HAL_Driver\Src\stm32f3xx_hal_rcc.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\..\..\..\..\..\Drivers\STM32F3xx_HAL_Driver\Src\stm32f3xx_hal_dma.c</name>
       </file>
       <file>
         <name>$PROJ_DIR$\..\..\..\..\..\..\Drivers\STM32F3xx_HAL_Driver\Src\stm32f3xx_hal_tim.c</name>
@@ -1012,29 +1008,15 @@
       <file>
         <name>$PROJ_DIR$\..\..\..\..\..\..\Drivers\STM32F3xx_HAL_Driver\Src\stm32f3xx_hal_tim_ex.c</name>
       </file>
-    </group>
-  </group>
-  <group>
-    <name>Example</name>
-    <group>
-      <name>EWARM</name>
       <file>
-        <name>$PROJ_DIR$\startup_stm32f303x8.s</name>
+        <name>$PROJ_DIR$\..\..\..\..\..\..\Drivers\STM32F3xx_HAL_Driver\Src\stm32f3xx_hal_tim_ex.c</name>
       </file>
     </group>
     <group>
-      <name>User</name>
+      <name>CMSIS</name>
       <file>
-        <name>$PROJ_DIR$\..\Src\main.c</name>
-      </file>
-      <file>
-        <name>$PROJ_DIR$\..\Src\stm32f3xx_hal_msp.c</name>
-      </file>
-      <file>
-        <name>$PROJ_DIR$\..\Src\stm32f3xx_it.c</name>
+        <name>$PROJ_DIR$\..\Src\system_stm32f3xx.c</name>
       </file>
     </group>
   </group>
 </project>
-
-

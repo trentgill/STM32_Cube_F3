@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    USB_Device/DFU_Standalone/Inc/usbd_dfu_flash.h
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Header for usbd_dfu_flash.c file.
   ******************************************************************************
   * @attention

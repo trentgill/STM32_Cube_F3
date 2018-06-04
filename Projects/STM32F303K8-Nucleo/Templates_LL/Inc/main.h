@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    Templates_LL/Inc/main.h 
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Header for main.c module
   ******************************************************************************
   * @attention
@@ -85,7 +83,7 @@
   */
 #define USER_BUTTON_PIN                         LL_GPIO_PIN_12
 #define USER_BUTTON_GPIO_PORT                   GPIOA
-#define USER_BUTTON_GPIO_CLK_ENABLE()           LL_AHB2_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOA)
+#define USER_BUTTON_GPIO_CLK_ENABLE()           LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOA)
 #define USER_BUTTON_EXTI_LINE                   LL_EXTI_LINE_12
 #define USER_BUTTON_EXTI_IRQn                   EXTI15_10_IRQn
 #define USER_BUTTON_EXTI_LINE_ENABLE()          LL_EXTI_EnableIT_0_31(USER_BUTTON_EXTI_LINE)   

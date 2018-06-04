@@ -1,9 +1,7 @@
 ;/******************** (C) COPYRIGHT 2016 STMicroelectronics ********************
 ;* File Name          : startup_stm32f373xc.s
 ;* Author             : MCD Application Team
-;* Version            : V1.7.0
-;* Date               : 16-December-2016
-;* Description        : STM32F373x8/STM32F373xB/STM32F373xC devices vector table for EWARM toolchain.
+;* Description        : STM32F373xB/STM32F373xC devices vector table for EWARM toolchain.
 ;*                      This module performs:
 ;*                      - Set the initial SP
 ;*                      - Set the initial PC == _iar_program_start,

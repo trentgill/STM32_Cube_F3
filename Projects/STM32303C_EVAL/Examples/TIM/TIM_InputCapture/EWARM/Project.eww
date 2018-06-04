@@ -4,15 +4,7 @@
   <project>
     <path>$WS_DIR$\Project.ewp</path>
   </project>
-  <batchBuild>
-    <batchDefinition>
-      <name>BUILD - ALL</name>
-      <member>
-        <project>Project</project>
-        <configuration>STM32303C_EVAL</configuration>
-      </member>
-    </batchDefinition>
-  </batchBuild>
+  <batchBuild/>
 </workspace>
 
 

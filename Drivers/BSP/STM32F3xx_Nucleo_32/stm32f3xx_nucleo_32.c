@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    stm32f3xx_nucleo_32.c
   * @author  MCD Application Team
-  * @version V1.0.3
-  * @date    16-December-2016
   * @brief   This file provides set of firmware functions to manage:
   *          - LED available on STM32F3XX-Nucleo Kit 
   *            from STMicroelectronics.
@@ -59,11 +57,11 @@
   */ 
   
 /**
-  * @brief STM32F3XX NUCLEO BSP Driver version number V1.0.3
+  * @brief STM32F3XX NUCLEO BSP Driver version number V1.0.4
   */
 #define __STM32F3XX_NUCLEO_32_BSP_VERSION_MAIN   (0x01) /*!< [31:24] main version */
 #define __STM32F3XX_NUCLEO_32_BSP_VERSION_SUB1   (0x00) /*!< [23:16] sub1 version */
-#define __STM32F3XX_NUCLEO_32_BSP_VERSION_SUB2   (0x03) /*!< [15:8]  sub2 version */
+#define __STM32F3XX_NUCLEO_32_BSP_VERSION_SUB2   (0x04) /*!< [15:8]  sub2 version */
 #define __STM32F3XX_NUCLEO_32_BSP_VERSION_RC     (0x00) /*!< [7:0]  release candidate */
 #define __STM32F3XX_NUCLEO_32_BSP_VERSION         ((__STM32F3XX_NUCLEO_32_BSP_VERSION_MAIN << 24)\
                                              |(__STM32F3XX_NUCLEO_32_BSP_VERSION_SUB1 << 16)\
@@ -133,7 +131,7 @@ uint32_t BSP_GetVersion(void)
 
 /**
   * @brief  Configures LED GPIO.
-  * @param  Led: Specifies the Led to be configured. 
+  * @param  Led Specifies the Led to be configured. 
   *   This parameter can be one of following parameters:
   *            @arg  LED3
   * @retval None
@@ -157,7 +155,7 @@ void BSP_LED_Init(Led_TypeDef Led)
 
 /**
   * @brief  Turns selected LED On.
-  * @param  Led: Specifies the Led to be set on. 
+  * @param  Led Specifies the Led to be set on. 
   *   This parameter can be one of following parameters:
   *            @arg  LED3
   * @retval None
@@ -169,7 +167,7 @@ void BSP_LED_On(Led_TypeDef Led)
 
 /**
   * @brief  Turns selected LED Off. 
-  * @param  Led: Specifies the Led to be set off. 
+  * @param  Led Specifies the Led to be set off. 
   *   This parameter can be one of following parameters:
   *            @arg  LED3
   * @retval None
@@ -181,7 +179,7 @@ void BSP_LED_Off(Led_TypeDef Led)
 
 /**
   * @brief  Toggles the selected LED.
-  * @param  Led: Specifies the Led to be toggled. 
+  * @param  Led Specifies the Led to be toggled. 
   *   This parameter can be one of following parameters:
   *            @arg  LED3
   * @retval None
@@ -230,9 +228,9 @@ void I2C1_Init(void)
 
 /**
   * @brief  Writes a single data.
-  * @param  Addr: I2C address
-  * @param  Reg: Register address 
-  * @param  Value: Data to be written
+  * @param  Addr I2C address
+  * @param  Reg Register address 
+  * @param  Value Data to be written
   * @retval None
   */
 void I2C1_Write(uint8_t Addr, uint8_t Reg, uint8_t Value)
@@ -251,8 +249,8 @@ void I2C1_Write(uint8_t Addr, uint8_t Reg, uint8_t Value)
 
 /**
   * @brief  Reads a single data.
-  * @param  Addr: I2C address
-  * @param  Reg: Register address 
+  * @param  Addr I2C address
+  * @param  Reg Register address 
   * @retval Read data
   */
 uint8_t I2C1_Read(uint8_t Addr, uint8_t Reg)
@@ -273,11 +271,11 @@ uint8_t I2C1_Read(uint8_t Addr, uint8_t Reg)
 
 /**
   * @brief  Reads multiple data on the BUS.
-  * @param  Addr  : I2C Address
-  * @param  Reg   : Reg Address 
-  * @param  RegSize : The target register size (can be 8BIT or 16BIT)
-  * @param  pBuffer : pointer to read data buffer
-  * @param  Length : length of the data
+  * @param  Addr  I2C Address
+  * @param  Reg   Reg Address 
+  * @param  RegSize The target register size (can be 8BIT or 16BIT)
+  * @param  pBuffer pointer to read data buffer
+  * @param  Length length of the data
   * @retval 0 if no problems to read multiple data
   */
 HAL_StatusTypeDef I2C1_ReadBuffer(uint16_t Addr, uint8_t Reg, uint16_t RegSize, uint8_t *pBuffer, uint16_t Length)
@@ -298,8 +296,8 @@ HAL_StatusTypeDef I2C1_ReadBuffer(uint16_t Addr, uint8_t Reg, uint16_t RegSize, 
 /**
   * @brief  Checks if target device is ready for communication. 
   * @note   This function is used with Memory devices
-  * @param  DevAddress: Target device address
-  * @param  Trials: Number of trials
+  * @param  DevAddress Target device address
+  * @param  Trials Number of trials
   * @retval HAL status
   */
 HAL_StatusTypeDef I2C1_IsDeviceReady(uint16_t DevAddress, uint32_t Trials)
@@ -309,11 +307,11 @@ HAL_StatusTypeDef I2C1_IsDeviceReady(uint16_t DevAddress, uint32_t Trials)
 
 /**
   * @brief  Write a value in a register of the device through BUS.
-  * @param  Addr: Device address on BUS Bus.  
-  * @param  Reg: The target register address to write
-  * @param  RegSize: The target register size (can be 8BIT or 16BIT)
-  * @param  pBuffer: The target register value to be written 
-  * @param  Length: buffer size to be written
+  * @param  Addr Device address on BUS Bus.  
+  * @param  Reg The target register address to write
+  * @param  RegSize The target register size (can be 8BIT or 16BIT)
+  * @param  pBuffer The target register value to be written 
+  * @param  Length buffer size to be written
   * @retval None
   */
 HAL_StatusTypeDef I2C1_WriteBuffer(uint16_t Addr, uint8_t Reg, uint16_t RegSize, uint8_t *pBuffer, uint16_t Length)
@@ -346,7 +344,7 @@ void I2C1_Error(void)
 
 /**
   * @brief I2C MSP Initialization
-  * @param hi2c: I2C handle
+  * @param hi2c I2C handle
   * @retval None
   */
 void I2C1_MspInit(I2C_HandleTypeDef *hi2c)

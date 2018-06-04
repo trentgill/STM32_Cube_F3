@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    TouchSensing\TouchSensing_Linear_IT\Src\stm32f3xx_hal_msp.c
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   HAL MSP module.
   ******************************************************************************
   * @attention

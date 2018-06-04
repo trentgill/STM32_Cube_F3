@@ -5,8 +5,6 @@
   ******************** (C) COPYRIGHT 2016 STMicroelectronics *******************
   * @file    CRC/CRC_Bytes_Stream_7bit_CRC/readme.txt 
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   7-bit long CRC computation from bytes (8-bit data) buffers.
   ******************************************************************************
   *

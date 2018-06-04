@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    HAL/HAL_TimeBase_RTC_ALARM/Src/stm32f3xx_it.c
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Interrupt Service Routines.
   ******************************************************************************
   * @attention
@@ -163,7 +161,7 @@ void SysTick_Handler(void)
 /******************************************************************************/
 
 /**
-  * @brief  This function handles External EXTI_Line2 interrupt request.
+  * @brief  This function handles External EXTI_Line2_TSC interrupt request.
   * @param  None
   * @retval None
   */

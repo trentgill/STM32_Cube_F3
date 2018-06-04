@@ -10,6 +10,7 @@
       <TargetName>STM32F3-Discovery</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
+      <pCCUsed>5060422::V5.06 update 4 (build 422)::ARMCC</pCCUsed>
       <TargetOption>
         <TargetCommonOption>
           <Device>STM32F303VC</Device>
@@ -386,6 +387,9 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>::CMSIS</GroupName>
+        </Group>
+        <Group>
           <GroupName>Example/User</GroupName>
           <Files>
             <File>
@@ -489,9 +493,6 @@
               <FilePath>../../../../../../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c</FilePath>
             </File>
           </Files>
-        </Group>
-        <Group>
-          <GroupName>::CMSIS</GroupName>
         </Group>
       </Groups>
     </Target>

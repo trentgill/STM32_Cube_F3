@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    TouchSensing\TouchSensing_Linear\Src\tsl_user.c 
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Touch-Sensing user configuration file.
   ******************************************************************************
   * @attention

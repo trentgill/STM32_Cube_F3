@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    stm32373c_eval_tsensor.c
   * @author  MCD Application Team
-  * @version V2.2.0
-  * @date    16-December-2016
   * @brief   This file provides a set of functions needed to manage the I2C LM75 
   *          temperature sensor mounted on STM32373C-EVAL board . 
   *          It implements a high level communication layer for read and write 

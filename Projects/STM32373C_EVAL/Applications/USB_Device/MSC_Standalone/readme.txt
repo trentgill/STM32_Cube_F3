@@ -5,8 +5,6 @@
   ******************************************************************************
   * @file    USB_Device/MSC_Standalone/readme.txt 
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Description of the USB Device MSC example.
   ******************************************************************************
   *
@@ -102,11 +100,11 @@ operations can be performed as with any other removable drive.
 @par Hardware and Software environment
 
   - This example runs on STM32F373xx devices.  
-  - This example has been tested with STMicroelectronics STM32373C-EVAL RevB 
+  - This example has been tested with STMicroelectronics STM32373C-EVAL RevB
     evaluation boards and can be easily tailored to any other supported device 
     and development board.
 
-  - STM32373C-EVAL RevC Set-up
+  - STM32373C-EVAL RevB Set-up
     - Insert a microSD card into the STM32373C-EVAL uSD slot (CN7)
     - Connect the STM32373C-EVAL board to the PC through 'USB Type A-Male 
       to A-Male' cable to the CN16 connector.

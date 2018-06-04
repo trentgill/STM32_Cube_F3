@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    stm32f3_discovery.c
   * @author  MCD Application Team
-  * @version V2.1.4
-  * @date    16-December-2016
   * @brief   This file provides set of firmware functions to manage Leds and
   *          push-button available on STM32F3-DISCOVERY Kit from STMicroelectronics.
   ******************************************************************************
@@ -57,11 +55,11 @@
   */ 
 
 /**
- * @brief STM32F3 DISCOVERY BSP Driver version number V2.1.4
+ * @brief STM32F3 DISCOVERY BSP Driver version number V2.1.5
    */
 #define __STM32F3_DISCO_BSP_VERSION_MAIN   (0x02) /*!< [31:24] main version */
 #define __STM32F3_DISCO_BSP_VERSION_SUB1   (0x01) /*!< [23:16] sub1 version */
-#define __STM32F3_DISCO_BSP_VERSION_SUB2   (0x04) /*!< [15:8]  sub2 version */
+#define __STM32F3_DISCO_BSP_VERSION_SUB2   (0x05) /*!< [15:8]  sub2 version */
 #define __STM32F3_DISCO_BSP_VERSION_RC     (0x00) /*!< [7:0]  release candidate */
 #define __STM32F3_DISCO_BSP_VERSION        ((__STM32F3_DISCO_BSP_VERSION_MAIN << 24)\
                                             |(__STM32F3_DISCO_BSP_VERSION_SUB1 << 16)\
@@ -161,7 +159,7 @@ uint32_t BSP_GetVersion(void)
 
 /**
   * @brief  Configures LED GPIO.
-  * @param  Led: Specifies the Led to be configured. 
+  * @param  Led Specifies the Led to be configured. 
   *   This parameter can be one of following parameters:
   *     @arg LED_RED
   *     @arg LED_BLUE
@@ -193,7 +191,7 @@ void BSP_LED_Init(Led_TypeDef Led)
 
 /**
   * @brief  Turns selected LED On.
-  * @param  Led: Specifies the Led to be set on. 
+  * @param  Led Specifies the Led to be set on. 
   *   This parameter can be one of following parameters:
   *     @arg LED_RED
   *     @arg LED4
@@ -212,7 +210,7 @@ void BSP_LED_On(Led_TypeDef Led)
 
 /**
   * @brief  Turns selected LED Off.
-  * @param  Led: Specifies the Led to be set off. 
+  * @param  Led Specifies the Led to be set off. 
   *   This parameter can be one of following parameters:
   *     @arg LED_RED
   *     @arg LED_BLUE
@@ -231,7 +229,7 @@ void BSP_LED_Off(Led_TypeDef Led)
 
 /**
   * @brief  Toggles the selected LED.
-  * @param  Led: Specifies the Led to be toggled. 
+  * @param  Led Specifies the Led to be toggled. 
   *   This parameter can be one of following parameters:
   *     @arg LED_RED
   *     @arg LED_BLUE
@@ -251,9 +249,9 @@ void BSP_LED_Toggle(Led_TypeDef Led)
 
 /**
   * @brief  Configures Push Button GPIO and EXTI Line.
-  * @param  Button: Specifies the Button to be configured.
+  * @param  Button Specifies the Button to be configured.
   *   This parameter should be: BUTTON_USER
-  * @param  ButtonMode: Specifies Button mode.
+  * @param  ButtonMode Specifies Button mode.
   *   This parameter can be one of following parameters:   
   *     @arg BUTTON_MODE_GPIO: Button will be used as simple IO 
   *     @arg BUTTON_MODE_EXTI: Button will be connected to EXTI line with interrupt
@@ -295,7 +293,7 @@ void BSP_PB_Init(Button_TypeDef Button, ButtonMode_TypeDef ButtonMode)
 
 /**
   * @brief  Returns the selected Push Button state.
-  * @param  Button: Specifies the Button to be checked.
+  * @param  Button Specifies the Button to be checked.
   *   This parameter should be: BUTTON_USER  
   * @retval The Button GPIO pin value.
   */
@@ -366,9 +364,9 @@ static void I2Cx_Init(void)
 
 /**
   * @brief  Write a value in a register of the device through BUS.
-  * @param  Addr: Device address on BUS Bus.  
-  * @param  Reg: The target register address to write
-  * @param  Value: The target register value to be written 
+  * @param  Addr Device address on BUS Bus.  
+  * @param  Reg The target register address to write
+  * @param  Value The target register value to be written 
   * @retval  None
   */
 static void I2Cx_WriteData(uint16_t Addr, uint8_t Reg, uint8_t Value)
@@ -387,8 +385,8 @@ static void I2Cx_WriteData(uint16_t Addr, uint8_t Reg, uint8_t Value)
 
 /**
   * @brief  Read a value in a register of the device through BUS.
-  * @param  Addr: Device address on BUS Bus.  
-  * @param  Reg: The target register address to write
+  * @param  Addr Device address on BUS Bus.  
+  * @param  Reg The target register address to write
   * @retval Data read at register @
   */
 static uint8_t I2Cx_ReadData(uint16_t Addr, uint8_t Reg)
@@ -461,7 +459,7 @@ static void SPIx_Init(void)
 /**
   * @brief  Sends a Byte through the SPI interface and return the Byte received 
   *         from the SPI bus.
-  * @param  Byte : Byte send.
+  * @param  Byte Byte send.
   * @retval The received byte value
   */
 static uint8_t SPIx_WriteRead(uint8_t Byte)
@@ -496,7 +494,7 @@ static void SPIx_Error (void)
 
 /**
   * @brief SPI MSP Init
-  * @param hspi: SPI handle
+  * @param hspi SPI handle
   * @retval None
   */
 static void SPIx_MspInit(SPI_HandleTypeDef *hspi)
@@ -563,9 +561,9 @@ void GYRO_IO_Init(void)
 
 /**
   * @brief  Writes one byte to the GYROSCOPE.
-  * @param  pBuffer : pointer to the buffer  containing the data to be written to the GYROSCOPE.
-  * @param  WriteAddr : GYROSCOPE's internal address to write to.
-  * @param  NumByteToWrite: Number of bytes to write.
+  * @param  pBuffer pointer to the buffer  containing the data to be written to the GYROSCOPE.
+  * @param  WriteAddr GYROSCOPE's internal address to write to.
+  * @param  NumByteToWrite Number of bytes to write.
   * @retval None
   */
 void GYRO_IO_Write(uint8_t* pBuffer, uint8_t WriteAddr, uint16_t NumByteToWrite)
@@ -598,9 +596,9 @@ void GYRO_IO_Write(uint8_t* pBuffer, uint8_t WriteAddr, uint16_t NumByteToWrite)
 
 /**
   * @brief  Reads a block of data from the GYROSCOPE.
-  * @param  pBuffer : pointer to the buffer that receives the data read from the GYROSCOPE.
-  * @param  ReadAddr : GYROSCOPE's internal address to read from.
-  * @param  NumByteToRead : number of bytes to read from the GYROSCOPE.
+  * @param  pBuffer pointer to the buffer that receives the data read from the GYROSCOPE.
+  * @param  ReadAddr GYROSCOPE's internal address to read from.
+  * @param  NumByteToRead number of bytes to read from the GYROSCOPE.
   * @retval None
   */
 void GYRO_IO_Read(uint8_t* pBuffer, uint8_t ReadAddr, uint16_t NumByteToRead)
@@ -657,7 +655,7 @@ void COMPASSACCELERO_IO_Init(void)
   HAL_GPIO_Init(ACCELERO_DRDY_GPIO_PORT, &GPIO_InitStructure);
   
   /* Enable and set Button EXTI Interrupt to the lowest priority */
-  HAL_NVIC_SetPriority(ACCELERO_DRDY_EXTI_IRQn, 0x00, 0x00);
+  HAL_NVIC_SetPriority(ACCELERO_DRDY_EXTI_IRQn, 0x0F, 0x00);
   HAL_NVIC_EnableIRQ(ACCELERO_DRDY_EXTI_IRQn);
   
   /* Configure GPIO PINs to detect Interrupts */
@@ -689,16 +687,16 @@ void COMPASSACCELERO_IO_ITConfig(void)
   HAL_GPIO_Init(ACCELERO_INT_GPIO_PORT, &GPIO_InitStructure);
   
   /* Enable and set Button EXTI Interrupt to the lowest priority */
-  HAL_NVIC_SetPriority(ACCELERO_INT1_EXTI_IRQn, 0x00, 0x00);
+  HAL_NVIC_SetPriority(ACCELERO_INT1_EXTI_IRQn, 0x0F, 0x00);
   HAL_NVIC_EnableIRQ(ACCELERO_INT1_EXTI_IRQn);
   
 }
 
 /**
   * @brief  Writes one byte to the COMPASS / ACCELEROMETER.
-  * @param  DeviceAddr : specifies the slave address to be programmed.
+  * @param  DeviceAddr specifies the slave address to be programmed.
   * @param  RegisterAddr specifies the COMPASS / ACCELEROMETER register to be written.
-  * @param  Value : Data to be written
+  * @param  Value Data to be written
   * @retval   None
  */
 void COMPASSACCELERO_IO_Write(uint16_t DeviceAddr, uint8_t RegisterAddr, uint8_t Value)
@@ -709,8 +707,8 @@ void COMPASSACCELERO_IO_Write(uint16_t DeviceAddr, uint8_t RegisterAddr, uint8_t
 
 /**
   * @brief  Reads a block of data from the COMPASS / ACCELEROMETER.
-  * @param  DeviceAddr : specifies the slave address to be programmed(ACC_I2C_ADDRESS or MAG_I2C_ADDRESS).
-  * @param  RegisterAddr : specifies the COMPASS / ACCELEROMETER internal address register to read from
+  * @param  DeviceAddr specifies the slave address to be programmed(ACC_I2C_ADDRESS or MAG_I2C_ADDRESS).
+  * @param  RegisterAddr specifies the COMPASS / ACCELEROMETER internal address register to read from
   * @retval ACCELEROMETER register value
   */ 
 uint8_t COMPASSACCELERO_IO_Read(uint16_t DeviceAddr, uint8_t RegisterAddr)

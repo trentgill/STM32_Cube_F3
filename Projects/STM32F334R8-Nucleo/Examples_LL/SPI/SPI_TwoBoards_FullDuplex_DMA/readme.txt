@@ -5,8 +5,6 @@
   ******************** (C) COPYRIGHT 2016 STMicroelectronics *******************
   * @file    Examples_LL/SPI/SPI_TwoBoards_FullDuplex_DMA/readme.txt 
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Description of the SPI_TwoBoards_FullDuplex_DMA example.
   ******************************************************************************
   *
@@ -36,9 +34,11 @@
   @endverbatim
 
 @par Example Description 
-This example shows how to ensure SPI Data buffer transmission and 
-reception using DMA mode through the STM32F3xx SPI LL API. Peripheral initialization 
-done using LL unitary services functions for optimization purpose (performance and size).
+
+This example shows how to ensure SPI data buffer transmission and reception in
+DMA mode. The example is based on the STM32F3xx SPI LL API. Peripheral initialization
+is done using LL unitary services functions for optimization purpose
+(performance and size).
 
 The communication is done with 2 boards through SPI.
    _________________________                        _________________________
@@ -85,7 +85,7 @@ On MASTER side, Clock will be generated on SCK line, Transmission(MOSI Line) and
 will be done at the same time. 
 SLAVE SPI will received  the Clock (SCK Line), so Transmission(MISO Line) and reception (MOSI Line) will be done also.
 
-LED2 is On if data is well received.
+LED2 is On on both boards if data is well received.
 
 In case of errors, LED2 is blinking Slowly (1s).
 

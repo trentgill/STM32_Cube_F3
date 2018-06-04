@@ -1,9 +1,7 @@
 /**
   ******************************************************************************
-  * @file    TIM/TIM_InputCapture/Inc/stm32f3xx_it.h 
+  * @file    TIM/TIM_InputCapture/Inc/stm32f3xx_it.h
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   This file contains the headers of the interrupt handlers.
   ******************************************************************************
   * @attention
@@ -40,8 +38,8 @@
 #define __STM32F3xx_IT_H
 
 #ifdef __cplusplus
- extern "C" {
-#endif 
+extern "C" {
+#endif
 
 /* Includes ------------------------------------------------------------------*/
 /* Exported types ------------------------------------------------------------*/
@@ -58,6 +56,7 @@ void SVC_Handler(void);
 void DebugMon_Handler(void);
 void PendSV_Handler(void);
 void SysTick_Handler(void);
+
 void TIMx_IRQHandler(void);
 
 #ifdef __cplusplus

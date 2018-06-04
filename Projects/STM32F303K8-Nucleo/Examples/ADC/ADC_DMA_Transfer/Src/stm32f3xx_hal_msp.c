@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    ADC/ADC_DMA_Transfer/Src/stm32f3xx_hal_msp.c
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   HAL MSP module.
   ******************************************************************************
   * @attention
@@ -125,32 +123,6 @@ void HAL_ADC_MspDeInit(ADC_HandleTypeDef *hadc)
   /*##-2- Disable peripherals and GPIO Clocks ################################*/
   /* De-initialize the ADC Channel GPIO pin */
   HAL_GPIO_DeInit(ADCx_CHANNEL_GPIO_PORT, ADCx_CHANNEL_PIN);
-}
-
-
-
-/**
-  * @brief  Initializes the Global MSP.
-  * @param  None
-  * @retval None
-  */
-void HAL_MspInit(void)
-{
-  /* NOTE : This function is generated automatically by STM32CubeMX and eventually  
-            modified by the user
-   */ 
-}
-
-/**
-  * @brief  DeInitializes the Global MSP.
-  * @param  None  
-  * @retval None
-  */
-void HAL_MspDeInit(void)
-{
-  /* NOTE : This function is generated automatically by STM32CubeMX and eventually  
-            modified by the user
-   */
 }
 
 /**

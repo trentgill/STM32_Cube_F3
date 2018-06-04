@@ -5,8 +5,6 @@
   ******************************************************************************
   * @file    USB_Device/CDC_Standalone/readme.txt 
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Description of the USB Device CDC example.
   ******************************************************************************
   *
@@ -164,7 +162,7 @@ User can select USB line Interrupt through macro defined in main.h.
 
   - This example runs on STM32F373xx devices.
     
-  - This example has been tested with STMicroelectronics STM32373C-EVAL RevC 
+  - This example has been tested with STMicroelectronics STM32373C-EVAL RevB
     evaluation boards and can be easily tailored to any other supported device 
     and development board.
 
@@ -173,7 +171,7 @@ User can select USB line Interrupt through macro defined in main.h.
     - Connect the STM32373C-EVAL board to the PC (or to another evaluation board) through RS232 (USART)
       serial cable CN12 connector. Please ensure that jumper JP6 is fitted in RS232_RX position. 
       Jumper JP7 should be connected in 1-2 position.	  
-    - For loopback mode test: remove RS232 cable on CN16 and connect directly USART TX and RX pins:
+    - For loopback mode test: remove RS232 cable on CN12 and connect directly USART TX and RX pins:
       PD5 and PD6.
 
 @par How to use it ?

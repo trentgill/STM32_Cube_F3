@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    Examples_LL/TIM/TIM_PWMOutput_Init/Src/main.c
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   This example describes how to use a timer peripheral to generate a 
   *          PWM output signal and update PWM duty cycle
   *          using the STM32F3xx TIM LL API.
@@ -77,6 +75,9 @@ static uint8_t iDutyCycle = 0;
 
 /* Measured duty cycle */
 __IO uint32_t uwMeasuredDutyCycle = 0;
+
+/* TIM2 Clock */
+static uint32_t TimOutClock = 1;
 
 /* Private function prototypes -----------------------------------------------*/
 __STATIC_INLINE void     SystemClock_Config(void);
@@ -152,9 +153,12 @@ __STATIC_INLINE void  Configure_TIMPWMOutput(void)
   /* Set fields of initialization structure */
   /* - Set the pre-scaler value to have TIM2 counter clock equal to 10 kHz  */
   /* - Set the auto-reload value to have a counter frequency of 100 Hz        */
+  /* TIM2CLK = SystemCoreClock / (APB prescaler & multiplier)               */
+  TimOutClock = SystemCoreClock/1;
+  
   tim_initstruct.Prescaler         = __LL_TIM_CALC_PSC(SystemCoreClock, 10000);
   tim_initstruct.CounterMode       = LL_TIM_COUNTERMODE_UP;
-  tim_initstruct.Autoreload        = __LL_TIM_CALC_ARR(SystemCoreClock, tim_initstruct.Prescaler, 100);
+  tim_initstruct.Autoreload        = __LL_TIM_CALC_ARR(TimOutClock, tim_initstruct.Prescaler, 100);
   tim_initstruct.ClockDivision     = LL_TIM_CLOCKDIVISION_DIV1;
   tim_initstruct.RepetitionCounter = (uint8_t)0x00;
   
@@ -176,7 +180,7 @@ __STATIC_INLINE void  Configure_TIMPWMOutput(void)
   tim_oc_initstruct.OCMode       = LL_TIM_OCMODE_PWM1;
   tim_oc_initstruct.OCState      = LL_TIM_OCSTATE_DISABLE;
   tim_oc_initstruct.OCNState     = LL_TIM_OCSTATE_DISABLE;
-  tim_oc_initstruct.CompareValue = (LL_TIM_GetAutoReload(TIM2) / 2);
+  tim_oc_initstruct.CompareValue = ( (LL_TIM_GetAutoReload(TIM2) + 1 ) / 2);
   tim_oc_initstruct.OCPolarity   = LL_TIM_OCPOLARITY_HIGH;
   tim_oc_initstruct.OCNPolarity  = LL_TIM_OCPOLARITY_HIGH;
   tim_oc_initstruct.OCIdleState  = LL_TIM_OCIDLESTATE_LOW;
@@ -223,7 +227,7 @@ __STATIC_INLINE void Configure_DutyCycle(uint32_t D)
   uint32_t T;    /* PWM signal period */
   
   /* PWM signal period is determined by the value of the auto-reload register */
-  T = LL_TIM_GetAutoReload(TIM2);
+  T = LL_TIM_GetAutoReload(TIM2) + 1;
   
   /* Pulse duration is determined by the value of the compare register.       */
   /* Its value is calculated in order to match the requested duty cycle.      */
@@ -333,6 +337,7 @@ void SystemClock_Config(void)
   /* Update CMSIS variable (which can be updated also through SystemCoreClockUpdate function) */
   LL_SetSystemCoreClock(64000000);
 }
+
 /******************************************************************************/
 /*   USER IRQ HANDLER TREATMENT                                               */
 /******************************************************************************/
@@ -358,7 +363,17 @@ void UserButton_Callback(void)
   */
 void TimerCaptureCompare_Callback(void)
 {
-  uwMeasuredDutyCycle = (LL_TIM_GetCounter(TIM2) * 100) / LL_TIM_GetAutoReload(TIM2);
+  uint32_t CNT, ARR;
+  CNT = LL_TIM_GetCounter(TIM2);
+  ARR = LL_TIM_GetAutoReload(TIM2);
+  
+  if (LL_TIM_OC_GetCompareCH1(TIM2) > ARR )
+  {
+    /* If capture/compare setting is greater than autoreload, there is a counter overflow and counter restarts from 0.
+       Need to add full period to counter value (ARR+1)  */
+    CNT = CNT + ARR + 1;
+  }
+  uwMeasuredDutyCycle = (CNT * 100) / ( ARR + 1 );
 }
 
 #ifdef  USE_FULL_ASSERT
@@ -370,7 +385,7 @@ void TimerCaptureCompare_Callback(void)
   * @param  line: assert_param error line source number
   * @retval None
   */
-void assert_failed(uint8_t *file, uint32_t line)
+void assert_failed(char *file, uint32_t line)
 {
   /* User can add his own implementation to report the file name and line number,
      ex: printf("Wrong parameters value: file %s on line %d", file, line) */

@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    stm32f3_discovery_gyroscope.c
   * @author  MCD Application Team
-  * @version V2.1.4
-  * @date    16-December-2016
   * @brief   This file provides a set of functions needed to manage the l3gd20
   *          MEMS accelerometer available on STM32F3-Discovery Kit.
   ******************************************************************************
@@ -182,7 +180,7 @@ void BSP_GYRO_Reset(void)
 
 /**
   * @brief  Configure INT1 interrupt
-  * @param  pIntConfig: pointer to a L3GD20_InterruptConfig_TypeDef 
+  * @param  pIntConfig pointer to a L3GD20_InterruptConfig_TypeDef 
   *         structure that contains the configuration setting for the L3GD20 Interrupt.
   * @retval None
   */
@@ -204,7 +202,7 @@ uint16_t interruptconfig = 0x0000;
 
 /**
   * @brief  Enable INT1 or INT2 interrupt
-  * @param  IntPin: Interrupt pin 
+  * @param  IntPin Interrupt pin 
   *      This parameter can be: 
   *        @arg L3GD20_INT1
   *        @arg L3GD20_INT2
@@ -220,7 +218,7 @@ void BSP_GYRO_EnableIT(uint8_t IntPin)
 
 /**
   * @brief  Disable INT1 or INT2 interrupt
-  * @param  IntPin: Interrupt pin 
+  * @param  IntPin Interrupt pin 
   *      This parameter can be: 
   *        @arg L3GD20_INT1
   *        @arg L3GD20_INT2
@@ -236,7 +234,7 @@ void BSP_GYRO_DisableIT(uint8_t IntPin)
 
 /**
   * @brief  Get XYZ angular acceleration
-  * @param pfData: pointer on floating array         
+  * @param pfData pointer on floating array         
   * @retval None
   */
 void BSP_GYRO_GetXYZ(float* pfData)

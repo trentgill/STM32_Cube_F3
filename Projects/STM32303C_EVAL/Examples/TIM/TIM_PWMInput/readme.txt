@@ -5,8 +5,6 @@
   ******************** (C) COPYRIGHT 2016 STMicroelectronics *******************
   * @file    TIM/TIM_PWMInput/readme.txt 
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Description of the TIM PWM_Input example.
   ******************************************************************************
   *
@@ -59,7 +57,6 @@ uwDutyCycle = (TIM4_CCR1*100)/(TIM4_CCR2) in %.
 
 The minimum frequency value to measure is (TIM4 counter clock / CCR MAX)
                                          = (72 MHz)/ 65535
-                                         = 1098 Hz
 
 @note Care must be taken when using HAL_Delay(), this function provides accurate delay (in milliseconds)
       based on variable incremented in SysTick ISR. This implies that if HAL_Delay() is called from
@@ -69,6 +66,7 @@ The minimum frequency value to measure is (TIM4 counter clock / CCR MAX)
       
 @note The application need to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
+
 
 @par Directory contents 
 
@@ -90,7 +88,7 @@ The minimum frequency value to measure is (TIM4 counter clock / CCR MAX)
     and development board.
 
   - STM32303C-EVAL RevC Set-up
-    - Connect the external signal to measure to the TIM4 CH2 pin (PB.07) (Pin 22 of the P2 connector).
+    - Connect the external signal to measure to the TIM4 CH2 pin (PB.07) (Pin 36 of the CN6 connector).
 
 @par How to use it ? 
 

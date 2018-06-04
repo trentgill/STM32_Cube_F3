@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    IAP_Main/Src/ymodem.c 
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   This file provides all the software functions related to the ymodem 
   *          protocol.
   ******************************************************************************

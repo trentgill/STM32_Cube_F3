@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    HRTIM/HRTIM_Snippets/Src/main.c 
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   This example describes how to generate basic PWM waveforms with the 
   * HRTIM, as per HRTIM Cookbook basic examples.
   ******************************************************************************
@@ -240,7 +238,7 @@ int main(void)
                                                        + HRTIM_TIMCR_PREEN
                                                        + HRTIM_TIMCR_TREPU;
 
-  /* Set period to 100kHz and duty cycle (CMP1) to 50% */
+  /* Set period to 100kHz and duty cycle (CMP1) to 25% */
   HRTIM1->sTimerxRegs[HRTIM_TIMERINDEX_TIMER_D].PERxR = _100KHz_PERIOD;
   HRTIM1->sTimerxRegs[HRTIM_TIMERINDEX_TIMER_D].CMP1xR = _100KHz_PERIOD/4;
 
@@ -438,7 +436,7 @@ static void Error_Handler(void)
   * @param  line: assert_param error line source number
   * @retval None
   */
-void assert_failed(uint8_t *file, uint32_t line)
+void assert_failed(char *file, uint32_t line)
 {
   /* User can add his own implementation to report the file name and line number,
      ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */

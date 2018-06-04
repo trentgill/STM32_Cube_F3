@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    Examples_LL/TIM/TIM_OutputCompare/Src/main.c
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   This example describes how to use a timer instance in output 
   *          compare mode using the STM32F3xx TIM LL API.
   *          Peripheral initialization done using LL unitary services functions.
@@ -67,6 +65,9 @@ static uint8_t iOCMode = 0;
 
 /* Compare match count */
 static uint32_t uwCompareMatchCount = 0;
+
+/* TIM2 Clock */
+static uint32_t TimOutClock = 1;
 
 /* Private function prototypes -----------------------------------------------*/
 __STATIC_INLINE void     SystemClock_Config(void);
@@ -148,7 +149,9 @@ __STATIC_INLINE void  Configure_TIMOutputCompare(void)
   LL_TIM_SetPrescaler(TIM2, __LL_TIM_CALC_PSC(SystemCoreClock, 10000));
   
   /* Set the auto-reload value to have a counter frequency of 10 Hz */
-  LL_TIM_SetAutoReload(TIM2, __LL_TIM_CALC_ARR(SystemCoreClock, LL_TIM_GetPrescaler(TIM2), 10));
+  /* TIM2CLK = SystemCoreClock / (APB prescaler & multiplier)               */
+  TimOutClock = SystemCoreClock/1;
+  LL_TIM_SetAutoReload(TIM2, __LL_TIM_CALC_ARR(TimOutClock, LL_TIM_GetPrescaler(TIM2), 10));
     
   /*********************************/
   /* Output waveform configuration */
@@ -324,6 +327,7 @@ void SystemClock_Config(void)
   /* Update CMSIS variable (which can be updated also through SystemCoreClockUpdate function) */
   LL_SetSystemCoreClock(64000000);
 }
+
 /******************************************************************************/
 /*   USER IRQ HANDLER TREATMENT                                               */
 /******************************************************************************/
@@ -368,7 +372,7 @@ void TimerCaptureCompare_Callback(void)
   * @param  line: assert_param error line source number
   * @retval None
   */
-void assert_failed(uint8_t *file, uint32_t line)
+void assert_failed(char *file, uint32_t line)
 {
   /* User can add his own implementation to report the file name and line number,
      ex: printf("Wrong parameters value: file %s on line %d", file, line) */

@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    stm32303e_eval.h
   * @author  MCD Application Team
-  * @version V2.1.1
-  * @date    16-December-2016
   * @brief   This file contains definitions for STM32303E_EVAL's LEDs, 
   *          push-buttons and COM ports hardware resources.
   ******************************************************************************

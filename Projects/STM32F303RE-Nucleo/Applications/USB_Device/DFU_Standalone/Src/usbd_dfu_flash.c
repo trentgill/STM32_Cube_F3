@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    USB_Device/DFU_Standalone/Src/usbd_dfu_flash.c
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Memory management layer
   ******************************************************************************
   * @attention
@@ -37,7 +35,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "usbd_dfu_flash.h"
-#include "STM32F3xx_hal_conf.h"
+#include "stm32f3xx_hal_conf.h"
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/

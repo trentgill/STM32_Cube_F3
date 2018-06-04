@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    Examples_LL/RCC/RCC_UseHSI_PLLasSystemClock/Src/main.c
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   This example describes how to change dynamically SYSCLK through
   *          the STM32F3xx RCC LL API.
   ******************************************************************************
@@ -536,7 +534,7 @@ void UserButton_Callback(void)
   * @param  line: assert_param error line source number
   * @retval None
   */
-void assert_failed(uint8_t *file, uint32_t line)
+void assert_failed(char *file, uint32_t line)
 {
   /* User can add his own implementation to report the file name and line number,
      ex: printf("Wrong parameters value: file %s on line %d", file, line) */

@@ -5,8 +5,6 @@
   ******************** (C) COPYRIGHT 2016 STMicroelectronics *******************
   * @file    SDADC/SDADC_TempMeasurement/readme.txt 
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Description of the SDADC Temperature measurement using PT100 sensor.
   ******************************************************************************
   *

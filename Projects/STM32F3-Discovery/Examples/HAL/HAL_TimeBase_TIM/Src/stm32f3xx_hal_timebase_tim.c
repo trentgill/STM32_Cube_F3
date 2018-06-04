@@ -1,8 +1,6 @@
 /**
   ******************************************************************************
   * @file    stm32f3xx_hal_timebase_tim.c 
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   HAL time base based on the hardware TIM.
   *    
   *          This file override the native HAL time base functions (defined as weak)
@@ -66,7 +64,7 @@ void TIM6_DAC_IRQHandler(void);
   *         Tick interrupt priority. 
   * @note   This function is called  automatically at the beginning of program after
   *         reset by HAL_Init() or at any time when clock is configured, by HAL_RCC_ClockConfig(). 
-  * @param  TickPriority: Tick interrupt priority.
+  * @param  TickPriority Tick interrupt priority.
   * @retval HAL status
   */
 HAL_StatusTypeDef HAL_InitTick (uint32_t TickPriority)
@@ -98,7 +96,7 @@ HAL_StatusTypeDef HAL_InitTick (uint32_t TickPriority)
   }
   else
   {
-    uwTimclock = 2*HAL_RCC_GetPCLK1Freq();
+    uwTimclock = 2U*HAL_RCC_GetPCLK1Freq();
   }
   
   /* Compute the prescaler value to have TIM6 counter clock equal to 1MHz */
@@ -108,17 +106,16 @@ HAL_StatusTypeDef HAL_InitTick (uint32_t TickPriority)
   TimHandle.Instance = TIM6;
   
   /* Initialize TIMx peripheral as follow:
-  + Period = [(TIM6CLK/1000) - 1]. to have a (1/1000) s time base.
-  + Prescaler = (uwTimclock/1000000 - 1) to have a 1MHz counter clock.
+  + Period = [(TIM6CLK/1000U) - 1]. to have a (1U/1000U) s time base.
+  + Prescaler = (uwTimclock/1000000U - 1U) to have a 1MHz counter clock.
   + ClockDivision = 0
   + Counter direction = Up
   */
   TimHandle.Init.Period = (1000000U / 1000U) - 1U;
   TimHandle.Init.Prescaler = uwPrescalerValue;
-  TimHandle.Init.ClockDivision = 0;
+  TimHandle.Init.ClockDivision = 0U;
   TimHandle.Init.CounterMode = TIM_COUNTERMODE_UP;
   TimHandle.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
-
   if(HAL_TIM_Base_Init(&TimHandle) == HAL_OK)
   {
     /* Start the TIM time Base generation in interrupt mode */
@@ -158,7 +155,7 @@ void HAL_ResumeTick(void)
   * @note   This function is called  when TIM6 interrupt took place, inside
   * HAL_TIM_IRQHandler(). It makes a direct call to HAL_IncTick() to increment
   * a global variable "uwTick" used as application time base.
-  * @param  htim : TIM handle
+  * @param  htim TIM handle
   * @retval None
   */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)

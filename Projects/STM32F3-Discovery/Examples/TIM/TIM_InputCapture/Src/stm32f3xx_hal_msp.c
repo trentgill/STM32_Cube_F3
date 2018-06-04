@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    TIM/TIM_InputCapture/Src/stm32f3xx_hal_msp.c
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   HAL MSP module.
   ******************************************************************************
   * @attention
@@ -60,10 +58,10 @@
 
 
 /**
-  * @brief TIM MSP Initialization 
-  *        This function configures the hardware resources used in this example: 
+  * @brief TIM MSP Initialization
+  *        This function configures the hardware resources used in this example:
   *           - Peripheral's clock enable
-  *           - Peripheral's GPIO Configuration  
+  *           - Peripheral's GPIO Configuration
   * @param htim: TIM handle pointer
   * @retval None
   */
@@ -77,19 +75,19 @@ void HAL_TIM_IC_MspInit(TIM_HandleTypeDef *htim)
   
   /* Enable GPIO channels Clock */
   TIMx_CHANNEL_GPIO_PORT();
-  
-  /* Configure  (TIMx_Channel) in Alternate function, push-pull and 100MHz speed */
-  GPIO_InitStruct.Pin = GPIO_PIN_CHANNEL2;
+
+  /* Configure  (TIMx_Channel) in Alternate function, push-pull and high speed */
+  GPIO_InitStruct.Pin = TIMx_GPIO_PIN_CHANNEL2;
   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
-  GPIO_InitStruct.Alternate = GPIO_AF_TIMx;
-  HAL_GPIO_Init(GPIO_PORT, &GPIO_InitStruct);
+  GPIO_InitStruct.Alternate = TIMx_GPIO_AF_TIMx;
+  HAL_GPIO_Init(TIMx_GPIO_PORT, &GPIO_InitStruct);
   
   /*##-2- Configure the NVIC for TIMx #########################################*/
 
   HAL_NVIC_SetPriority(TIMx_IRQn, 0, 1);
-  
+
   /* Enable the TIMx global Interrupt */
   HAL_NVIC_EnableIRQ(TIMx_IRQn);
 }

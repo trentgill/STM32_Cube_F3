@@ -10,6 +10,7 @@
       <TargetName>STM32F3348-Discovery</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
+      <pCCUsed>5060422::V5.06 update 4 (build 422)::ARMCC</pCCUsed>
       <TargetOption>
         <TargetCommonOption>
           <Device>STM32F334C8</Device>
@@ -389,16 +390,6 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>Example/MDK-ARM</GroupName>
-          <Files>
-            <File>
-              <FileName>startup_stm32f334x8.s</FileName>
-              <FileType>2</FileType>
-              <FilePath>startup_stm32f334x8.s</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
           <GroupName>Example/User</GroupName>
           <Files>
             <File>
@@ -415,6 +406,16 @@
               <FileName>stm32f3xx_hal_timebase_tim.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Src/stm32f3xx_hal_timebase_tim.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Example/MDK-ARM</GroupName>
+          <Files>
+            <File>
+              <FileName>startup_stm32f334x8.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>startup_stm32f334x8.s</FilePath>
             </File>
           </Files>
         </Group>

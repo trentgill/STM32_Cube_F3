@@ -5,8 +5,6 @@
   ******************** (C) COPYRIGHT 2016 STMicroelectronics *******************
   * @file    Examples_LL/TIM/TIM_InputCapture/readme.txt 
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Description of the TIM_InputCapture example.
   ******************************************************************************
   *
@@ -56,8 +54,8 @@ It is calculated within the capture/compare 1 interrupt service routine.
 The minimum frequency value to measure is TIM1 counter clock / TIMx_CCR1 MAX
                                               = 64 MHz / 65535
 
-Due to TIM1_CC_IRQHandler processing time (around 3.50us), the maximum
-frequency value to measure is around 300 kHz.
+Due to TIM1_CC_IRQHandler processing time (around 1us), the maximum
+frequency value to measure is around 1000kHz.
 
 TIM2_CH1 is configured to generate a PWM signal.  User push-button can be used to
 change the frequency of this signal from 2 kHz up to 20 kHz by steps of 2 kHz.

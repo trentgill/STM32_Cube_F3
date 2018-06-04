@@ -5,8 +5,6 @@
   ******************** (C) COPYRIGHT 2016 STMicroelectronics *******************
   * @file    I2S/I2S_Audio/readme.txt 
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Description of the I2S Audio Example.
   ******************************************************************************
   *
@@ -52,18 +50,12 @@ This example uses an audio codec driver which consists of two independent layers
    control and audio file pointer management)
   
 In this example the audio file is stored in the internal flash memory (Mono, 
-16-bit, 8 KHz). The analog output device is automatically detected (Speaker or 
-Headphone) when the Headphone is plugged/unplugged in/from the audio jack of the 
-evaluation board. The example also manages information display and control interface
-through push buttons: 
- - When the application is Playing audio file:
-     + Key          : Pause
-     + Joystick up  : Volume UP
-     + Joystick down: Volume DOWN
- - When the application is Paused:
-     + Key          : Play
-     + Joystick up  : Switch output target to Headphone
-     + Joystick down: Switch output target to Speaker
+16-bit, 8 KHz). The analog output device is automatically detected when the Headphone 
+is plugged/unplugged in/from the audio jack of the evaluation board. The example also 
+manages information display and control interface through push buttons: 
+  - Key          : Pause/Resume
+  - Joystick up  : Volume UP
+  - Joystick down: Volume DOWN
 
 This example plays the audio file stored in internal flash memory and replays it
 when it reaches end of file. But it can be tailored to used different media storage
@@ -116,7 +108,7 @@ In order to make the program work, you must do the following :
  - Open your preferred toolchain 
  - Rebuild all files and load your image into target memory
  - Run the example
- - Connect a headphone or a speaker to the audio jack connector (CN11).
+ - Connect a headphone to the audio jack connector (CN11).
  * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
  */
  

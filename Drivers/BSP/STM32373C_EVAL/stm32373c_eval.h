@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    stm32373c_eval.h
   * @author  MCD Application Team
-  * @version V2.2.0
-  * @date    16-December-2016
   * @brief   This file contains definitions for STM32373C_EVAL's Leds, push-buttons
   *          and COM port hardware resources.
   ******************************************************************************

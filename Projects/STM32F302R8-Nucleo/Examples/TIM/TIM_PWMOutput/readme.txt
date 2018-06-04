@@ -5,8 +5,6 @@
   ******************** (C) COPYRIGHT 2016 STMicroelectronics *******************
   * @file    TIM/TIM_PWMOutput/readme.txt 
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Description of the PWM signals generation using TIM2
   ******************************************************************************
   *
@@ -73,6 +71,7 @@ The PWM waveforms can be displayed using an oscilloscope.
 @note The application need to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+
 @par Directory contents 
 
   - TIM/TIM_PWMOutput/Inc/stm32f3xx_hal_conf.h    HAL configuration file
@@ -95,10 +94,10 @@ The PWM waveforms can be displayed using an oscilloscope.
 
   - STM32F302R8-Nucleo Rev C Set-up
    Connect the following pins to an oscilloscope to monitor the different waveforms:
-        - TIM2_CH1 : PA.15
-        - TIM2_CH2 : PB.03
-        - TIM2_CH3 : PB.10
-        - TIM2_CH4 : PA.10
+        - TIM2_CH1 : PA.15 (connected to pin 17 in CN7 connector)
+        - TIM2_CH2 : PB.03 (connected to pin 31 in CN10 connector)
+        - TIM2_CH3 : PB.10 (connected to pin 25 in CN10 connector)
+        - TIM2_CH4 : PA.10 (connected to pin 33 in CN10 connector)
 
 
 @par How to use it ? 

@@ -61,25 +61,25 @@
 			<type>1</type>
 			<location>PARENT-7-PROJECT_LOC/Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c</location>
 		</link><link>
-			<name>Example/User/main.c</name>
-			<type>1</type>
-			<location>PARENT-2-PROJECT_LOC/Src/main.c</location>
-		</link><link>
 			<name>Drivers/STM32F3xx_HAL_Driver/stm32f3xx_hal_cortex.c</name>
 			<type>1</type>
 			<location>PARENT-7-PROJECT_LOC/Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_cortex.c</location>
+		</link><link>
+			<name>Example/User/main.c</name>
+			<type>1</type>
+			<location>PARENT-2-PROJECT_LOC/Src/main.c</location>
 		</link><link>
 			<name>Drivers/STM32F3xx_HAL_Driver/stm32f3xx_hal_tim.c</name>
 			<type>1</type>
 			<location>PARENT-7-PROJECT_LOC/Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim.c</location>
 		</link><link>
-			<name>Example/User/stm32f3xx_it.c</name>
-			<type>1</type>
-			<location>PARENT-2-PROJECT_LOC/Src/stm32f3xx_it.c</location>
-		</link><link>
 			<name>Drivers/STM32F3xx_HAL_Driver/stm32f3xx_hal_dma.c</name>
 			<type>1</type>
 			<location>PARENT-7-PROJECT_LOC/Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c</location>
+		</link><link>
+			<name>Example/User/stm32f3xx_it.c</name>
+			<type>1</type>
+			<location>PARENT-2-PROJECT_LOC/Src/stm32f3xx_it.c</location>
 		</link><link>
 			<name>Drivers/STM32F3xx_HAL_Driver/stm32f3xx_hal_pwr.c</name>
 			<type>1</type>
@@ -89,10 +89,6 @@
 			<type>1</type>
 			<location>PARENT-7-PROJECT_LOC/Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal.c</location>
 		</link>
-		<link>
-			<name />
-			<type />
-			<location />
-		</link>
+		
 	</linkedResources>
 </projectDescription>

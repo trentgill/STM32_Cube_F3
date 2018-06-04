@@ -5,8 +5,6 @@
   ******************** (C) COPYRIGHT 2016 STMicroelectronics *******************
   * @file    UART/UART_TwoBoards_ComIT/readme.txt 
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Description of the UART Two Boards Communication IT example.
   ******************************************************************************
   *
@@ -40,7 +38,7 @@
 This example describes an UART transmission (transmit/receive) in interrupt mode
 between two boards.
 
-Board: STM32F3-Discovery RevB (embeds a STM32F303VCT6 device)
+Board: STM32F3-Discovery RevB (embeds a STM32F303VC device)
 Tx Pin: PD.05
 Rx Pin: PD.06
    _________________________                       _________________________ 
@@ -72,12 +70,11 @@ Finally, board 1 and 2 compare the received message to that sent.
 If the messages are the same, the test passes.
 
 
-WARNING: as both boards do not behave the same way, "TRANSMITTER_BOARD" compilation
-switch is defined in /Src/main.c and must be enabled
-at compilation time before loading the executable in the board that first transmits
-then receives.
-The receiving then transmitting board needs to be loaded with an executable
-software obtained with TRANSMITTER_BOARD disabled. 
+WARNING: as both boards do not behave the same way :
+ The user can choose between board 1 and board 2 through "#define TRANSMITTER_BOARD"
+ in the "/Src/main.c" file:
+ - Uncomment "#define TRANSMITTER_BOARD" to select board 1(the transmitting then receiving board).
+ - Comment "#define TRANSMITTER_BOARD" to select board 2 (The receiving then transmitting board).
 
 STM32F3-Discovery RevB board LEDs are used to monitor the transfer status:
 - While board 1 is waiting for the user to press the User push-button, its LED4 is
@@ -119,6 +116,7 @@ position of the transmitted data.
 @note The application need to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+
 @par Directory contents 
 
   - UART/UART_TwoBoards_ComIT/Inc/stm32f3xx_hal_conf.h    HAL configuration file
@@ -134,7 +132,7 @@ position of the transmitted data.
 
   - This example runs on STM32F3xx devices.    
   - This example has been tested with two STM32F3-Discovery RevB boards embedding
-    a STM32F303VCT6 device and can be easily tailored to any other supported device 
+    a STM32F303VC device and can be easily tailored to any other supported device 
     and development board.
 
   - STM32F3-Discovery RevB set-up

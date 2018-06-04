@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    Examples_LL/I2C/I2C_OneBoard_AdvCommunication_DMAAndIT/Inc/stm32f3xx_it.h
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   This file contains the headers of the interrupt handlers.
   ******************************************************************************
   * @attention

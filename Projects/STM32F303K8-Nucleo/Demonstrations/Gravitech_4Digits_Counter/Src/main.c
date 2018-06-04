@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    Demonstrations/Gravitech_4Digits_Counter/Src/main.c 
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   This demo describes how to display 4 digits using the Gravitech 
              7 Segment Display for Arduino Nano shield mounted on the 
              STM32 Nucleo board.

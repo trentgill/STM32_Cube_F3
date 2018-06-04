@@ -5,8 +5,6 @@
   ******************** (C) COPYRIGHT 2016 STMicroelectronics *******************
   * @file    I2C/I2C_WakeUpFromStop/readme.txt 
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Description of the Wake Up from Stop mode example
   ******************************************************************************
   *
@@ -128,7 +126,7 @@ file depending hardware configuration used.
 
 @par Hardware and Software environment
 
-  - This example runs on STM32F3xx devices.
+  - This example runs on STM32F302x8 devices.
     
   - This example has been tested with STM32F302R8-Nucleo Rev C board and can be
     easily tailored to any other supported device and development board.    

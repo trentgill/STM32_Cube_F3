@@ -5,8 +5,6 @@
   ******************** (C) COPYRIGHT 2016 STMicroelectronics *******************
   * @file    SPI/SPI_FullDuplex_ComIT/readme.txt 
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Description of the SPI Full Duplex IT example.
   ******************************************************************************
   *
@@ -39,6 +37,7 @@
 
 This example shows how to ensure SPI data buffer transmission/reception between 
 two boards by using an interrupt.
+
    _________________________                        _________________________
   |           ______________|                      |______________           |
   |          |SPI3          |                      |          SPI3|          |
@@ -53,7 +52,6 @@ two boards by using an interrupt.
   |                      GND|______________________|GND                      |
   |                         |                      |                         |
   |_STM32F3 Master _________|                      |_STM32F3 Slave __________|
-
 
 HAL architecture allows user to easily change code to move to DMA or Polling 
 mode. To see others communication modes please check following examples:
@@ -80,17 +78,17 @@ If the Slave board is used the "#define MASTER_BOARD" must be commented.
 
 For this example the aTxBuffer is predefined and the aRxBuffer size is same as aTxBuffer.
 
-In a first step after the user press the Key push-button, SPI Master starts the 
+In a first step after the user press the Key push-button, SPI Master starts the
 communication by sending aTxBuffer and receiving aRxBuffer through 
 HAL_SPI_TransmitReceive_IT(), at the same time SPI Slave transmits aTxBuffer 
 and receives aRxBuffer through HAL_SPI_TransmitReceive_IT(). 
-The end of this step is monitored through the HAL_SPI_GetState() function
-result.
+The callback functions (HAL_SPI_TxRxCpltCallback and HAL_SPI_ErrorCallbackand) update 
+the variable wTransferState used in the main function to check the transfer status.
 Finally, aRxBuffer and aTxBuffer are compared through Buffercmp() in order to 
 check buffers correctness.  
 
 STM32 board's LEDs can be used to monitor the transfer status:
- - LED1 toggles quicly on master board waiting Key push-button to be pressed.
+ - LED1 toggles quickly on master board waiting Key push-button to be pressed.
  - LED1 turns ON when the transmission process is complete.
  - LED2 turns ON when the reception process is complete.
  - LED3 turns ON when there is an error in transmission/reception process. 
@@ -106,28 +104,29 @@ STM32 board's LEDs can be used to monitor the transfer status:
       a peripheral ISR process, then the SysTick interrupt must have higher priority (numerically lower)
       than the peripheral interrupt. Otherwise the caller ISR process will be blocked.
       To change the SysTick interrupt priority you have to use HAL_NVIC_SetPriority() function.
-
+      
 @note The application need to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
+
 
 @par Directory contents 
 
   - SPI/SPI_FullDuplex_ComIT/Inc/stm32f3xx_hal_conf.h    HAL configuration file
-  - SPI/SPI_FullDuplex_ComIT/Inc/stm32f3xx_it.h          SPI interrupt handlers header file
+  - SPI/SPI_FullDuplex_ComIT/Inc/stm32f3xx_it.h          Interrupt handlers header file
   - SPI/SPI_FullDuplex_ComIT/Inc/main.h                  Header for main.c module  
-  - SPI/SPI_FullDuplex_ComIT/Src/stm32f3xx_it.c          SPI interrupt handlers
+  - SPI/SPI_FullDuplex_ComIT/Src/stm32f3xx_it.c          Interrupt handlers
   - SPI/SPI_FullDuplex_ComIT/Src/main.c                  Main program
-  - SPI/SPI_FullDuplex_ComIT/Src/system_stm32f3xx.c      STM32F3xx system source file
-  - SPI/SPI_FullDuplex_ComIT/Src/stm32f3xx_hal_msp.c     HAL MSP file    
+  - SPI/SPI_FullDuplex_ComIT/Src/system_stm32f3xx.c      stm32f3xx system source file
+  - SPI/SPI_FullDuplex_ComIT/Src/stm32f3xx_hal_msp.c     HAL MSP file
 
 @par Hardware and Software environment
 
   - This example runs on STM32F303xE devices.
-    
-  - This example has been tested with STM32303E-EVAL RevC board and can be
-    easily tailored to any other supported device and development board.    
 
-  -STM32303E-EVAL RevC Set-up
+  - This example has been tested with STM32303E-EVAL RevC board and can be
+    easily tailored to any other supported device and development board.
+
+  - STM32303E-EVAL RevC Set-up
     - Connect Master board PC10 to Slave Board PC10
     - Connect Master board PC11 to Slave Board PC11
     - Connect Master board PC12 to Slave Board PC12
@@ -135,7 +134,7 @@ STM32 board's LEDs can be used to monitor the transfer status:
 
 @par How to use it ? 
 
-In order to make the program work, you must do the following :
+In order to make the program work, you must do the following:
  - Open your preferred toolchain 
  - Rebuild all files and load your image into target memory
     o Uncomment "#define MASTER_BOARD" and load the project in Master Board

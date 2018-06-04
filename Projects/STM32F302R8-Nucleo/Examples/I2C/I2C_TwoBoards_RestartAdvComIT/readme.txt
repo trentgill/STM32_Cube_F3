@@ -5,8 +5,6 @@
   ********************* COPYRIGHT(c) 2016 STMicroelectronics *******************
   * @file    I2C/I2C_TwoBoards_RestartAdvComIT/readme.txt 
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Description of the I2C_TwoBoards_RestartAdvComIT I2C example.
   ******************************************************************************
   *
@@ -147,9 +145,6 @@ Depending of IDE, to watch content of Terminal I/O note that
    Command Code is displayed on debugger as follows: Window--> Show View--> Console.
    the Terminal I/O.
 
- - When resorting to Atollic TrueSTUDIO project: Open ST-Link-Utility : 
-   Select ST-LINK --> Printf via SWO viewer -->Set the System clock to 64MHz --> Start
-
 2- Request Command code :
     a. Type of command which need a specific data answer from Slave Device.
     b. I2C sequence is composed like that :
@@ -235,7 +230,7 @@ Also only on Master board side, Terminal I/O can be used to watch the Request Co
 
 @par Hardware and Software environment
 
-  - This example runs on STM32F302R8 devices.
+  - This example runs on STM32F302x8 devices.
     
   - This example has been tested with STM32F302R8-Nucleo Rev C board and can be
     easily tailored to any other supported device and development board.    

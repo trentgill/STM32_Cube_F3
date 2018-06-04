@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    USB_Device/MSC_Standalone/Src/usbd_storage.c
   * @author  MCD Application Team
-  * @version V1.0.2
-  * @date    21-September-2015
   * @brief   Memory management layer
   ******************************************************************************
   * @attention

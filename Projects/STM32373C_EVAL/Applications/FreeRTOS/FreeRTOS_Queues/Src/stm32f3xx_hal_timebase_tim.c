@@ -1,8 +1,6 @@
 /**
   ******************************************************************************
   * @file    stm32f3xx_hal_timebase_tim.c 
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   HAL time base based on the hardware TIM.
   *    
   *          This file override the native HAL time base functions (defined as weak)

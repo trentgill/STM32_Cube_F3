@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    IAP_Main/Inc/menu.h 
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   This file provides all the headers of the menu functions.
   ******************************************************************************
   * @attention

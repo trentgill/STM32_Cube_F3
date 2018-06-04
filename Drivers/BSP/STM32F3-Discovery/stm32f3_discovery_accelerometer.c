@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    stm32f3_discovery_accelerometer.c
   * @author  MCD Application Team
-  * @version V2.1.4
-  * @date    16-December-2016
   * @brief   This file provides a set of functions needed to manage the ACCELEROMETER
   *          MEMS available on STM32F3-Discovery Kit.
   ******************************************************************************

@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    USB_Device/DFU_Standalone/Inc/usbd_conf.h
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   General low level driver configuration
   ******************************************************************************
   * @attention
@@ -40,7 +38,7 @@
 #define __USBD_CONF_H
 
 /* Includes ------------------------------------------------------------------*/
-#include "STM32F3xx_hal.h"
+#include "stm32f3xx_hal.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

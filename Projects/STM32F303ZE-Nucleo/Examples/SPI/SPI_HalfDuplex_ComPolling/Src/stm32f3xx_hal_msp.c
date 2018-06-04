@@ -2,13 +2,11 @@
   ******************************************************************************
   * @file    SPI/SPI_HalfDuplex_ComPolling/Src/stm32f3xx_hal_msp.c
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   HAL MSP module.
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT(c) 2016 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT(c) 2017 STMicroelectronics</center></h2>
   *
   * Redistribution and use in source and binary forms, with or without modification,
   * are permitted provided that the following conditions are met:
@@ -105,7 +103,7 @@ GPIO_InitTypeDef  GPIO_InitStruct;
 #ifdef MASTER_BOARD
     /* SPI MOSI GPIO pin configuration  */
     GPIO_InitStruct.Pin       = SPIx_MOSI_PIN;
-    GPIO_InitStruct.Pull      = GPIO_PULLUP;
+    GPIO_InitStruct.Pull      = GPIO_NOPULL;
     GPIO_InitStruct.Alternate = SPIx_MOSI_AF;
     HAL_GPIO_Init(SPIx_MOSI_GPIO_PORT, &GPIO_InitStruct);
 #endif    

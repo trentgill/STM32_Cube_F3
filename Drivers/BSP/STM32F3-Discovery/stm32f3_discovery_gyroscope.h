@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    stm32f3_discovery_gyroscope.h
   * @author  MCD Application Team
-  * @version V2.1.4
-  * @date    16-December-2016
   * @brief   This file contains definitions for stm32f3_discovery_gyroscope.c 
   *          firmware driver.
   ******************************************************************************

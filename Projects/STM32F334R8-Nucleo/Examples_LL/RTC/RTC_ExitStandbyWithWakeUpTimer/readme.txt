@@ -5,8 +5,6 @@
   ******************** (C) COPYRIGHT 2016 STMicroelectronics *******************
   * @file    Examples_LL/RTC/RTC_ExitStandbyWithWakeUpTimer/readme.txt 
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    16-December-2016
   * @brief   Description of the RTC example.
   ******************************************************************************
   *
@@ -37,20 +35,13 @@
 
 @par Example Description
 
-This example shows how to configure the RTC in order to wakeup system from standby
-mode using RTC Wakeup Timer. Peripheral initialization is done using LL unitary services 
+This example shows how to configure the RTC in order to wake up from Standby mode
+using RTC Wakeup Timer. Peripheral initialization is done using LL unitary services
 functions for optimization purpose (performance and size).
   
-In this example, after start-up, SYSCLK is configured to the max frequency using 
+In this example, after start-up, SYSCLK is configured to the max frequency using
 the PLL with HSI as clock source.
 
-Example execution:
-   - 1st execution of the system, LED2 is quickly blinking
-   - Press the user button:
-     * RTC wakup timer is configured to 5 seconds
-     * System enters in standby mode (LED2 is switch off)
-   - After 5 seconds, system resumes from standby mode, then LED2 is slowly blinking.
- 
    @note LSI oscillator clock is used as RTC clock source by default.
       The user can use also LSE as RTC clock source. The user uncomment the adequate 
       line on the main.h file.
@@ -61,7 +52,17 @@ Example execution:
       LSI oscillator clock is delivered by a 40 kHz RC.
       LSE (when available on board) is delivered by a 32.768 kHz crystal.
 
-- LED2 is toggling every 1 second: This indicates that the system generates an error.
+   @note RTC wake up timer is one-second resolution based due to 1Hz internal frequency configuration.
+
+Example execution:
+   - 1st execution of the system, LED2 is quickly blinking (every 200ms).
+   - RTC wakup timer is configured to 5 seconds
+   - Press the user button:
+     * System enters in standby mode (LED2 is switched off)
+   - After 5 seconds, system resumes from standby mode, then LED2 is slowly blinking (every 500ms).
+
+   - LED2 is toggling every 1 second: This indicates that the system generates an error.
+
 
 @par Directory contents 
 
